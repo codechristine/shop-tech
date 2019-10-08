@@ -6,10 +6,14 @@ require_once('db_connection.php');
 set_exception_handler('error_handler');
 startup();
 
-if(empty($_GET[`id`])){
-  $whereClause = "";
+$whereClause = "";
+if(!empty($_GET[`id`])){
+  if(!is_numeric($_GET[`id`])){
+    throw new Exception('id must be an int');
+  }
 } else {
-  $whereClause = "WHERE `id` = {$_GET[`id`]} ";
+  $id = intval($_GET[`id`]);
+  $whereClause = " WHERE `id`=$id ";
 }
 
 $query = "SELECT * FROM `product` $whereClause";
@@ -20,12 +24,19 @@ if(!$result){
   exit();
 }
 
-$output = [
-  'data'=> []
-];
+if(mysqli_num_rows($result)===0 && $id!==false){
+  throw new Exception("invalid id: $id");
+}
+
+$output = [];
 
 while($row = mysqli_fetch_assoc($result)){
-  array_push($output['data'], $row);
+  $row['price'] = intval($row['price']);
+  array_push($output, $row);
+}
+
+if($id){
+  $output = $output[0];
 }
 
 $json_output = json_encode($output);
