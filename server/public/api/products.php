@@ -12,9 +12,29 @@ require_once('functions.php');
 require_once('db_connection.php');
 
 set_exception_handler('error_handler');
+startup();
 
-$output = file_get_contents('dummy-products-list.json');
+$query = "SELECT * FROM `product` WHERE 1";
+$result = mysqli_query($conn, $query);
 
-print($output);
+if(!$result){
+  throw new Exception('error in query' . mysqli_error($conn));
+  exit();
+}
+
+$output = [
+  'data'=> []
+];
+
+while($row = mysqli_fetch_assoc($result)){
+  array_push($output['data'], $row);
+}
+
+$json_output = json_encode($output);
+print($json_output);
+
+// $output = file_get_contents('dummy-products-list.json');
+
+// print($output);
 
 ?>
