@@ -29,13 +29,14 @@ class ProductDetails extends React.Component {
       return (
         <div className='container'>
           <div onClick={() => { this.props.setView('catalog', '{}'); }} className="mt-4 ml-3" >{'< Back To Catalogue'}</div>
-          <div className='media mb-3 mt-1' style={{ 'max-width': '60%' }}>
+          <div className='media mb-3 mt-1' style={{ 'width': '60%' }}>
 
             <img className='mr-3 mt-4' style={{ 'height': '30rem' }} src={ image } />
             <div className='col-md-8'>
               <h2 className='mt-4'>{name}</h2>
               <h4 className='mt-2'>{ price }</h4>
               <p className='mt-3'>{ shortDescription }</p>
+              <button type='button' className='btn btn-dark' onClick={() => { this.props.itemAddedToCart(this.state.product); }}>Add To Cart</button>
             </div>
           </div>
           <p className='media-body'>{ longDescription }</p>

@@ -13,7 +13,7 @@ class ProductListItem extends React.Component {
           <h5 className='card-title'>{this.props.item.productName}</h5>
           <p className='card-text'>{formatPrice}</p>
           <p className='card-text'>{this.props.item.productDescription}</p>
-          <button type='button' className='btn btn-dark' >Add To Cart</button>
+          <button type='button' className='btn btn-dark' onClick={() => { this.props.add(this.props.item); }}>Add To Cart</button>
         </div>
       </div>
     );
