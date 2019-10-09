@@ -34,7 +34,5 @@ class ProductList extends React.Component {
     );
   }
 }
-export default ProductList;
 
-// can use an event click hanlder to look for id
-//
+export default ProductList;
