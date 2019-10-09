@@ -2,7 +2,6 @@ import React from 'react';
 
 class ProductListItem extends React.Component {
   render() {
-
     let formatPrice = this.props.item.productPrice;
     formatPrice = '$' + formatPrice.toFixed(2);
 

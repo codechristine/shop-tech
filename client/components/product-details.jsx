@@ -19,7 +19,6 @@ class ProductDetails extends React.Component {
       .catch(error => console.error('fetch error:', error));
   }
   render() {
-
     if (this.state.product) {
       let image = this.state.product.img;
       let name = this.state.product.productName;
