@@ -1,17 +1,18 @@
 <?php
 
 require_once('functions.php');
+set_exception_handler('error_handler');
+
 require_once('db_connection.php');
 
-set_exception_handler('error_handler');
 startup();
 
 $whereClause = "";
+$id = false;
 if(!empty($_GET[`id`])){
   if(!is_numeric($_GET[`id`])){
     throw new Exception('id must be an int');
   }
-} else {
   $id = intval($_GET[`id`]);
   $whereClause = " WHERE `id`=$id ";
 }
@@ -31,7 +32,7 @@ if(mysqli_num_rows($result)===0 && $id!==false){
 $output = [];
 
 while($row = mysqli_fetch_assoc($result)){
-  $row['price'] = intval($row['price']);
+  $row['productPrice'] = intval($row['productPrice']);
   array_push($output, $row);
 }
 
