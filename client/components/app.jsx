@@ -57,7 +57,7 @@ export default class App extends React.Component {
       return (
         <div className='container'>
           <Header cartItemCount={this.state.cart.length} />
-          <ProductList cartItemCount={this.addToCart} setView={this.setView} />
+          <ProductList cartItemCount={this.addToCart} setView={this.setView} view={this.state.view.params} />
         </div>
       );
     } else if (this.state.view.name === 'details') {

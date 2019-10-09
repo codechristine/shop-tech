@@ -4,16 +4,17 @@ require_once('functions.php');
 set_exception_handler('error_handler');
 
 require_once('db_connection.php');
-
 startup();
 
 $whereClause = "";
 $id = false;
-if(!empty($_GET[`id`])){
-  if(!is_numeric($_GET[`id`])){
+
+if(!empty($_GET['id'])){
+  if(!is_numeric($_GET['id'])){
     throw new Exception('id must be an int');
   }
-  $id = intval($_GET[`id`]);
+  print_r($id);
+  $id = intval($_GET['id']);
   $whereClause = " WHERE `id`=$id ";
 }
 
