@@ -25,7 +25,7 @@ class ProductList extends React.Component {
       <div className='row'>
         {this.state.products.map(item => {
           return (
-            <div onClick={() => { this.props.setView('details', item.id); }} key={item.id} >
+            <div onClick={() => { this.props.setView('details', { id: item.id }); }} key={item.id} >
               <ProductListItem item={item} add={this.props.cartItemCount} />
             </div>
           );
@@ -35,3 +35,6 @@ class ProductList extends React.Component {
   }
 }
 export default ProductList;
+
+// can use an event click hanlder to look for id
+//
