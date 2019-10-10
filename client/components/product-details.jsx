@@ -20,10 +20,10 @@ class ProductDetails extends React.Component {
   }
   render() {
     if (this.state.product) {
-      let image = this.state.product.img;
-      let name = this.state.product.productName;
-      let price = '$' + this.state.product.productPrice;
-      let shortDescription = this.state.product.productDescription;
+      let image = this.state.product.image;
+      let name = this.state.product.name;
+      let price = '$' + this.state.product.price;
+      let shortDescription = this.state.product.shortDescription;
       let longDescription = <div className="text-wrapper"><LoremIpsum p={2} /> </div>;
 
       return (

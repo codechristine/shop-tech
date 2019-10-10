@@ -33,7 +33,6 @@ if(mysqli_num_rows($result)===0 && $id!==false){
 $output = [];
 
 while($row = mysqli_fetch_assoc($result)){
-  $row['productPrice'] = intval($row['productPrice']);
   array_push($output, $row);
 }
 
