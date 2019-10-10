@@ -2,16 +2,21 @@ import React from 'react';
 
 class ProductListItem extends React.Component {
   render() {
-    // eslint-disable-next-line no-console
-    console.log('props', this.props);
+    let formatPrice = this.props.item.productPrice;
+    formatPrice = '$' + formatPrice.toFixed(2);
+
     return (
-      <div>
-        <div>{this.props.product.image}</div>
-        <div>{this.props.product.name}</div>
-        <div>{this.props.product.price}</div>
-        <div>{this.props.product.description}</div>
+      <div className='card m-2' style={{ 'width': '21rem' }}>
+        <img className='card-img-top' style={{ 'height': '18rem' }} src={this.props.item.img} />
+        <div className='card-body'>
+          <h5 className='card-title'>{this.props.item.productName}</h5>
+          <p className='card-text'>{formatPrice}</p>
+          <p className='card-text'>{this.props.item.productDescription}</p>
+          <button type='button' className='btn btn-dark' onClick={() => { this.props.add(this.props.item); }}>View Product Details</button>
+        </div>
       </div>
     );
   }
 }
+
 export default ProductListItem;
