@@ -56,22 +56,22 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartClicked={this.state.view.name.cart} />
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
           <ProductList cartItemCount={this.addToCart} setView={this.setView} view={this.state.view.params} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartClicked={this.state.view.name.cart} />
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
           <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={ this.addToCart }/>
         </div>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <div className='container'>
-          <div onClick={() => { this.props.setView('cart', '{}'); }} className="mt-4 ml-3" >{'MY CART'}</div>
-          <CartSummary cartState={this.state.cart} />
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
+          <CartSummary cartItemCount={this.state.cart.length} cartState={this.state.cart} />
         </div>
       );
     }
