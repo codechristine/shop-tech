@@ -19,8 +19,9 @@ class ProductDetails extends React.Component {
       .catch(error => console.error('fetch error:', error));
   }
   render() {
+
     if (this.state.product) {
-      let image = this.state.product.image;
+      let image = this.state.product.image[1];
       let name = this.state.product.name;
       let price = '$' + this.state.product.price;
       let shortDescription = this.state.product.shortDescription;
@@ -29,9 +30,9 @@ class ProductDetails extends React.Component {
       return (
         <div className='container'>
           <div onClick={() => { this.props.setView('catalog', '{}'); }} className="mt-4 ml-3" >{'< Back To Catalogue'}</div>
-          <div className='media mb-3 mt-1' style={{ 'width': '60%' }}>
-            <img className='mr-3 mt-4' style={{ 'height': '30rem' }} src={ image } />
-            <div className='col-md-8'>
+          <div className='media mb-3 mt-1' style={{ 'width': '60%', 'height': '50%' }}>
+            <img className='mr-3 mt-4' style={{ 'height': '20rem' }} src={ image } />
+            <div className='col-md-8 ml-5'>
               <h2 className='mt-4'>{name}</h2>
               <h4 className='mt-2'>{price}</h4>
               <p className='mt-3'>{shortDescription}</p>
