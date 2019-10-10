@@ -21,9 +21,8 @@ if(!empty($_GET['id'])){
 $query = "SELECT * FROM `product` $whereClause";
 $result = mysqli_query($conn, $query);
 
-if(!$result){
+if (!$result) {
   throw new Exception('error in query' . mysqli_error($conn));
-  exit();
 }
 
 if(mysqli_num_rows($result)===0 && $id!==false){
@@ -33,15 +32,15 @@ if(mysqli_num_rows($result)===0 && $id!==false){
 $output = [];
 
 while($row = mysqli_fetch_assoc($result)){
-  $row['productPrice'] = intval($row['productPrice']);
   array_push($output, $row);
 }
 
 if($id){
   $output = $output[0];
-}
 
 $json_output = json_encode($output);
 print($json_output);
+
+print($output);
 
 ?>
