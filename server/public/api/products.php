@@ -15,10 +15,8 @@ if(!empty($_GET['id'])){
   }
   print_r($id);
   $id = intval($_GET['id']);
-  $whereClause = " WHERE `id`=$id ";
+  $whereClause = " WHERE p.`id`=$id ";
 }
-
-// $query = "SELECT * FROM `product` $whereClause";
 
 $query = " SELECT p.`id`, p.`name`, p.`price`, p.`shortDescription`, p.`image`,
             GROUP_CONCAT(i.`url`) AS 'image'
