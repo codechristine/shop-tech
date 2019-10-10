@@ -4,11 +4,11 @@ class CartSummaryItem extends React.Component {
 
   render() {
     return (
-      <div item={this.props.itemAddedToCart} >
-        <div>this.props.showItems.image</div>
-        <div>this.props.showItems.name</div>
-        <div>this.props.showItems.price</div>
-        <div>this.props.showItems.shortDescription</div>
+      <div className='container' >
+        <div>this.props.items.image</div>
+        <div>this.props.items.name</div>
+        <div>this.props.items.price</div>
+        <div>this.props.items.shortDescription</div>
       </div>
     );
   }
