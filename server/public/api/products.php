@@ -18,7 +18,16 @@ if(!empty($_GET['id'])){
   $whereClause = " WHERE `id`=$id ";
 }
 
-$query = "SELECT * FROM `product` $whereClause";
+// $query = "SELECT * FROM `product` $whereClause";
+
+$query = " SELECT p.`id`, p.`name`, p.`price`, p.`shortDescription`, p.`image`,
+            GROUP_CONCAT(i.`url`) AS 'image'
+            FROM `product` AS p
+            JOIN `images` as i
+            ON p.`id` = i.`product_id`
+            $whereClause
+            GROUP BY p.`id` ";
+
 $result = mysqli_query($conn, $query);
 
 if(!$result){
@@ -33,6 +42,7 @@ if(mysqli_num_rows($result)===0 && $id!==false){
 $output = [];
 
 while($row = mysqli_fetch_assoc($result)){
+  $row['image'] = explode(",", $row['image']);
   array_push($output, $row);
 }
 
