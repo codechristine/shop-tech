@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
+import CartSummary from './cart-summary';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,15 +56,22 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} />
-          <ProductList cartItemCount={this.addToCart} setView={this.setView} view={this.state.view.params} />
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
+          <ProductList itemAddedToCart={this.addToCart} setView={this.setView} view={this.state.view.params} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} />
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
           <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={ this.addToCart }/>
+        </div>
+      );
+    } else if (this.state.view.name === 'cart') {
+      return (
+        <div className='container'>
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
+          <CartSummary itemAddedToCart={this.addToCart} setView={this.setView} cartState={this.state.cart} />
         </div>
       );
     }

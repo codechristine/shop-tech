@@ -15,14 +15,22 @@ if(!empty($_GET['id'])){
   }
   print_r($id);
   $id = intval($_GET['id']);
-  $whereClause = " WHERE `id`=$id ";
+  $whereClause = " WHERE p.`id`=$id ";
 }
 
-$query = "SELECT * FROM `product` $whereClause";
+$query = " SELECT p.`id`, p.`name`, p.`price`, p.`shortDescription`, p.`image`,
+            GROUP_CONCAT(i.`url`) AS 'image'
+            FROM `product` AS p
+            JOIN `images` as i
+            ON p.`id` = i.`product_id`
+            $whereClause
+            GROUP BY p.`id` ";
+
 $result = mysqli_query($conn, $query);
 
-if (!$result) {
+if(!$result){
   throw new Exception('error in query' . mysqli_error($conn));
+  exit();
 }
 
 if(mysqli_num_rows($result)===0 && $id!==false){
@@ -32,15 +40,15 @@ if(mysqli_num_rows($result)===0 && $id!==false){
 $output = [];
 
 while($row = mysqli_fetch_assoc($result)){
+  $row['image'] = explode(",", $row['image']);
   array_push($output, $row);
 }
 
 if($id){
   $output = $output[0];
+}
 
 $json_output = json_encode($output);
 print($json_output);
-
-print($output);
 
 ?>
