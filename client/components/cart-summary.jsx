@@ -17,7 +17,10 @@ class CartSummary extends React.Component {
           {this.props.cartState.map(product => {
             return <CartSummaryItem key={product.id} items={product} />;
           })}
-          <h4 className='m-3 ml-5 mb-3'>ITEM TOTAL: ${totalCost}</h4>
+          <div className='d-flex justify-content-around mt-4'>
+            <h4 style={{ 'color': 'royalblue' }}>ITEM TOTAL: ${totalCost}</h4>
+            <button className='btn btn-primary'>CHECK OUT</button>
+          </div>
         </div>
       );
     } else {
