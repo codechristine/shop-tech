@@ -3,6 +3,7 @@ import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
+import CheckoutForm from './checkoutform';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,8 +16,9 @@ export default class App extends React.Component {
       }
     };
     this.getCartItems = this.getCartItems.bind(this);
-    this.addToCart = this.addToCart.bind(this);
     this.setView = this.setView.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
   }
   getCartItems() {
     fetch('/api/cart.php')
@@ -52,6 +54,25 @@ export default class App extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
+  placeOrder() {
+    let orderObject = {
+      name: 'name',
+      creditCard: 'creditCard',
+      shippingAddress: 'shippingAddress'
+    };
+
+    fetch('/api/orders.php', {
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(order => {
+        this.setState({ cart: orderObject });
+      })
+      .catch(error => console.error('fetch error:', error));
+  }
   render() {
     if (this.state.view.name === 'catalog') {
       return (
@@ -72,6 +93,13 @@ export default class App extends React.Component {
         <div className='container'>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
           <CartSummary itemAddedToCart={this.addToCart} setView={this.setView} cartState={this.state.cart} />
+        </div>
+      );
+    } else if (this.state.view.name === 'checkout') {
+      return (
+        <div className='container'>
+          <Header cartItemCount={this.state.cart.length} />
+          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} checkout={this.state.view.name.checkout} />
         </div>
       );
     }
