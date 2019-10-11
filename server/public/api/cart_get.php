@@ -6,24 +6,33 @@ if (!defined('INTERNAL')) {
 
 if(empty($_SESSION['cartID'])){
   print_r(json_encode([]));
-  exit();
+  exit('empty cart');
 }
 
-if($_SESSION['cartID']) {
-  $cartID = intval($_SESSION['cartID']);
+$cartID = intval($_SESSION['cartID']);
+
+if(!$_SESSION['cartID']) {
+  throw new Exception('no id');
 }
 
-$query = " SELECT * FROM `cartItems`AS c
+$query = " SELECT c.`count`, p.`price`, p.`name`, p.`shortDescription`, p.`image` FROM `cartItems`AS c
             JOIN `product` AS p
             ON p.`id` = c.`productID`
-            GROUP BY p.id ";
+            ORDER BY c.`count` ASC ";
 
 $result = mysqli_query($conn, $query);
 
-if(empty($result)){
+if (empty($result)) {
   print_r([]);
-} else {
-  print_r($result);
 }
+
+$output = [];
+
+while($row = mysqli_fetch_assoc($result)){
+  array_push($output, $row);
+}
+
+$json_output = json_encode($output);
+print_r($json_output);
 
 ?>

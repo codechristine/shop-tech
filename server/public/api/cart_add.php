@@ -6,12 +6,14 @@ if(!defined('INTERNAL')){
 
 $bodyData = getBodyData();
 
-if($bodyData['id']){
-  $id = intval($bodyData['id']);
+if(!$bodyData['id']){
+  throw new Exception('must have a valid id');
 }
+  $id = intval($bodyData['id']);
 
-if(!($id > 0)){
-  throw new Exception('id is not greater than 0');
+
+if($id < 0){
+  throw new Exception('id is less than 0');
 }
 
 if(!empty($_SESSION['cartID'])){
@@ -32,7 +34,7 @@ if(!$result) {
 }
 
 if(mysqli_num_rows($result) === 0 && $id !== false) {
-  throw new Exception("invalid id:", $id);
+  throw new Exception("invalid id $id");
 }
 
 $productData = [];
@@ -54,19 +56,17 @@ if (!$query) {
   throw new Exception('invalid result');
 }
 
-if($cartID === false){
-  $query = " INSERT INTO `cart` (created) VALUES (NOW()) ";
-  $result = mysqli_query($conn, $query);
-  if (mysqli_affected_rows($conn) > 0) {
-    print_r(mysqli_affected_rows($conn));
-  } else {
-    throw new Exception('no rows were affected');
-  }
-  $cartID = (mysqli_insert_id($conn));
-  $_SESSION['cartID'] = (mysqli_insert_id($conn));
-  print_r($cartID);
-  print_r($_SESSION['cartID']);
+if (!$cartID === false && mysqli_affected_rows($conn) < 0 ) {
+  throw new Exception('no rows were affected');
 }
+$query = " INSERT INTO `cart` (created) VALUES (NOW()) ";
+$result = mysqli_query($conn, $query);
+print_r('affected rows:', mysqli_affected_rows($conn));
+
+$cartID = (mysqli_insert_id($conn));
+$_SESSION['cartID'] = $cartID;
+print_r($cartID);
+print_r($_SESSION['cartID']);
 
 $insertedQuery = " INSERT INTO `cartItems` (count, productID, price, added, cartID )
                     VALUES (1, $id, $productData[price], NOW(), $cartID )
