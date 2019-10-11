@@ -57,25 +57,26 @@ if (!$query) {
 if($cartID === false){
   $query = " INSERT INTO `cart` (created) VALUES (NOW()) ";
   $result = mysqli_query($conn, $query);
-}
-
-$cartID = (mysqli_insert_id($conn));
-$_SESSION['cartID'] = (mysqli_insert_id($conn));
-print_r($cartID);
-print_r($_SESSION['cartID']);
-
-if (mysqli_affected_rows($conn) > 0) {
-  print_r(mysqli_affected_rows($conn));
-} else {
-  throw new Exception('no rows were affected');
+  if (mysqli_affected_rows($conn) > 0) {
+    print_r(mysqli_affected_rows($conn));
+  } else {
+    throw new Exception('no rows were affected');
+  }
+  $cartID = (mysqli_insert_id($conn));
+  $_SESSION['cartID'] = (mysqli_insert_id($conn));
+  print_r($cartID);
+  print_r($_SESSION['cartID']);
 }
 
 $insertedQuery = " INSERT INTO `cartItems` (count, productID, price, added, cartID )
-                    VALUES (1, $id, $query, NOW(), $cartID )
+                    VALUES (1, $id, $productData[price], NOW(), $cartID )
                     ON DUPLICATE KEY UPDATE count = count + 1 ";
 
 $insertResult = mysqli_query($conn, $insertedQuery);
-print_r($insertResult);
+
+if(!$insertResult){
+    throw new Exception('error in query' . mysqli_error($conn));
+}
 
 if (mysqli_affected_rows($conn) > 0) {
   mysqli_query($conn, 'COMMIT');
