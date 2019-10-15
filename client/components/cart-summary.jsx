@@ -40,5 +40,4 @@ class CartSummary extends React.Component {
 
   }
 }
-
 export default CartSummary;

@@ -33,5 +33,4 @@ class CartSummaryItem extends React.Component {
     }
   }
 }
-
 export default CartSummaryItem;
