@@ -44,6 +44,7 @@ class CheckoutForm extends React.Component {
     });
   }
   completeOrder(order) {
+
     this.props.placeOrder(order);
 
     this.setState({
