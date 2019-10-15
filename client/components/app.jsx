@@ -54,22 +54,25 @@ export default class App extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
-  placeOrder() {
-    let orderObject = {
-      name: 'name',
-      creditCard: 'creditCard',
-      shippingAddress: 'shippingAddress'
-    };
+  placeOrder(order) {
+    order.cart = this.state.cart;
 
     fetch('/api/orders.php', {
       method: 'POST',
       header: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(order)
     })
       .then(response => response.json())
-      .then(order => {
-        this.setState({ cart: orderObject });
+      .then(ordered => {
+        this.setState({
+          cart: [],
+          view: {
+            name: 'catalog',
+            params: {}
+          }
+        });
       })
       .catch(error => console.error('fetch error:', error));
   }
