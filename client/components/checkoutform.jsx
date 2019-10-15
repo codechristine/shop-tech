@@ -4,6 +4,7 @@ class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cart: null,
       name: '',
       creditCard: '',
       shippingAddress: '',
@@ -15,6 +16,7 @@ class CheckoutForm extends React.Component {
     this.handleShippingAddressChange = this.handleShippingAddressChange.bind(this);
     this.handleCreditCardExpChange = this.handleCreditCardExpChange.bind(this);
     this.handleCreditCardCVCChange = this.handleCreditCardCVCChange.bind(this);
+    this.completeOrder = this.completeOrder.bind(this);
   }
   handleNameChange(event) {
     this.setState({
@@ -39,6 +41,17 @@ class CheckoutForm extends React.Component {
   handleShippingAddressChange(event) {
     this.setState({
       shippingAddress: event.target.value
+    });
+  }
+  completeOrder(order) {
+    this.props.placeOrder(order);
+
+    this.setState({
+      name: '',
+      creditCard: '',
+      shippingAddress: '',
+      creditCardExp: '',
+      creditCardCVC: ''
     });
   }
   render() {
@@ -86,7 +99,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className='d-flex justify-content-between align-items-center'>
             <div className="mt-3 mb-5" style={{ 'color': 'white' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
-            <button className='btn btn-primary mt-3 mb-5' onClick={() => { this.props.setView('catalog', '{}'); }}>PLACE ORDER</button>
+            <button className='btn btn-primary mt-3 mb-5' onClick={() => { this.completeOrder(this.props.cartState); }}>PLACE ORDER</button>
           </div>
 
         </div>
