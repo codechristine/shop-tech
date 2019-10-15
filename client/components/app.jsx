@@ -55,6 +55,7 @@ export default class App extends React.Component {
       .catch(error => console.error('fetch error:', error));
   }
   placeOrder(order) {
+
     order.cart = this.state.cart;
 
     fetch('/api/orders.php', {
