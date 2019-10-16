@@ -5,10 +5,10 @@ class Header extends React.Component {
   render() {
     return (
       <div className='row pt-4'>
-        <i className='fas fa-store fa-2x pt-1' />
-        <h1 className='col-md-5'>Wicked Sales</h1>
-        <i className="fas fa-shopping-cart fa-2x pt-2 offset-4" onClick={() => { this.props.setView('cart', '{}'); }}></i>
-        <p className='ml-2'>{this.props.cartItemCount + ' item'}</p>
+        <i className='fas fa-store fa-3x pt-1 ml-3' style={{ 'color': 'white' }} />
+        <h1 className='col-md-5' style={{ 'color': 'white' }}>Wicked Sales</h1>
+        <i className="fas fa-shopping-cart fa-2x pt-2 offset-4" style={{ 'color': 'white' }} onClick={() => { this.props.setView('cart', '{}'); }}></i>
+        <p className='ml-2' style={{ 'color': 'white' }}>{this.props.cartItemCount + ' item'}</p>
       </div>
     );
   }

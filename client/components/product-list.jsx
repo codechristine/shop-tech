@@ -22,7 +22,7 @@ class ProductList extends React.Component {
   }
   render() {
     return (
-      <div className='row'>
+      <div className='row mt-3'>
         {this.state.products.map(item => {
           return (
             <div onClick={() => { this.props.setView('details', { id: item.id }); }} key={item.id} >
