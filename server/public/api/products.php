@@ -30,7 +30,6 @@ $result = mysqli_query($conn, $query);
 
 if(!$result){
   throw new Exception('error in query' . mysqli_error($conn));
-  exit();
 }
 
 if(mysqli_num_rows($result)===0 && $id!==false){
@@ -52,3 +51,4 @@ $json_output = json_encode($output);
 print($json_output);
 
 ?>
+
