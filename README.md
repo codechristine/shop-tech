@@ -1,4 +1,4 @@
-# wicked-sales
+# shop-tech
 
 > - Maintained by: `dpaschal-lf`, `thebearingedge`
 
