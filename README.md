@@ -26,7 +26,7 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
 
 ## Preview
 
-![SGT React](images/shop-tech.gif)
+![Shop-Tech](images/shop-tech.gif)
 
 ## Development
 
