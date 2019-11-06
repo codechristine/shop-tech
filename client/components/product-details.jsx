@@ -32,7 +32,7 @@ class ProductDetails extends React.Component {
           <div className="mt-4 ml-3" onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalogue'}</div>
           <div className='media mb-3 mt-1' style={{ 'width': '70%', 'height': '50%' }}>
             <img className='mr-2 mt-4 offset-1' style={{ 'height': '19rem' }} src={ image } />
-            <div className='col-md-8 ml-5'>
+            <div className='col-md-6 ml-5'>
               <h2 className='mt-5'>{name}</h2>
               <h4 className='mt-2'>{price}</h4>
               <p className='mt-3 text-wrap'>{shortDescription}</p>
