@@ -47,8 +47,10 @@ if($id) {
   $productData = $productData[0];
 }
 
+// $productData = str_replace('.', '', $productData);
+
 $json_output = json_encode($productData);
-print($json_output);
+print_r($json_output);
 
 $query = mysqli_query($conn, 'START TRANSACTION');
 
