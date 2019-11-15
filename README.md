@@ -1,4 +1,4 @@
-# shop-tech
+# shop tech
 
 A full stack LAMP & React shopping cart app to find the latest tech deals.
 
