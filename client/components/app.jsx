@@ -110,7 +110,7 @@ export default class App extends React.Component {
       return (
         <div style={{ 'backgroundSize': 'cover', 'backgroundColor': 'black' }}>
           <div className='container'>
-            <Header cartItemCount={this.state.cart.length} />
+            <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
             <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} checkout={this.state.view.name.checkout} />
           </div>
         </div>
