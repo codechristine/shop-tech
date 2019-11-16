@@ -9,15 +9,16 @@ class CheckoutForm extends React.Component {
       creditCard: '',
       shippingAddress: '',
       creditCardExp: '',
-      creditCardCVC: ''
+      creditCardCVC: '',
+      sameAsBilling: false
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleCreditCardChange = this.handleCreditCardChange.bind(this);
     this.handleShippingAddressChange = this.handleShippingAddressChange.bind(this);
     this.handleCreditCardExpChange = this.handleCreditCardExpChange.bind(this);
     this.handleCreditCardCVCChange = this.handleCreditCardCVCChange.bind(this);
+    this.handleIsSameAsBillingChange = this.handleIsSameAsBillingChange.bind(this);
     this.completeOrder = this.completeOrder.bind(this);
-    // this.loadSpinner = this.loadSpinner.bind(this);
   }
   handleNameChange(event) {
     this.setState({
@@ -44,6 +45,11 @@ class CheckoutForm extends React.Component {
       shippingAddress: event.target.value
     });
   }
+  handleIsSameAsBillingChange(event) {
+    this.setState({
+      sameAsBilling: true
+    });
+  }
   completeOrder(order) {
 
     this.props.placeOrder(order);
@@ -53,21 +59,10 @@ class CheckoutForm extends React.Component {
       creditCard: '',
       shippingAddress: '',
       creditCardExp: '',
-      creditCardCVC: ''
+      creditCardCVC: '',
+      sameAsBilling: false
     });
   }
-  // loadSpinner() {
-
-  //   return (
-  //     setTimeout(() => {
-  //       return(
-  //       <button className="btn btn-primary" type="button" disabled>
-  //         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  //           Loading...
-  //       </button>
-  //     }, 1000))
-  //   );
-  // }
   render() {
 
     let totalCost = 0;
@@ -94,8 +89,9 @@ class CheckoutForm extends React.Component {
               </div>
               <div className='mt-3 mb-1 ml-2'>CARD NUMBER</div>
               <div className='input-group-prepend'>
-                <input type='number' className='form-control mt-2' maxLength='16' data-val-cc-number='Please enter a valid card number' value={this.state.creditCard} placeholder='Card Number' onChange={this.handleCreditCardChange}></input>
+                <input type='tel' name='cc-number' className='form-control mt-2 cc-number' id='cc-number' pattern='[0-9]' maxLength='16' required value={this.state.creditCard} placeholder='Card Number' onChange={this.handleCreditCardChange}></input>
                 <span className='input-group-text'><i className='fa fa-credit-card' /></span>
+                <div className='invalid-feedback'>enter a valid 16 digit card number</div>
               </div>
               <div>
                 <div className='d-flex justify-content-between align-items-center'>
@@ -110,18 +106,19 @@ class CheckoutForm extends React.Component {
                 <textarea type='text' className='form-control mt-2' rows='7' value={this.state.shippingAddress} placeholder='Shipping Address' onChange={this.handleShippingAddressChange}></textarea>
               </div>
             </div>
+            <div className='form-check ml-2'>
+              <input className='form-check-input' type='checkbox' value='' id='defaultCheck' required onChange={this.handleIsSameAsBillingChange}></input>
+              <label className='form-check-label' htmlFor='defaultCheck'>
+                billing same as shipping
+              </label>
+              <div className='invalid-feedback'>
+                Please check if shipping address and billing are the same
+              </div>
+            </div>
           </div>
           <div className='d-flex justify-content-between align-items-center'>
             <div className='mt-3 mb-5 cursor-pointer' style={{ 'color': 'white' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
-            {/* <button className='btn btn-primary mt-3 mb-5' onClick={() => { this.completeOrder(this.props.cartState); }}> PLACE ORDER</button> */}
-            <button className='btn btn-primary mt-3 mb-5' onClick={() => {
-              return (
-                <button className="btn btn-primary" type="button" disabled>
-                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                  Loading...
-                </button>
-              );
-            }}> PLACE ORDER</button>
+            <button className='btn btn-primary mt-3 mb-5' onClick={() => { this.completeOrder(this.props.cartState); }}> PLACE ORDER</button>
           </div>
         </div>
       </form>
