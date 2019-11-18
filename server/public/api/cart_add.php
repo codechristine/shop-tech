@@ -47,8 +47,6 @@ if($id) {
   $productData = $productData[0];
 }
 
-// $productData = str_replace('.', '', $productData);
-
 $json_output = json_encode($productData);
 print_r($json_output);
 
@@ -67,8 +65,6 @@ print_r('affected rows:', mysqli_affected_rows($conn));
 
 $cartID = (mysqli_insert_id($conn));
 $_SESSION['cartID'] = $cartID;
-print_r($cartID);
-print_r($_SESSION['cartID']);
 
 $insertedQuery = " INSERT INTO `cartItems` (count, productID, price, added, cartID )
                     VALUES (1, $id, $productData[price], NOW(), $cartID )
