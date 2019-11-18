@@ -8,24 +8,14 @@ $bodyData = getBodyData();
 
 $id = intval($bodyData['id']);
 
-$query = " SELECT *
-            FROM `cartItems`
-            WHERE `cartItems`.`id` = $id ";
-
-$result = mysqli_query($conn, $query);
-
-if(mysqli_num_rows($result) === 0) {
-  throw new Exception("no items to delete");
-}
-
-$deletedQuery = " DELETE
+$queryDelete = " DELETE
                   FROM `cartItems`
                   WHERE `id` = $id ";
 
-$deleteResult = mysqli_query($conn, $deletedQuery);
+$deleteResult = mysqli_query($conn, $queryDelete);
 
-  if(!$deletedQuery){
-    throw new Exception('item delete failed');
+  if(!$deleteResult){
+    throw new Exception('item failed to delete');
   }
 
   $output = [

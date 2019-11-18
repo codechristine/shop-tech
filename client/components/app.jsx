@@ -19,6 +19,7 @@ export default class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.deleteFromCart = this.deleteFromCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
   }
   getCartItems() {
@@ -55,8 +56,26 @@ export default class App extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
+  deleteFromCart(cartItemId) {
+    fetch('/api/cart.php', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: cartItemId
+      })
+    })
+      .then(response => response.json())
+      .then(deletedItem => {
+        const updateCart = this.state.cart.filter(item => {
+          return item.cartItemId !== cartItemId;
+        });
+        this.setState({ cart: updateCart });
+      })
+      .catch(error => console.error('fetch error:', error));
+  }
   placeOrder(order) {
-
     order.cart = this.state.cart;
 
     fetch('/api/orders.php', {
@@ -102,7 +121,7 @@ export default class App extends React.Component {
         <div style={{ 'backgroundSize': 'cover', 'backgroundColor': 'black' }}>
           <div className='container'>
             <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
-            <CartSummary itemAddedToCart={this.addToCart} setView={this.setView} cartState={this.state.cart} />
+            <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} />
           </div>
         </div>
       );

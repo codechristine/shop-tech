@@ -4,49 +4,53 @@ class CartSummaryItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: []
+      cart: null
     };
-    this.deleteItem = this.deleteItem.bind(this);
+  // this.deleteItem = this.deleteItem.bind(this);
   }
-  deleteItem(productId) {
-    // let cartItem = this.props.items;
-    let updateCart = {};
-    let newCart = this.state.cart.map(product => {
-      const newCartCopy = Object.assign({}, product);
+  // deleteItem(productId) {
+  //   // let cartItem = this.props.items;
+  //   let updateCart = {};
+  //   let newCart = this.state.cart.map(product => {
+  //     const newCartCopy = Object.assign({}, product);
 
-      if (newCartCopy.id === productId) {
-        updateCart = newCartCopy;
-      }
-      return newCartCopy;
-    });
+  //     if (newCartCopy.id === productId) {
+  //       updateCart = newCartCopy;
+  //     }
+  //     return newCartCopy;
+  //   });
 
-    fetch('/api/cart.php', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(updateCart)
-    })
-      .then(response => response.json())
-      .then(deletedProduct => {
-        this.setState({ cart: newCart });
-      })
-      .catch(error => console.error('fetch error:', error));
-  }
+  //   fetch('/api/cart.php', {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(updateCart)
+  //   })
+  //     .then(response => response.json())
+  //     .then(deletedProduct => {
+  //       this.setState({ cart: newCart });
+  //     })
+  //     .catch(error => console.error('fetch error:', error));
+  // }
   render() {
 
     if (this.props.items) {
-      let image = this.props.items.image;
-      let name = this.props.items.name;
-      let price = this.props.items.price;
-      let shortDescription = this.props.items.shortDescription;
+      // let image = this.props.items.image;
+      // let name = this.props.items.name;
+      // let price = this.props.items.price;
+      // let shortDescription = this.props.items.shortDescription;
+      let { image, name, price, shortDescription } = this.props.items;
 
       return (
         <div className='container'>
           <div className='row d-flex justify-content-center'>
             <div className='m-2' style={{ 'width': '65%', 'border': '1px solid grey', 'backgroundColor': 'white' }} >
               <div className='media mb-3 mt-1' style={{ 'width': '100%' }}>
-                <button type='button' className='close ml-3' aria-label='close' onClick={this.deleteItem} >
+                <button type='button' className='close ml-3' aria-label='close' onClick={ event => {
+                  event.preventDefault();
+                  this.props.delete(this.props.items.cartItemId);
+                }} >
                   <span aria-hidden='true'>&times;</span>
                 </button>
                 <img className='ml-3 mt-4' style={{ 'height': '12rem', 'width': '12rem' }} src={image} />
