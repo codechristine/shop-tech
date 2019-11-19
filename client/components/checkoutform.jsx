@@ -55,6 +55,7 @@ class CheckoutForm extends React.Component {
     this.props.placeOrder(order);
 
     this.setState({
+      cart: [],
       name: '',
       creditCard: '',
       shippingAddress: '',
@@ -89,16 +90,15 @@ class CheckoutForm extends React.Component {
               </div>
               <div className='mt-3 mb-1 ml-2'>CARD NUMBER</div>
               <div className='input-group-prepend'>
-                <input type='tel' name='cc-number' className='form-control mt-2 cc-number' id='cc-number' pattern='[0-9]' maxLength='16' required value={this.state.creditCard} placeholder='Card Number' onChange={this.handleCreditCardChange}></input>
+                <input type='tel' name='cc-number' className='form-control mt-2' pattern='[0-9]' maxLength='16' value={this.state.creditCard} placeholder='0000 0000 0000 0000' onChange={this.handleCreditCardChange}></input>
                 <span className='input-group-text'><i className='fa fa-credit-card' /></span>
-                <div className='invalid-feedback'>enter a valid 16 digit card number</div>
               </div>
               <div>
                 <div className='d-flex justify-content-between align-items-center'>
                   <div className='m-2'>EXP DATE</div>
-                  <input type='tel' name='cardExpiry' autoComplete='cc-exp' required className='form-control mt-3' value={this.state.creditCardExp} placeholder='MM / YY' onChange={this.handleCreditCardExpChange}></input>
+                  <input className='form-control mt-3' type='tel' name='cardExpiry' autoComplete='cc-exp' value={this.state.creditCardExp} placeholder='MM / YY' onChange={this.handleCreditCardExpChange}></input>
                   <div className='mt-2 m-2'>CVV CODE</div>
-                  <input type='number' name='cardCVC' autoComplete='cc-csc' required className='form-control mt-3' value={this.state.creditCardCVC} placeholder='CVC' onChange={this.handleCreditCardCVCChange}></input>
+                  <input className='form-control mt-3' type='number' name='cardCVC' autoComplete='cc-cvc' value={this.state.creditCardCVC} placeholder='CVC' onChange={this.handleCreditCardCVCChange}></input>
                 </div>
               </div>
               <div className='mt-3 mb-1 ml-2'>SHIPPING ADDRESS</div>
@@ -107,13 +107,10 @@ class CheckoutForm extends React.Component {
               </div>
             </div>
             <div className='form-check ml-2'>
-              <input className='form-check-input' type='checkbox' value='' id='defaultCheck' required onChange={this.handleIsSameAsBillingChange}></input>
+              <input className='form-check-input is-valid' type='checkbox' value='' id='defaultCheck' required onChange={this.handleIsSameAsBillingChange}></input>
               <label className='form-check-label' htmlFor='defaultCheck'>
                 billing same as shipping
               </label>
-              <div className='invalid-feedback'>
-                Please check if shipping address and billing are the same
-              </div>
             </div>
           </div>
           <div className='d-flex justify-content-between align-items-center'>

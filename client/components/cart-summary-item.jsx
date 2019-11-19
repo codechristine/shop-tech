@@ -1,45 +1,10 @@
 import React from 'react';
 
 class CartSummaryItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cart: null
-    };
-  // this.deleteItem = this.deleteItem.bind(this);
-  }
-  // deleteItem(productId) {
-  //   // let cartItem = this.props.items;
-  //   let updateCart = {};
-  //   let newCart = this.state.cart.map(product => {
-  //     const newCartCopy = Object.assign({}, product);
 
-  //     if (newCartCopy.id === productId) {
-  //       updateCart = newCartCopy;
-  //     }
-  //     return newCartCopy;
-  //   });
-
-  //   fetch('/api/cart.php', {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(updateCart)
-  //   })
-  //     .then(response => response.json())
-  //     .then(deletedProduct => {
-  //       this.setState({ cart: newCart });
-  //     })
-  //     .catch(error => console.error('fetch error:', error));
-  // }
   render() {
 
     if (this.props.items) {
-      // let image = this.props.items.image;
-      // let name = this.props.items.name;
-      // let price = this.props.items.price;
-      // let shortDescription = this.props.items.shortDescription;
       let { image, name, price, shortDescription } = this.props.items;
 
       return (
@@ -67,7 +32,11 @@ class CartSummaryItem extends React.Component {
       );
     } else {
       return (
-        <div>No Items</div>
+        <div className='container'>
+          <div className='row d-flex justify-content-center'>
+            <h2 className='m-2'>No Items</h2>
+          </div>
+        </div>
       );
     }
   }
