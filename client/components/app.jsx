@@ -76,6 +76,7 @@ export default class App extends React.Component {
       .catch(error => console.error('fetch error:', error));
   }
   placeOrder(order) {
+
     order.cart = this.state.cart;
 
     fetch('/api/orders.php', {
@@ -83,16 +84,16 @@ export default class App extends React.Component {
       header: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(order)
+      body: JSON.stringify(order.cart)
     })
       .then(response => response.json())
       .then(ordered => {
         this.setState({
-          cart: [],
-          view: {
-            name: 'catalog',
-            params: {}
-          }
+          cart: []
+          // view: {
+          //   name: 'catalog',
+          //   params: {}
+          // }
         });
       })
       .catch(error => console.error('fetch error:', error));
@@ -130,7 +131,7 @@ export default class App extends React.Component {
         <div style={{ 'backgroundSize': 'cover', 'backgroundColor': 'black' }}>
           <div className='container'>
             <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
-            <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} checkout={this.state.view.name.checkout} />
+            <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} checkout={this.state.view.name.checkout}/>
           </div>
         </div>
       );
