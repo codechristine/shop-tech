@@ -4,7 +4,6 @@ class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: null,
       name: '',
       creditCard: '',
       shippingAddress: '',
@@ -52,8 +51,6 @@ class CheckoutForm extends React.Component {
   }
   completeOrder(order) {
 
-    this.props.placeOrder(order);
-
     this.setState({
       cart: [],
       name: '',
@@ -63,6 +60,11 @@ class CheckoutForm extends React.Component {
       creditCardCVC: '',
       sameAsBilling: false
     });
+    this.props.placeOrder(order);
+    this.props.setView({
+      name: 'confirmation',
+      params: {}
+    });
   }
   render() {
 
@@ -70,6 +72,8 @@ class CheckoutForm extends React.Component {
     this.props.cartState.forEach(price => {
       totalCost += parseFloat(price.price);
     });
+
+    const { name, creditCard, creditCardExp, creditCardCVC, shippingAddress } = this.state;
 
     return (
       <form className='container'>
@@ -85,25 +89,25 @@ class CheckoutForm extends React.Component {
             </div>
             <div className='mt-2'>
               <div className='mt-5 mb-1 ml-2'>CARD HOLDER</div>
-              <div className='input-group-prepend'>
-                <input type='text' className='form-control mt-2' value={this.state.name} placeholder='Name On Card' onChange={this.handleNameChange}></input>
+              <div className='form-group'>
+                <input className='form-control mt-2' type='text' datatype='name' placeholder='Name On Card' value={name} onChange={this.handleNameChange} required></input>
               </div>
               <div className='mt-3 mb-1 ml-2'>CARD NUMBER</div>
-              <div className='input-group-prepend'>
-                <input type='tel' name='cc-number' className='form-control mt-2' pattern='[0-9]' maxLength='16' value={this.state.creditCard} placeholder='0000 0000 0000 0000' onChange={this.handleCreditCardChange}></input>
+              <div className='form-group'>
+                <input className='form-control mt-2' type='number' datatype='card' pattern='[0-9]' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleCreditCardChange} required></input>
                 <span className='input-group-text'><i className='fa fa-credit-card' /></span>
               </div>
               <div>
-                <div className='d-flex justify-content-between align-items-center'>
+                <div className='form-goup d-flex justify-content-between align-items-center'>
                   <div className='m-2'>EXP DATE</div>
-                  <input className='form-control mt-3' type='tel' name='cardExpiry' autoComplete='cc-exp' value={this.state.creditCardExp} placeholder='MM / YY' onChange={this.handleCreditCardExpChange}></input>
+                  <input className='form-control mt-3' type='tel' datatype='ccexpiry' placeholder='MM / YY' value={creditCardExp} onChange={this.handleCreditCardExpChange} required></input>
                   <div className='mt-2 m-2'>CVV CODE</div>
-                  <input className='form-control mt-3' type='number' name='cardCVC' autoComplete='cc-cvc' value={this.state.creditCardCVC} placeholder='CVC' onChange={this.handleCreditCardCVCChange}></input>
+                  <input className='form-control mt-3' type='number' datatype='cardCVC' placeholder='CVC' value={creditCardCVC} onChange={this.handleCreditCardCVCChange} required></input>
                 </div>
               </div>
               <div className='mt-3 mb-1 ml-2'>SHIPPING ADDRESS</div>
               <div className='input-group-prepend' >
-                <textarea type='text' className='form-control mt-2' rows='7' value={this.state.shippingAddress} placeholder='Shipping Address' onChange={this.handleShippingAddressChange}></textarea>
+                <textarea className='form-control mt-2' rows='7' type='text' datatype='address' placeholder='Shipping Address' value={shippingAddress} onChange={this.handleShippingAddressChange} required></textarea>
               </div>
             </div>
             <div className='form-check ml-2'>
@@ -115,7 +119,8 @@ class CheckoutForm extends React.Component {
           </div>
           <div className='d-flex justify-content-between align-items-center'>
             <div className='mt-3 mb-5 cursor-pointer' style={{ 'color': 'white' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
-            <button className='btn btn-primary mt-3 mb-5' onClick={() => { this.completeOrder(this.props.cartState); }}> PLACE ORDER</button>
+            {/* <button className='btn btn-primary mt-3 mb-5' onClick={() => { this.completeOrder(this.props.cartState); }}> PLACE ORDER</button> */}
+            <button>place order</button>
           </div>
         </div>
       </form>
