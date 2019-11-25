@@ -22,7 +22,7 @@ if(!empty($_SESSION['cartID'])){
   $cartID = false;
 }
 
-$query = " SELECT `price`
+$query = " SELECT *
             FROM `product`
             WHERE `id` = $id ";
 
@@ -56,15 +56,12 @@ if (!$query) {
   throw new Exception('invalid result');
 }
 
-if (!$cartID === false && mysqli_affected_rows($conn) < 0 ) {
-  throw new Exception('no rows were affected');
+if (!$cartID) {
+  $query = " INSERT INTO `cart` (created) VALUES (NOW())";
+  $result = mysqli_query($conn, $query);
+  $cartID = (mysqli_insert_id($conn));
+  $_SESSION['cartID'] = $cartID;
 }
-$query = " INSERT INTO `cart` (created) VALUES (NOW()) ";
-$result = mysqli_query($conn, $query);
-print_r('affected rows:', mysqli_affected_rows($conn));
-
-$cartID = (mysqli_insert_id($conn));
-$_SESSION['cartID'] = $cartID;
 
 $insertedQuery = " INSERT INTO `cartItems` (count, productID, price, added, cartID )
                     VALUES (1, $id, $productData[price], NOW(), $cartID )
