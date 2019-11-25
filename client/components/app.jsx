@@ -89,11 +89,11 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(ordered => {
         this.setState({
-          cart: []
-          // view: {
-          //   name: 'confirmation',
-          //   params: {}
-          // }
+          cart: [],
+          view: {
+            name: 'confirmation',
+            params: {}
+          }
         });
       })
       .catch(error => console.error('fetch error:', error));
@@ -123,15 +123,15 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'checkout') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} />
-          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} checkout={this.state.view.name.checkout} />
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.checkout}/>
+          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
         </div>
       );
     } else if (this.state.view.name === 'confirmation') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
-          <Confirmation />
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.confirmation} />
+          <Confirmation setView={this.setView} />
         </div>
       );
     }
