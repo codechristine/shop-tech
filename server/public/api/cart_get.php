@@ -19,7 +19,7 @@ $query = " SELECT c.`id` AS cartItemId, c.`count`, p.`id`, p.`price`, p.`name`, 
             FROM `cartItems`AS c
             JOIN `product` AS p
             ON p.`id` = c.`productID`
-            ORDER BY c.`productID` ASC ";
+            ORDER BY c.`added` DESC ";
 
 $result = mysqli_query($conn, $query);
 
