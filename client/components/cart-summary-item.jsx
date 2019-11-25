@@ -20,7 +20,6 @@ class CartSummaryItem extends React.Component {
                 </button>
                 <img className='ml-3 mt-4' style={{ 'height': '12rem', 'width': '12rem' }} src={image} />
                 <div className='col-md-7 ml-4'>
-
                   <h4 className='mt-4'>{name}</h4>
                   <h5 className='mt-2'>{'$' + price}</h5>
                   <p className='mt-3'>{shortDescription}</p>
