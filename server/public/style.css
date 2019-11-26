@@ -1,0 +1,8 @@
+body {
+  background-color: black;
+  background-size: cover;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

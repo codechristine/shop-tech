@@ -25,14 +25,14 @@ class ProductDetails extends React.Component {
       let name = this.state.product.name;
       let price = '$' + this.state.product.price;
       let shortDescription = this.state.product.shortDescription;
-      let longDescription = <div className="text-wrapper"><LoremIpsum p={2} /> </div>;
+      let longDescription = <div className='text-wrapper'><LoremIpsum p={2} /> </div>;
 
       return (
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '90%', 'height': '70%' }}>
-          <div className="mt-4 ml-3" onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalogue'}</div>
+          <div className='mt-4 ml-3 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <div className='media mb-3 mt-1' style={{ 'width': '70%', 'height': '50%' }}>
-            <img className='mr-2 mt-4 offset-1' style={{ 'height': '19rem' }} src={ image } />
-            <div className='col-md-8 ml-5'>
+            <img className='mr-2 mt-4 offset-1' style={{ 'height': '18rem' }} src={ image } />
+            <div className='col-md-6 ml-5'>
               <h2 className='mt-5'>{name}</h2>
               <h4 className='mt-2'>{price}</h4>
               <p className='mt-3 text-wrap'>{shortDescription}</p>
@@ -45,7 +45,7 @@ class ProductDetails extends React.Component {
     } else {
       return (
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '90%', 'height': '70%' }}>
-          <div className="mt-4 ml-3" onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalogue'}</div>
+          <div className='mt-4 ml-3 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <h3 className='row align-items-center justify-content-center mt-5'>PAGE NOT FOUND</h3>
         </div>
       );
