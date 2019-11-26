@@ -15,18 +15,23 @@ A full stack LAMP & React shopping cart app to find the latest tech deals.
 
 ## Live Demo
 
-Try the application live at [https://student-grade-table.lfz.com](https://student-grade-table.lfz.com)
+Try the application live at [https://shop-tech.christinele.dev/](https://shop-tech.christinele.dev/)
 
 ## Features
 
 - Shoppers can view a product list of tech deals.
 - Shoppers can view their current item count in the shopping cart.
 - Shoppers can view more product details.
-- Shoppers can proceed to checkout and purchase the item(s).
+- Shoppers can add product(s) to their shopping cart.
+- Shoppers can view their shopping cart.
+- Shoppers can remove item(s) from their shopping cart.
+- Shoppers can proceed to checkout form.
+- Shoppers can purchase the item(s) by inputting payment details.
+- Shoppers can see a confirmation page after purchasing.
 
 ## Preview
 
-![Shop-Tech](images/shop-tech.gif)
+![Shop-Tech](server/public/demo/live-demo.gif)
 
 ## Development
 
@@ -52,7 +57,7 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
 1. Import the example database to mySQL.
 
     ```shell
-    mySQLimport --db shop-tech database/dump.json
+    mySQLimport --db shop-tech database/shop-tech.sql
     ```
 
 1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
