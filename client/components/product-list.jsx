@@ -25,9 +25,7 @@ class ProductList extends React.Component {
       <div className='row mt-3'>
         {this.state.products.map(item => {
           return (
-            <div onClick={() => { this.props.setView('details', { id: item.id }); }} key={item.id} >
-              <ProductListItem item={item} add={this.props.itemAddedToCart} />
-            </div>
+            <ProductListItem setView={this.props.setView} id={item.id} key={item.id} item={item} />
           );
         })}
       </div>

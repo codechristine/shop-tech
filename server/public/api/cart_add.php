@@ -22,7 +22,7 @@ if(!empty($_SESSION['cartID'])){
   $cartID = false;
 }
 
-$query = " SELECT *
+$query = " SELECT `price`
             FROM `product`
             WHERE `id` = $id ";
 
