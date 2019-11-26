@@ -59,7 +59,7 @@ if (!$query) {
 if (!$cartID) {
   $query = " INSERT INTO `cart` (created) VALUES (NOW())";
   $result = mysqli_query($conn, $query);
-  $cartID = (mysqli_insert_id($conn));
+  $cartID = mysqli_insert_id($conn);
   $_SESSION['cartID'] = $cartID;
 }
 
