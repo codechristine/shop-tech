@@ -13,6 +13,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
   require_once('cart_get.php');
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   require_once('cart_add.php');
-}
+} else if ($_SERVER['REQUEST_METHOD'] == 'DELETE'){
+  require_once('cart_delete.php');
+};
 
 ?>

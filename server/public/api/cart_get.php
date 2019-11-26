@@ -15,10 +15,11 @@ if(!$_SESSION['cartID']) {
   throw new Exception('no id');
 }
 
-$query = " SELECT c.`count`, p.`id`, p.`price`, p.`name`, p.`shortDescription`, p.`image` FROM `cartItems`AS c
+$query = " SELECT c.`id` AS cartItemId, c.`count`, p.`id`, p.`price`, p.`name`, p.`shortDescription`, p.`image`
+            FROM `cartItems`AS c
             JOIN `product` AS p
             ON p.`id` = c.`productID`
-            ORDER BY c.`count` ASC ";
+            ORDER BY c.`added` DESC ";
 
 $result = mysqli_query($conn, $query);
 
