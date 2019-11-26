@@ -50,10 +50,8 @@ export default class App extends React.Component {
       body: JSON.stringify(product)
     })
       .then(response => response.json())
-      .then(addedProduct => {
-        let cartArray = [...this.state.cart];
-        cartArray.push(addedProduct);
-        this.setState({ cart: cartArray });
+      .then(productAdded => {
+        this.getCartItems();
       })
       .catch(error => console.error('fetch error:', error));
   }
@@ -103,7 +101,7 @@ export default class App extends React.Component {
       return (
         <div className='container'>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
-          <ProductList itemAddedToCart={this.addToCart} setView={this.setView} view={this.state.view.params} />
+          <ProductList setView={this.setView} view={this.state.view.params} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
