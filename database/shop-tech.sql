@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 25, 2019 at 08:13 PM
+-- Generation Time: Nov 25, 2019 at 08:15 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `cart`
 --
 
+DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `created` datetime NOT NULL
@@ -44,6 +45,7 @@ INSERT INTO `cart` (`id`, `created`) VALUES
 -- Table structure for table `cartItems`
 --
 
+DROP TABLE IF EXISTS `cartItems`;
 CREATE TABLE `cartItems` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `productID` mediumint(8) UNSIGNED NOT NULL,
@@ -69,6 +71,7 @@ INSERT INTO `cartItems` (`id`, `productID`, `count`, `price`, `added`, `updated`
 -- Table structure for table `images`
 --
 
+DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
   `id` int(11) NOT NULL,
   `url` longtext NOT NULL,
@@ -105,6 +108,7 @@ INSERT INTO `images` (`id`, `url`, `product_id`) VALUES
 -- Table structure for table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
