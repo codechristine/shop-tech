@@ -9,7 +9,7 @@ class ProductDetails extends React.Component {
     };
   }
   componentDidMount() {
-    let id = this.props.clicked;
+    const id = this.props.clicked;
 
     fetch(`/api/products.php?id=${id}`)
       .then(response => response.json())
