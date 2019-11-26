@@ -1,8 +1,8 @@
 import React from 'react';
 
 class Confirmation extends React.Component {
-  render() {
 
+  render() {
     return (
       <div className='container' style={{ 'color': 'white' }}>
         <div className='mt-4 ml-3 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
