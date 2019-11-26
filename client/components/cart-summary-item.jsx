@@ -18,7 +18,7 @@ class CartSummaryItem extends React.Component {
                 }} >
                   <span aria-hidden='true'>&times;</span>
                 </button>
-                <img className='ml-3 mt-4' style={{ 'height': '12rem', 'width': '12rem' }} src={image} />
+                <img className='ml-3 mt-4' style={{ 'height': '30%', 'width': '30%' }} src={image} />
                 <div className='col-md-7 ml-4'>
                   <h4 className='mt-4'>{name}</h4>
                   <h5 className='mt-2'>{'$' + price}</h5>
