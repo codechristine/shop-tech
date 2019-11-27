@@ -22,7 +22,7 @@ class ProductList extends React.Component {
   }
   render() {
     return (
-      <div className='row mt-3'>
+      <div className='row d-flex justify-content-center mt-3'>
         {this.state.products.map(item => {
           return (
             <ProductListItem setView={this.props.setView} id={item.id} key={item.id} item={item} />

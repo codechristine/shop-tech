@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 06, 2019 at 10:34 PM
+-- Generation Time: Nov 26, 2019 at 04:30 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `cart`
 --
 
+DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `created` datetime NOT NULL
@@ -36,10 +37,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `created`) VALUES
-(1, '2019-11-05 23:29:54'),
-(2, '2019-11-05 23:30:15'),
-(3, '2019-11-05 23:30:53'),
-(4, '2019-11-05 23:31:23');
+(1, '2019-11-25 17:06:42');
 
 -- --------------------------------------------------------
 
@@ -47,6 +45,7 @@ INSERT INTO `cart` (`id`, `created`) VALUES
 -- Table structure for table `cartItems`
 --
 
+DROP TABLE IF EXISTS `cartItems`;
 CREATE TABLE `cartItems` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `productID` mediumint(8) UNSIGNED NOT NULL,
@@ -62,7 +61,8 @@ CREATE TABLE `cartItems` (
 --
 
 INSERT INTO `cartItems` (`id`, `productID`, `count`, `price`, `added`, `updated`, `cartID`) VALUES
-(1, 5, 1, '169.99', '2019-11-05 23:31:23', '2019-11-06 07:31:23', 4);
+(1, 6, 2, '399.00', '2019-11-26 16:28:55', '2019-11-27 00:28:56', 2),
+(5, 5, 1, '169.99', '2019-11-26 16:29:08', '2019-11-27 00:29:08', 2);
 
 -- --------------------------------------------------------
 
@@ -70,6 +70,7 @@ INSERT INTO `cartItems` (`id`, `productID`, `count`, `price`, `added`, `updated`
 -- Table structure for table `images`
 --
 
+DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
   `id` int(11) NOT NULL,
   `url` longtext NOT NULL,
@@ -81,7 +82,7 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `url`, `product_id`) VALUES
-(1, 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MV7N2?wid=572&hei=572&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1551489688005', 1),
+(1, 'http://cdn.shoplightspeed.com/shops/607644/files/12963200/900x900x2/apple-apple-airpods-2nd-gen-w-wireless-charging-ca.jpg', 1),
 (2, 'https://1734811051.rsc.cdn77.org/data/thumbs/full/351783/650/0/0/0/airpods-2.png', 1),
 (3, 'https://cfcdn.zulily.com/images/cache/product/452x1000/364495/zu73385551_main_tm1560519227.jpg', 1),
 (4, 'https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/19-113-567-V01.jpg', 2),
@@ -106,6 +107,7 @@ INSERT INTO `images` (`id`, `url`, `product_id`) VALUES
 -- Table structure for table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
@@ -119,7 +121,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `image`, `shortDescription`) VALUES
-(1, 'AirPods (2nd Gen) with Charging Case', '159.00', 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MV7N2?wid=572&hei=572&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1551489688005', 'new AirPods combine intelligent design with breakthrough technology and crystal clear sound.'),
+(1, 'AirPods (2nd Gen) with Charging Case', '159.00', 'http://cdn.shoplightspeed.com/shops/607644/files/12963200/900x900x2/apple-apple-airpods-2nd-gen-w-wireless-charging-ca.jpg', 'new AirPods combine intelligent design with breakthrough technology and crystal clear sound.'),
 (2, 'AMD RYZEN 7 3700X', '329.99', 'https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/19-113-567-V03.jpg', '3rd Gen Ryzen 8-Core 3.6 GHz (4.4 GHz Max Boost) Socket AM4 65W 100-100000071BOX Desktop Processor\r\nWith Wraith Prism cooler.'),
 (3, 'NZXT H210i', '109.99', 'https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/11-146-314-V01.jpg', 'Mini-ITX PC Gaming Case - Tempered Glass Side Panel Cable Management - Water-Cooling Ready - Integrated RGB Lighting - White/Black'),
 (4, 'EVGA GeForce RTX 2070', '529.99', 'https://90a1c75758623581b3f8-5c119c3de181c9857fcb2784776b17ef.ssl.cf2.rackcdn.com/609535_965558_01_front_zoom.jpg', 'SUPER BLACK GAMING Overclocked Dual-Fan 8GB GDDR6 PCIe 3.0 Video Card.'),
@@ -140,7 +142,8 @@ ALTER TABLE `cart`
 -- Indexes for table `cartItems`
 --
 ALTER TABLE `cartItems`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `productID` (`productID`,`cartID`) USING BTREE;
 
 --
 -- Indexes for table `images`
@@ -162,12 +165,12 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cartItems`
 --
 ALTER TABLE `cartItems`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `images`
 --
