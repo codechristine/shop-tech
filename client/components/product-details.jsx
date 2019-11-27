@@ -33,7 +33,7 @@ class ProductDetails extends React.Component {
           <div className='mt-3 ml-3 pt-4 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <div className='media mt-1' style={{ 'width': '100%', 'height': '29%' }}>
             <img className='mt-4 offset-1' style={{ 'height': '79%' }} src={firstImage} />
-            <div className='col-md-6 ml-5'>
+            <div className='col-md-6 ml-4'>
               <h2 className='mt-5'>{name}</h2>
               <h4 className='mt-2'>{price} USD</h4>
               <p className='mt-3 text-wrap'>{shortDescription}</p>
@@ -41,7 +41,7 @@ class ProductDetails extends React.Component {
             </div>
           </div>
           <div className='d-flex justify-content-left offset-1 mb-4'>
-            <img className='m-2 ml-5' style={{ 'height': '5rem' }} src={secondImage} />
+            <img className='m-2 ml-5' style={{ 'height': '5rem', 'backgroundColor': 'grey' }} src={secondImage} />
             <img className='m-2' style={{ 'height': '5rem' }} src={thirdImage} />
           </div>
           <div className='d-flex justify-content-center'>

@@ -6,7 +6,3 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
-
-test {
-  background-color: rgba(15, 9, 9, 0.589);
-}
