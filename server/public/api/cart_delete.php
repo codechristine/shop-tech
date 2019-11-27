@@ -8,23 +8,9 @@ $bodyData = getBodyData();
 
 $id = intval($bodyData['id']);
 
-// $queryDelete = " DELETE
-//                   FROM `cartItems`
-//                   WHERE `id` = $id ";
-$queryUpdate = " UPDATE `cartItems`
-                  SET `count` = count - 1
-                  WHERE `id` = $id ";
-
-$updateResult = mysqli_query($conn, $queryUpdate);
-
-if (!$updateResult) {
-  throw new Exception('item failed to update count');
-}
-
 $queryDelete = " DELETE
                   FROM `cartItems`
-                  WHERE `id` = $id
-                  AND count = 0 ";
+                  WHERE `id` = $id ";
 
 $deleteResult = mysqli_query($conn, $queryDelete);
 

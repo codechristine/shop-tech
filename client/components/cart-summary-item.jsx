@@ -13,15 +13,6 @@ class CartSummaryItem extends React.Component {
               <div className='media mb-3 mt-1' style={{ 'width': '100%' }}>
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
-                  // if (this.props.items.count > 2) {
-                  //   this.props.items.forEach(product => {
-                  //     let itemCount = 0;
-                  //     itemCount -= parseFloat(product.count);
-                  //     this.props.delete(this.props.items.cartItemId.count);
-                  //   });
-                  // }
-                  // console.log(this.props.items);
-                  // console.log(this.props.items.count);
                   this.props.delete(this.props.items.cartItemId);
                 }} >
                   <span aria-hidden='true'>&times;</span>
@@ -29,7 +20,7 @@ class CartSummaryItem extends React.Component {
                 <img className='ml-3 mt-4' style={{ 'height': '30%', 'width': '30%' }} src={image} />
                 <div className='col-md-7 ml-4'>
                   <h4 className='mt-4'>{name}</h4>
-                  <h5 className='mt-2'>{'$' + price}</h5>
+                  <h5 className='mt-2'>{'$' + price} USD</h5>
                   <h6 className='mt-1'>Quantity: {count}</h6>
                   <p className='mt-3'>{shortDescription}</p>
                 </div>
