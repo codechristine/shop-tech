@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 25, 2019 at 08:15 PM
+-- Generation Time: Nov 26, 2019 at 04:30 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -61,9 +61,8 @@ CREATE TABLE `cartItems` (
 --
 
 INSERT INTO `cartItems` (`id`, `productID`, `count`, `price`, `added`, `updated`, `cartID`) VALUES
-(107, 5, 1, '169.99', '2019-11-25 19:47:50', '2019-11-26 03:47:50', 2),
-(108, 4, 1, '529.99', '2019-11-25 19:48:00', '2019-11-26 03:48:00', 2),
-(109, 1, 1, '159.00', '2019-11-25 19:48:11', '2019-11-26 03:48:11', 2);
+(1, 6, 2, '399.00', '2019-11-26 16:28:55', '2019-11-27 00:28:56', 2),
+(5, 5, 1, '169.99', '2019-11-26 16:29:08', '2019-11-27 00:29:08', 2);
 
 -- --------------------------------------------------------
 
@@ -171,7 +170,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `cartItems`
 --
 ALTER TABLE `cartItems`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `images`
 --
