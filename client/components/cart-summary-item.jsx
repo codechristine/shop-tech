@@ -9,7 +9,7 @@ class CartSummaryItem extends React.Component {
       return (
         <div className='container'>
           <div className='row d-flex justify-content-center'>
-            <div className='mt-3' style={{ 'width': '65%', 'border': '1px solid grey', 'backgroundColor': 'white' }} >
+            <div className='mt-3' style={{ 'width': '65%', 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
               <div className='media mb-3 mt-1' style={{ 'width': '100%' }}>
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
