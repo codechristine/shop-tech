@@ -47,11 +47,11 @@ class CheckoutForm extends React.Component {
 
     return (
       <form className='container' onSubmit={this.handleSubmit}>
-        <h4 className='mt-4 ml-3' style={{ 'color': 'white' }}>Checkout</h4>
-        <h5 className='mb-3 ml-3' style={{ 'color': 'white' }}>Order Total: ${totalCost} USD</h5>
+        <h3 className='mt-3 ml-3 pt-4' style={{ 'color': 'white' }}>Checkout</h3>
+        <h5 className='mb-4 ml-3' style={{ 'color': 'white' }}>Order Total: ${totalCost} USD</h5>
         <div className='col-md-8 offset-2'>
-          <div style={{ 'backgroundColor': 'white' }}>
-            <div className='d-flex justify-content-between align-items-center mt-4' style={{ 'height': '4rem', 'backgroundColor': 'gainsboro' }}>
+          <div className='mt-3' style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
+            <div className='d-flex justify-content-between align-items-center mt-4' style={{ 'height': '4rem', 'backgroundColor': 'gainsboro', 'borderRadius': 'calc(.25rem - 1px)' }}>
               <h6 className='p-2 ml-1'>Payment Details</h6>
               <div className='display-td' >
                 <img className='img-responsive pull-right p-2' src='http://i76.imgup.net/accepted_c22e0.png' />
@@ -64,7 +64,7 @@ class CheckoutForm extends React.Component {
               </div>
               <div className='mt-3 mb-1 ml-2'>CARD NUMBER</div>
               <div className='form-group'>
-                <input name='creditCard' className='form-control mt-2' type='tel' datatype='card' pattern='^[0-9]{16}$' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
+                <input name='creditCard' className='form-control mt-2' type='tel' datatype='card' pattern='^[0-9]\S{19}$' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required ></input>
                 <span className='input-group-text'><i className='fa fa-credit-card' /></span>
               </div>
               <div>
@@ -76,13 +76,13 @@ class CheckoutForm extends React.Component {
                 </div>
               </div>
               <div className='mt-3 mb-1 ml-2'>SHIPPING ADDRESS</div>
-              <div className='input-group-prepend' >
+              <div className='input-group-prepend'>
                 <textarea name='shippingAddress' className='form-control mt-2' rows='7' type='text' datatype='address' placeholder='Shipping Address' value={shippingAddress} onChange={this.handleFormChange} required></textarea>
               </div>
             </div>
             <div className='form-check ml-2'>
-              <input name='sameAsBilling' className='form-check-input is-valid' type='checkbox' id='defaultCheck' required onChange={this.handleFormChange}></input>
-              <label className='form-check-label' htmlFor='defaultCheck'>
+              <input name='sameAsBilling' className='form-check-input is-valid mt-3' type='checkbox' id='defaultCheck' required onChange={this.handleFormChange}></input>
+              <label className='form-check-label p-2' htmlFor='defaultCheck'>
                 billing same as shipping
               </label>
             </div>
@@ -90,7 +90,7 @@ class CheckoutForm extends React.Component {
           <div className='d-flex justify-content-between align-items-center'>
             <div className='mt-3 mb-5 cursor-pointer' style={{ 'color': 'white' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
             <button className='btn btn-primary mt-3 mb-5' onClick={e => {
-              if (this.state.creditCard.length === 19) { this.completeOrder(this.props.cartState); }
+              if (this.state.creditCard.length === 19 && this.state.sameAsBilling === 'on') { this.completeOrder(this.props.cartState); }
             }}> PLACE ORDER</button>
           </div>
         </div>

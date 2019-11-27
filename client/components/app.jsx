@@ -80,10 +80,17 @@ export default class App extends React.Component {
           totalCount = parseFloat(item.count);
           return item.cartItemId !== cartItemId;
         });
-        this.setState({
-          cart: updateCart,
-          count: totalCount
-        });
+        if (this.state.cart.length === 1) {
+          this.setState({
+            cart: [],
+            count: 0
+          });
+        } else {
+          this.setState({
+            cart: updateCart,
+            count: totalCount
+          });
+        }
       })
       .catch(error => console.error('fetch error:', error));
   }
@@ -101,6 +108,7 @@ export default class App extends React.Component {
       .then(ordered => {
         this.setState({
           cart: [],
+          count: 0,
           view: {
             name: 'confirmation',
             params: {}
