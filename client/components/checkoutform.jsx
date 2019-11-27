@@ -36,10 +36,8 @@ class CheckoutForm extends React.Component {
       sameAsBilling: 'off'
     });
     this.props.placeOrder(order);
-
   }
   render() {
-
     let totalCost = 0;
     this.props.cartState.forEach(price => {
       totalCost += parseFloat(price.price);
@@ -50,7 +48,7 @@ class CheckoutForm extends React.Component {
     return (
       <form className='container' onSubmit={this.handleSubmit}>
         <h4 className='mt-4 ml-3' style={{ 'color': 'white' }}>Checkout</h4>
-        <h5 className='mb-3 ml-3' style={{ 'color': 'white' }}>Order Total: ${totalCost}</h5>
+        <h5 className='mb-3 ml-3' style={{ 'color': 'white' }}>Order Total: ${totalCost} USD</h5>
         <div className='col-md-8 offset-2'>
           <div style={{ 'backgroundColor': 'white' }}>
             <div className='d-flex justify-content-between align-items-center mt-4' style={{ 'height': '4rem', 'backgroundColor': 'gainsboro' }}>

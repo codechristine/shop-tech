@@ -2,4 +2,4 @@
 .vscode/
 .DS_Store
 node_modules/
-server/db_connection.php
+server/public/api/db_connection.php
