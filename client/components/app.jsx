@@ -78,15 +78,19 @@ export default class App extends React.Component {
         let totalCount = 0;
         const updateCart = this.state.cart.filter(item => {
           totalCount = parseFloat(item.count);
-          // if (totalCount === 1) {
-          //   totalCount = 0;
-          // }
           return item.cartItemId !== cartItemId;
         });
-        this.setState({
-          cart: updateCart,
-          count: totalCount
-        });
+        if (this.state.cart.length === 1) {
+          this.setState({
+            cart: [],
+            count: 0
+          });
+        } else {
+          this.setState({
+            cart: updateCart,
+            count: totalCount
+          });
+        }
       })
       .catch(error => console.error('fetch error:', error));
   }
@@ -104,6 +108,7 @@ export default class App extends React.Component {
       .then(ordered => {
         this.setState({
           cart: [],
+          count: 0,
           view: {
             name: 'confirmation',
             params: {}
