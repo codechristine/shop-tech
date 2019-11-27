@@ -75,18 +75,14 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(deletedItem => {
-        // let totalCount = 0;
+        let totalCount = 0;
         const updateCart = this.state.cart.filter(item => {
-          // if (item.count > 1) {
-          //   let itemCount = 0;
-          //   itemCount += (parseFloat(item.count) - 1);
-          //   totalCount += parseFloat(item.count);
-          // }
+          totalCount = parseFloat(item.count);
           return item.cartItemId !== cartItemId;
         });
         this.setState({
-          cart: updateCart
-          // count: totalCount
+          cart: updateCart,
+          count: totalCount
         });
       })
       .catch(error => console.error('fetch error:', error));
