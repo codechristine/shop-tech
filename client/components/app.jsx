@@ -78,6 +78,9 @@ export default class App extends React.Component {
         let totalCount = 0;
         const updateCart = this.state.cart.filter(item => {
           totalCount = parseFloat(item.count);
+          // if (totalCount === 1) {
+          //   totalCount = 0;
+          // }
           return item.cartItemId !== cartItemId;
         });
         this.setState({
