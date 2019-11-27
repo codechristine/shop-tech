@@ -19,13 +19,12 @@ class ProductDetails extends React.Component {
       .catch(error => console.error('fetch error:', error));
   }
   render() {
-
     if (this.state.product) {
       let image = this.state.product.image[1];
       let name = this.state.product.name;
       let price = '$' + this.state.product.price;
       let shortDescription = this.state.product.shortDescription;
-      let longDescription = <div className='text-wrapper'><LoremIpsum p={2} /> </div>;
+      let longDescription = <div className='text-wrapper mb-3'><LoremIpsum p={2} /> <br></br></div>;
 
       return (
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '90%', 'height': '70%' }}>
@@ -34,12 +33,12 @@ class ProductDetails extends React.Component {
             <img className='mr-2 mt-4 offset-1' style={{ 'height': '18rem' }} src={ image } />
             <div className='col-md-6 ml-5'>
               <h2 className='mt-5'>{name}</h2>
-              <h4 className='mt-2'>{price}</h4>
+              <h4 className='mt-2'>{price} USD</h4>
               <p className='mt-3 text-wrap'>{shortDescription}</p>
               <button type='button' className='btn btn-primary' onClick={() => { this.props.itemAddedToCart(this.state.product); }}>Add To Cart</button>
             </div>
           </div>
-          <div className='media-body col-md-10 ml-5'>{longDescription}</div>
+          <div className='media-body col-md-10 ml-5 mb-5'>{longDescription}</div>
         </div>
       );
     } else {

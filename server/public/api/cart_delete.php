@@ -14,16 +14,16 @@ $queryDelete = " DELETE
 
 $deleteResult = mysqli_query($conn, $queryDelete);
 
-  if(!$deleteResult){
-    throw new Exception('item failed to delete');
-  }
+if(!$deleteResult){
+  throw new Exception('item failed to delete');
+}
 
-  $output = [
-    'success' => true,
-    'status' => 'item deleted'
-  ];
+$output = [
+  'success' => true,
+  'status' => 'item deleted'
+];
 
-  $json_output = json_encode($output);
-  print_r($json_output);
+$json_output = json_encode($output);
+print_r($json_output);
 
 ?>

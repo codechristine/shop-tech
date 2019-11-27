@@ -12,6 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       cart: [],
+      count: null,
       view: {
         name: 'catalog',
         params: {}
@@ -27,7 +28,14 @@ export default class App extends React.Component {
     fetch('/api/cart.php')
       .then(response => response.json())
       .then(result => {
-        this.setState({ cart: result });
+        let totalCount = 0;
+        result.forEach(count => {
+          totalCount += parseFloat(count.count);
+        });
+        this.setState({
+          cart: result,
+          count: totalCount
+        });
       })
       .catch(error => console.error('fetch error:', error));
   }
@@ -67,10 +75,15 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(deletedItem => {
+        let totalCount = 0;
         const updateCart = this.state.cart.filter(item => {
+          totalCount = parseFloat(item.count);
           return item.cartItemId !== cartItemId;
         });
-        this.setState({ cart: updateCart });
+        this.setState({
+          cart: updateCart,
+          count: totalCount
+        });
       })
       .catch(error => console.error('fetch error:', error));
   }
@@ -100,35 +113,35 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
+          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
           <ProductList setView={this.setView} view={this.state.view.params} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
+          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
           <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} />
         </div>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.cart} />
+          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
           <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} />
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.checkout}/>
+          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.checkout}/>
           <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
         </div>
       );
     } else if (this.state.view.name === 'confirmation') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} cartView={this.state.view.name.confirmation} />
+          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.confirmation} />
           <Confirmation setView={this.setView} />
         </div>
       );
