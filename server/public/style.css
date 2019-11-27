@@ -1,8 +1,12 @@
 body {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.822);
   background-size: cover;
 }
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+test {
+  background-color: rgba(15, 9, 9, 0.589);
 }

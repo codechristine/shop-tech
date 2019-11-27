@@ -47,10 +47,10 @@ class CheckoutForm extends React.Component {
 
     return (
       <form className='container' onSubmit={this.handleSubmit}>
-        <h4 className='mt-4 ml-3' style={{ 'color': 'white' }}>Checkout</h4>
-        <h5 className='mb-3 ml-3' style={{ 'color': 'white' }}>Order Total: ${totalCost} USD</h5>
+        <h3 className='mt-3 ml-3 pt-4' style={{ 'color': 'white' }}>Checkout</h3>
+        <h5 className='mb-4 ml-3' style={{ 'color': 'white' }}>Order Total: ${totalCost} USD</h5>
         <div className='col-md-8 offset-2'>
-          <div style={{ 'backgroundColor': 'white' }}>
+          <div className='mt-3' style={{ 'backgroundColor': 'white' }}>
             <div className='d-flex justify-content-between align-items-center mt-4' style={{ 'height': '4rem', 'backgroundColor': 'gainsboro' }}>
               <h6 className='p-2 ml-1'>Payment Details</h6>
               <div className='display-td' >
