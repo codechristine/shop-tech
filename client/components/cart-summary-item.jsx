@@ -33,7 +33,7 @@ class CartSummaryItem extends React.Component {
       return (
         <div className='container'>
           <div className='row d-flex justify-content-center'>
-            <h2 className='m-2'>No Items</h2>
+            <h2 className='m-2'>no items in cart</h2>
           </div>
         </div>
       );

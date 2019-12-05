@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from './header';
 import ProductList from './product-list';
@@ -75,11 +74,16 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(deletedItem => {
-        let totalCount = 0;
+        let updatedTotalCount = 0;
+        let itemCount = 0;
         const updateCart = this.state.cart.filter(item => {
-          totalCount = parseFloat(item.count);
+          itemCount = parseFloat(item.count);
           return item.cartItemId !== cartItemId;
         });
+        for (var i = 0; i < updateCart.length; i++) {
+          itemCount = updateCart[i].count;
+          updatedTotalCount += parseFloat(itemCount);
+        }
         if (this.state.cart.length === 1) {
           this.setState({
             cart: [],
@@ -88,7 +92,7 @@ export default class App extends React.Component {
         } else {
           this.setState({
             cart: updateCart,
-            count: totalCount
+            count: updatedTotalCount
           });
         }
       })
@@ -142,7 +146,7 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'checkout') {
       return (
         <div className='container'>
-          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.checkout}/>
+          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.checkout} />
           <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
         </div>
       );
