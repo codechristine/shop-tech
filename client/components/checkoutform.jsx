@@ -72,7 +72,7 @@ class CheckoutForm extends React.Component {
                   <div className='m-2'>EXP DATE</div>
                   <input name='creditCardExp' className='form-control mt-3' type='tel' datatype='ccexpiry' placeholder='MM / YY' value={creditCardExp} onChange={this.handleFormChange} required></input>
                   <div className='mt-2 m-2'>CVV CODE</div>
-                  <input name='creditCardCVC' className='form-control mt-3' type='number' datatype='cardCVC' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
+                  <input name='creditCardCVC' className='form-control mt-3' type='tell' datatype='cardCVC' pattern='^[0-9]\S{3}$' maxLength='3' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
                 </div>
               </div>
               <div className='mt-3 mb-1 ml-2'>SHIPPING ADDRESS</div>
@@ -90,7 +90,7 @@ class CheckoutForm extends React.Component {
           <div className='d-flex justify-content-between align-items-center'>
             <div className='mt-3 mb-5 cursor-pointer' style={{ 'color': 'white' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
             <button className='btn btn-primary mt-3 mb-5' onClick={e => {
-              if (this.state.creditCard.length === 19 && this.state.sameAsBilling === 'on') { this.completeOrder(this.props.cartState); }
+              if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3 && this.state.sameAsBilling === 'on') { this.completeOrder(this.props.cartState); }
             }}> PLACE ORDER</button>
           </div>
         </div>

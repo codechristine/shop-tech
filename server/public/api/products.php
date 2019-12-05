@@ -13,12 +13,11 @@ if(!empty($_GET['id'])){
   if(!is_numeric($_GET['id'])){
     throw new Exception('id must be an int');
   }
-  // print_r($id);
   $id = intval($_GET['id']);
   $whereClause = " WHERE p.`id`=$id ";
 }
 
-$query = " SELECT p.`id`, p.`name`, p.`price`, p.`shortDescription`, p.`image`,
+$query = " SELECT p.`id`, p.`name`, p.`price`, p.`shortDescription`, p.`longDescription`, p.`image`,
             GROUP_CONCAT(i.`url`) AS 'image'
             FROM `product` AS p
             JOIN `images` as i
@@ -48,6 +47,6 @@ if($id){
 }
 
 $json_output = json_encode($output);
-print($json_output);
+print_r($json_output);
 
 ?>

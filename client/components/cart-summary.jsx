@@ -22,10 +22,10 @@ class CartSummary extends React.Component {
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': 'white', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <h3 className='mt-1 ml-4 mb-2' style={{ 'color': 'white' }}>My Cart</h3>
           {this.props.cartState.map((product, index) => {
-            return <CartSummaryItem key={index} items={product} delete={this.props.itemDeletedFromCart} />;
+            return <CartSummaryItem key={index} items={product} delete={this.props.itemDeletedFromCart}/>;
           })}
           <div className='d-flex justify-content-around mt-3 mb-5'>
-            <h4 style={{ 'color': 'white' }}>ITEM TOTAL: ${totalCost} USD</h4>
+            <h4 style={{ 'color': 'white' }}>ITEM TOTAL: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
             <button onClick={() => { this.props.setView('checkout', '{}'); }} className='btn btn-primary'>CHECKOUT</button>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { LoremIpsum } from 'react-lorem-ipsum';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -26,7 +25,7 @@ class ProductDetails extends React.Component {
       let name = this.state.product.name;
       let price = '$' + this.state.product.price;
       let shortDescription = this.state.product.shortDescription;
-      let longDescription = <div className='text-wrapper mb-3'><LoremIpsum p={3} /> </div>;
+      let longDescription = this.state.product.longDescription;
 
       return (
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '93%', 'height': '100vh', 'borderRadius': 'calc(.25rem - 1px)' }}>
