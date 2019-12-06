@@ -19,27 +19,28 @@ class CartSummary extends React.Component {
     if (this.props.cartState.length !== 0) {
       return (
         <div className='container'>
-          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': 'white', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
-          <h3 className='mt-1 ml-4 mb-2' style={{ 'color': 'white' }}>My Cart</h3>
+          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
+          <h3 className='mt-2 ml-4 mb-2' style={{ 'color': '#f19e05e8' }}>My Cart</h3>
           {this.props.cartState.map((product, index) => {
             return <CartSummaryItem key={index} items={product} delete={this.props.itemDeletedFromCart} />;
           })}
           <div className='d-flex justify-content-around mt-3 mb-5'>
-            <h4 style={{ 'color': 'white' }}>ITEM TOTAL: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
-            <button onClick={() => { this.props.setView('checkout', '{}'); }} className='btn btn-primary'>CHECKOUT</button>
+            <h4 className='ml-5'>ITEM TOTAL: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
+            <button onClick={() => { this.props.setView('checkout', '{}'); }} className='btn btn-primary mr-5'>CHECKOUT</button>
           </div>
+          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     } else {
       return (
         <div className='container'>
-          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': 'white', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
-          <h3 className='mt-4 ml-5 mb-2' style={{ 'color': 'white' }}>MY CART</h3>
+          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
+          <h3 className='mt-4 ml-5 mb-2' style={{ 'color': '#f19e05e8' }}>MY CART</h3>
           <div className='d-flex align-items-left mb-5 ml-5'>
-            <h4 style={{ 'color': 'white' }}>ITEM TOTAL: $0 USD</h4>
+            <h4>ITEM TOTAL: $0 USD</h4>
           </div>
-          <div className='d-flex align-items-center mt-5 offset-5'>
-            <h2 style={{ 'color': 'white' }}>cart is empty</h2>
+          <div className='d-flex justify-content-center mt-5'>
+            <h2 style={{ 'color': '#f19e05e8' }}>cart is empty</h2>
           </div>
         </div>
       );
