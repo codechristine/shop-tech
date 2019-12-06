@@ -29,7 +29,7 @@ class ProductDetails extends React.Component {
 
       return (
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '93%', 'height': '100vh', 'borderRadius': 'calc(.25rem - 1px)' }}>
-          <div className='mt-3 ml-3 pt-4 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
+          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <div className='media mt-1' style={{ 'width': '100%', 'height': '29%' }}>
             <img className='mt-4 offset-1' style={{ 'height': '79%' }} src={firstImage} />
             <div className='col-md-6 ml-4'>
@@ -46,13 +46,17 @@ class ProductDetails extends React.Component {
           <div className='d-flex justify-content-center'>
             <div className='media-body col-md-10'>{longDescription}</div>
           </div>
+          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     } else {
       return (
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '93%', 'height': '100vh', 'borderRadius': 'calc(.25rem - 1px)' }}>
-          <div className='mt-3 ml-3 pt-4 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
-          <h3 className='row align-items-center justify-content-center mt-5'>PAGE NOT FOUND</h3>
+          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
+          <div className='row align-items-center justify-content-center mt-5'>
+            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     }

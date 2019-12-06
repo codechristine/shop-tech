@@ -124,37 +124,47 @@ export default class App extends React.Component {
   render() {
     if (this.state.view.name === 'catalog') {
       return (
-        <div className='container'>
+        <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <ProductList setView={this.setView} view={this.state.view.params} />
+          <div className='container'>
+            <ProductList setView={this.setView} view={this.state.view.params} />
+          </div>
         </div>
       );
     } else if (this.state.view.name === 'details') {
       return (
-        <div className='container'>
+        <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} />
+          <div className='container'>
+            <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} />
+          </div>
         </div>
       );
     } else if (this.state.view.name === 'cart') {
       return (
-        <div className='container'>
+        <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} />
+          <div className='container'>
+            <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} />
+          </div>
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
-        <div className='container'>
+        <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.checkout} />
-          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
+          <div className='container'>
+            <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
+          </div>
         </div>
       );
     } else if (this.state.view.name === 'confirmation') {
       return (
-        <div className='container'>
+        <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.confirmation} />
-          <Confirmation setView={this.setView} />
+          <div className='container'>
+            <Confirmation setView={this.setView} />
+          </div>
         </div>
       );
     }

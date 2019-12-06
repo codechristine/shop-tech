@@ -12,7 +12,7 @@ class ProductListItem extends React.Component {
           <h5 className='card-title'>{this.props.item.name}</h5>
           <p className='card-text'>${this.props.item.price} USD</p>
           <p className='card-text'>{this.props.item.shortDescription}</p>
-          <button type='button' className='btn btn-dark'onClick={ clickMethod }>View Product Details</button>
+          <button type='button' className='btn btn-primary'onClick={ clickMethod }>View Product Details</button>
         </div>
       </div>
     );
