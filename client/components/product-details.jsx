@@ -46,7 +46,7 @@ class ProductDetails extends React.Component {
           <div className='d-flex justify-content-center'>
             <div className='media-body col-md-10'>{longDescription}</div>
           </div>
-          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
+          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     } else {
@@ -56,7 +56,7 @@ class ProductDetails extends React.Component {
           <div className='row align-items-center justify-content-center mt-5'>
             <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
           </div>
-          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
+          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     }

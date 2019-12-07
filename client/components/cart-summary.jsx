@@ -28,7 +28,7 @@ class CartSummary extends React.Component {
             <h4 className='ml-5'>ITEM TOTAL: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
             <button onClick={() => { this.props.setView('checkout', '{}'); }} className='btn btn-primary mr-5'>CHECKOUT</button>
           </div>
-          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
+          <div className='mb-4 mr-5' style={{ 'textAlign': 'center', 'marginLeft': '25vw', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     } else {
@@ -42,6 +42,7 @@ class CartSummary extends React.Component {
           <div className='d-flex justify-content-center mt-5'>
             <h2 style={{ 'color': '#f19e05e8' }}>cart is empty</h2>
           </div>
+          <div className='mb-4 mr-5' style={{ 'textAlign': 'center', 'marginLeft': '25vw', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     }

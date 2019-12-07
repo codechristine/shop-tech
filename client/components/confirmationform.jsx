@@ -10,7 +10,7 @@ class Confirmation extends React.Component {
           <h2 className='mt-4 ml-5 mb-2' >Thank you for purchase!</h2>
         </div>
         <h4 className='d-flex justify-content-center align-items-center mt-2'>Confirmation #ABC123</h4>
-        <h4 className='d-flex justify-content-center align-items-center mt-2' style={{ 'color': '#f19e05e8' }}>Please note this site is a demo and no real purchases were made.</h4>
+        <h4 className='d-flex justify-content-center align-items-center mt-2' style={{ 'color': '#f19e05e8' }}>Please note this site is a demo website and no real purchases were made.</h4>
       </div>
     );
   }

@@ -130,7 +130,7 @@ class CheckoutForm extends React.Component {
               </div>
             </div>
           </div>
-          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site. Please do not enter your personal information.</div>
+          <div className='mb-4 mr-5' style={{ 'textAlign': 'center', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site. Please do not enter your personal information.</div>
         </form>
       </div>
     );

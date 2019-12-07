@@ -1,7 +1,27 @@
 import React from 'react';
 
 class CartSummaryItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cart: null
+    };
+    this.handleDeletion = this.handleDeletion.bind(this);
+    this.confirmDeletion = this.confirmDeletion.bind(this);
+  }
+  handleDeletion(e) {
+    e.preventDefault();
+  }
+  confirmDeletion(cartItemId) {
 
+    // const itemDeleted = e.target.value;
+    // const value = e.target.value;
+    // Item removal from cart should require confirmation of deleted from user.
+    // Confirmation prompt should identify which item the user is deleting.
+    // this.setState({
+    //   [itemDeleted]: value
+    // });
+  }
   render() {
     if (this.props.items) {
       let { count, image, name, price, shortDescription } = this.props.items;
@@ -14,6 +34,7 @@ class CartSummaryItem extends React.Component {
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
                   this.props.delete(this.props.items.cartItemId);
+                  this.confirmDeletion(this.props.item.cartItemId);
                 }} >
                   <span aria-hidden='true'>&times;</span>
                 </button>
