@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from './modal';
 
 class CartSummaryItem extends React.Component {
   constructor(props) {
@@ -26,8 +27,16 @@ class CartSummaryItem extends React.Component {
   handleDeletion(e) {
     e.preventDefault();
   }
-  confirmDeletion(cartItemId) {
+  confirmDeletion(e) {
+    this.props.delete(this.props.items.cartItemId);
 
+    if (!this.props.show) {
+      return null;
+    } else {
+      return (
+        <Modal />
+      );
+    }
     // const itemDeleted = e.target.value;
     // const value = e.target.value;
     // Item removal from cart should require confirmation of deleted from user.
@@ -68,12 +77,12 @@ class CartSummaryItem extends React.Component {
       return (
         <div className='container'>
           <div className='row d-flex justify-content-center'>
-            <div className='mt-3' style={{ 'width': '65%', 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
-              <div className='media mb-3 mt-1' style={{ 'width': '100%' }}>
+            <div className='mt-3' style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
+              <div className='media mb-3 mt-1'>
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
-                  this.props.delete(this.props.items.cartItemId);
-                  this.confirmDeletion(this.props.item.cartItemId);
+                  // this.props.delete(this.props.items.cartItemId);
+                  this.confirmDeletion();
                 }} >
                   <span aria-hidden='true'>&times;</span>
                 </button>

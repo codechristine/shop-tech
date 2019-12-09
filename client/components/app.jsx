@@ -13,7 +13,7 @@ export default class App extends React.Component {
     this.state = {
       cart: [],
       count: 0,
-      show: false,
+      show: true,
       view: {
         name: 'catalog',
         params: {}
@@ -126,24 +126,10 @@ export default class App extends React.Component {
   }
   toggleModal() {
     this.setState({
-      show: true,
-      view: {
-        name: 'home',
-        params: {}
-      }
+      show: false
     });
   }
   render() {
-
-    if (this.state.view.name === 'home') {
-      return (
-        <div>
-          <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <Modal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} />
-        </div>
-      );
-    }
-
     if (this.state.view.name === 'catalog') {
       return (
         <div>
@@ -151,6 +137,7 @@ export default class App extends React.Component {
           <div className='container'>
             <ProductList setView={this.setView} view={this.state.view.params} />
           </div>
+          <Modal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
@@ -167,7 +154,7 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
           <div className='container'>
-            <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} />
+            <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
           </div>
         </div>
       );

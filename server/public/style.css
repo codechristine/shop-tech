@@ -11,19 +11,19 @@ body {
                MODAL
 **************************************/
 
-/* .hidden {
+.hidden {
     display: none;
-} */
+}
 
-#modalShadow {
-    background-color: rgba(0,0,0,.4);
+.modalShadow {
+    background-color: rgba(0, 0, 0, 0.733);
     height: 100vh;
     width: 100vw;
     position: fixed;
     left: 0px;
     top: 0px;
 }
-#modalBody {
+.modalBody {
     position: fixed;
     background-size: contain;
     background-repeat: no-repeat;
@@ -34,22 +34,18 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    border: 5px solid black;
+    border: 2px solid black;
 }
-#modalContent {
+.modalContent {
     position: absolute;
-    left: 75%;
-    top: 70%;
+    left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4rem;
+    text-align: center;
 }
-/* #modalNext {
-    color: red;
-    font-size: 1.5rem;
-    margin-top: 20%;
-    text-align: end;
-    cursor: pointer;
-} */
+.confirm {
+    margin-top: 10%;
+}
 
 /**************************************
                MODAL
