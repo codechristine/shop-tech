@@ -12,8 +12,8 @@ class CheckoutForm extends React.Component {
       zipCode: '',
       email: '',
       creditCardExp: '',
-      creditCardCVC: '',
-      sameAsBilling: 'off'
+      creditCardCVC: ''
+      // sameAsBilling: 'off'
     };
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,8 +40,8 @@ class CheckoutForm extends React.Component {
       zipCode: '',
       email: '',
       creditCardExp: '',
-      creditCardCVC: '',
-      sameAsBilling: 'off'
+      creditCardCVC: ''
+      // sameAsBilling: 'off'
     });
     this.props.placeOrder(order);
   }
@@ -71,7 +71,7 @@ class CheckoutForm extends React.Component {
                 <div className='mt-2'>
                   <div className='mt-5 mb-1 ml-2'>CARD HOLDER</div>
                   <div className='form-group'>
-                    <input name='name' className='form-control mt-2' type='text' datatype='name' placeholder='Name On Card' value={name} onChange={this.handleFormChange} required></input>
+                    <input name='name' className='form-control mt-2' type='text' datatype='name' maxLength='65' placeholder='Name On Card' value={name} onChange={this.handleFormChange} required></input>
                   </div>
                   <div className='mt-3 mb-1 ml-2'>CARD NUMBER</div>
                   <div className='form-group d-flex justify-content-between'>
@@ -88,20 +88,20 @@ class CheckoutForm extends React.Component {
                   </div>
                   <div className='mt-3 mb-1 ml-2'>SHIPPING ADDRESS</div>
                   <div className='input-group-prepend'>
-                    <textarea name='address' className='form-control mt-2' rows='4' type='text' datatype='address' placeholder='Address' value={address} onChange={this.handleFormChange} required></textarea>
+                    <textarea name='address' className='form-control mt-2' rows='4' type='text' datatype='address' maxLength='42' placeholder='Address' value={address} onChange={this.handleFormChange} required></textarea>
                   </div>
                 </div>
                 <div className='d-flex justify-content-around align-items-center mt-3'>
                   {/* <div className=''> */}
                   <div className='mr-3 ml-3'>CITY</div>
                   <div className='form-group'>
-                    <input name='city' className='form-control mt-3' type='text' datatype='city' placeholder='city' value={city} onChange={this.handleFormChange} required></input>
+                    <input name='city' className='form-control mt-3' type='text' datatype='city' maxLength='50' placeholder='city' value={city} onChange={this.handleFormChange} required></input>
                   </div>
                   {/* </div> */}
                   {/* <div className=''> */}
                   <div className='mr-3 ml-3'>STATE</div>
                   <div className='form-group'>
-                    <input name='state' className='form-control mt-3' type='text' datatype='state' placeholder='state' value={state} onChange={this.handleFormChange} required></input>
+                    <input name='state' className='form-control mt-3' type='text' datatype='state' maxLength='2' placeholder='state' value={state} onChange={this.handleFormChange} required></input>
                   </div>
                   {/* </div> */}
                   {/* <div className=''> */}
@@ -113,19 +113,16 @@ class CheckoutForm extends React.Component {
                 </div>
                 <div className='ml-2'>EMAIL</div>
                 <div className='form-group'>
-                  <input name='email' className='form-control mt-3' type='text' datatype='email' placeholder='email' value={email} onChange={this.handleFormChange} required></input>
-                </div>
-                <div className='form-check ml-2'>
-                  <input name='sameAsBilling' className='form-check-input is-valid mt-3' type='checkbox' id='defaultCheck' required onChange={this.handleFormChange}></input>
-                  <label className='form-check-label p-2' htmlFor='defaultCheck'>
-                billing same as shipping
-                  </label>
+                  <input name='email' className='form-control mt-3' type='text' datatype='email' maxLength='254' placeholder='email' value={email} onChange={this.handleFormChange} required></input>
                 </div>
               </div>
               <div className='d-flex justify-content-between align-items-center'>
-                <div className='mt-3 mb-5 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
-                <button className='btn btn-primary mt-3 mb-5' onClick={e => {
-                  if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3 && this.state.sameAsBilling === 'on') { this.completeOrder(this.props.cartState); }
+                <div className='mb-5 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
+                <button className='btn btn-primary mb-5' onClick={e => {
+                  if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3) { this.completeOrder(this.props.cartState); }
+                  // else {
+
+                  // }
                 }}> PLACE ORDER</button>
               </div>
             </div>

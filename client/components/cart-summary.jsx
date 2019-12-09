@@ -40,9 +40,9 @@ class CartSummary extends React.Component {
             <h4>ITEM TOTAL: $0 USD</h4>
           </div>
           <div className='d-flex justify-content-center mt-5'>
-            <h2 style={{ 'color': '#f19e05e8' }}>cart is empty</h2>
+            <h2>cart is empty</h2>
           </div>
-          <div className='mb-4 mr-5' style={{ 'textAlign': 'center', 'marginLeft': '25vw', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
+          <div className='mt-5 mb-4 mr-5' style={{ 'textAlign': 'center', 'marginLeft': '25vw', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     }
