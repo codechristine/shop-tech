@@ -6,6 +6,51 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
+/**************************************
+               MODAL
+**************************************/
+
+.hidden {
+    display: none;
+}
+
+.modalShadow {
+    background-color: rgba(0, 0, 0, 0.733);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+.modalBody {
+    position: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.87);
+    height: 50vh;
+    width: 50vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    border: 2px solid black;
+}
+.modalContent {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.confirm {
+    margin-top: 10%;
+}
+
+/**************************************
+               MODAL
+**************************************/
+
 .lds-ring {
   display: inline-block;
   position: relative;

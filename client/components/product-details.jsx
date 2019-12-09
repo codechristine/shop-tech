@@ -28,35 +28,39 @@ class ProductDetails extends React.Component {
       let longDescription = this.state.product.longDescription;
 
       return (
-        <div className='container' style={{ 'backgroundColor': 'white', 'width': '93%', 'height': '100vh', 'borderRadius': 'calc(.25rem - 1px)' }}>
+        <div className='container' style={{ 'backgroundColor': 'white', 'width': '100vw', 'borderRadius': 'calc(.25rem - 1px)' }}>
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
-          <div className='media mt-1' style={{ 'width': '100%', 'height': '29%' }}>
-            <img className='mt-4 offset-1' style={{ 'height': '79%' }} src={firstImage} />
-            <div className='col-md-6 ml-4'>
-              <h2 className='mt-5'>{name}</h2>
-              <h4 className='mt-2'>{price} USD</h4>
-              <p className='mt-3 text-wrap'>{shortDescription}</p>
-              <button type='button' className='btn btn-primary' onClick={() => { this.props.itemAddedToCart(this.state.product); }}>Add To Cart</button>
+          <div className='d-flex justify-content-around align-items-center'>
+            <div className='media' style={{ 'height': '30vh' }}>
+              <img className='mt-4' style={{ 'height': '24vh' }} src={firstImage} />
+              <div className='col-md-6'>
+                <h2 className='mt-5'>{name}</h2>
+                <h4 className='mt-2'>{price} USD</h4>
+                <p className='mt-3 text-wrap'>{shortDescription}</p>
+                <button type='button' className='btn btn-primary' onClick={() => { this.props.itemAddedToCart(this.state.product); }}>Add To Cart</button>
+              </div>
             </div>
           </div>
-          <div className='d-flex justify-content-left offset-1 mb-4'>
-            <img className='m-2 ml-5' style={{ 'height': '5rem', 'backgroundColor': 'grey' }} src={secondImage} />
-            <img className='m-2' style={{ 'height': '5rem' }} src={thirdImage} />
+          <div className='row'>
+            <div className='d-flex justify-content-left mb-4'>
+              <img className='detailsImages' style={{ 'height': '5rem', 'backgroundColor': 'grey' }} src={secondImage} />
+              <img className='detailsImages' style={{ 'height': '5rem' }} src={thirdImage} />
+            </div>
           </div>
           <div className='d-flex justify-content-center'>
-            <div className='media-body col-md-10'>{longDescription}</div>
+            <div className='media-body col-md-10 mb-5'>{longDescription}</div>
           </div>
-          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
+          <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     } else {
       return (
-        <div className='container' style={{ 'backgroundColor': 'white', 'width': '93%', 'height': '100vh', 'borderRadius': 'calc(.25rem - 1px)' }}>
+        <div className='container' style={{ 'backgroundColor': 'white', 'width': '100vw', 'borderRadius': 'calc(.25rem - 1px)' }}>
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <div className='row align-items-center justify-content-center mt-5'>
             <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
           </div>
-          <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
+          <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
       );
     }

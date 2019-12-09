@@ -30,7 +30,7 @@ class ProductList extends React.Component {
             );
           })}
         </div>
-        <div className='mb-4 mr-5' style={{ 'float': 'right', 'color': '#f19e05e8' }}>*disclaimer - this is a demo site.</div>
+        <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
       </div>
     );
   }
