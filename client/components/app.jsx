@@ -5,13 +5,15 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkoutform';
 import Confirmation from './confirmationform';
+import Modal from './modal';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       cart: [],
-      count: null,
+      count: 0,
+      show: true,
       view: {
         name: 'catalog',
         params: {}
@@ -22,6 +24,7 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.deleteFromCart = this.deleteFromCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
   getCartItems() {
     fetch('/api/cart.php')
@@ -121,6 +124,11 @@ export default class App extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
+  toggleModal() {
+    this.setState({
+      show: false
+    });
+  }
   render() {
     if (this.state.view.name === 'catalog') {
       return (
@@ -129,6 +137,7 @@ export default class App extends React.Component {
           <div className='container'>
             <ProductList setView={this.setView} view={this.state.view.params} />
           </div>
+          <Modal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
@@ -145,7 +154,7 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
           <div className='container'>
-            <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} />
+            <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
           </div>
         </div>
       );
