@@ -145,7 +145,7 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
           <div className='container'>
-            <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} />
+            <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} toggleModal={this.toggleModal} />
           </div>
         </div>
       );

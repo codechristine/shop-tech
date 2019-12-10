@@ -1,11 +1,14 @@
 import React from 'react';
+import Modal from './modal';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: null
+      product: null,
+      show: false
     };
+    this.modalPopup = this.modalPopup.bind(this);
   }
   componentDidMount() {
     const id = this.props.clicked;
@@ -17,6 +20,11 @@ class ProductDetails extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
+  modalPopup() {
+    this.setState({
+      show: true
+    });
+  }
   render() {
     if (this.state.product) {
       let firstImage = this.state.product.image[0];
@@ -27,7 +35,15 @@ class ProductDetails extends React.Component {
       let shortDescription = this.state.product.shortDescription;
       let longDescription = this.state.product.longDescription;
 
+      // let modal;
+      // if (this.state.show) {
+      //   modal = <Modal />;
+      // } else {
+      //   modal = null;
+      // }
+
       return (
+        <>
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '100vw', 'borderRadius': 'calc(.25rem - 1px)' }}>
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <div className='d-flex justify-content-around align-items-center'>
@@ -37,7 +53,10 @@ class ProductDetails extends React.Component {
                 <h2 className='mt-5'>{name}</h2>
                 <h4 className='mt-2'>{price} USD</h4>
                 <p className='mt-3 text-wrap'>{shortDescription}</p>
-                <button type='button' className='btn btn-primary' onClick={() => { this.props.itemAddedToCart(this.state.product); }}>Add To Cart</button>
+                <button type='button' className='btn btn-primary' onClick={() => {
+                  this.modalPopup();
+                  this.props.itemAddedToCart(this.state.product);
+                }}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -52,6 +71,8 @@ class ProductDetails extends React.Component {
           </div>
           <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
+        <Modal show={this.state.show} />
+        </>
       );
     } else {
       return (
