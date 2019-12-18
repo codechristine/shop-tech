@@ -1,4 +1,5 @@
 import React from 'react';
+// import ConfirmPlaceOrderModal from './place-order-modal';
 
 class CheckoutForm extends React.Component {
   constructor(props) {
@@ -12,11 +13,15 @@ class CheckoutForm extends React.Component {
       zipCode: '',
       email: '',
       creditCardExp: '',
-      creditCardCVC: ''
+      creditCardCVC: '',
+      show: false
     };
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.completeOrder = this.completeOrder.bind(this);
+    // this.openModal = this.openModal.bind(this);
+    // this.confirmOrder = this.confirmOrder.bind(this);
+    // this.cancelModal = this.cancelModal.bind(this);
   }
   handleFormChange(e) {
     const name = e.target.name;
@@ -43,6 +48,24 @@ class CheckoutForm extends React.Component {
     });
     this.props.placeOrder(order);
   }
+  // openModal() {
+  //   this.setState({
+  //     show: true
+  //   });
+  // }
+  // confirmOrder(order) {
+  //   this.props.placeOrder(order);
+  //   this.completeOrder(this.props.cartState);
+
+  //   this.setState({
+  //     show: false
+  //   });
+  // }
+  // cancelModal() {
+  //   this.setState({
+  //     show: false
+  //   });
+  // }
   render() {
     let totalCost = 0;
     this.props.cartState.forEach(price => {
@@ -52,6 +75,7 @@ class CheckoutForm extends React.Component {
     const { name, creditCard, creditCardExp, creditCardCVC, address, city, state, zipCode, email } = this.state;
 
     return (
+      <>
       <div className='checkout'>
         <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('cart', '{}'); }}>{'< Back To Cart'}</div>
         <form className='container' onSubmit={this.handleSubmit}>
@@ -90,24 +114,18 @@ class CheckoutForm extends React.Component {
                   </div>
                 </div>
                 <div className='d-flex justify-content-around align-items-center mt-3'>
-                  {/* <div className=''> */}
                   <div className='mr-3 ml-3'>CITY</div>
                   <div className='form-group'>
                     <input name='city' className='form-control mt-3' type='text' datatype='city' maxLength='50' placeholder='city' value={city} onChange={this.handleFormChange} required></input>
                   </div>
-                  {/* </div> */}
-                  {/* <div className=''> */}
                   <div className='mr-3 ml-3'>STATE</div>
                   <div className='form-group'>
                     <input name='state' className='form-control mt-3' type='text' datatype='state' maxLength='2' placeholder='state' value={state} onChange={this.handleFormChange} required></input>
                   </div>
-                  {/* </div> */}
-                  {/* <div className=''> */}
                   <div className='ml-3'>ZIP CODE</div>
                   <div className='form-group'>
                     <input name='zipCode' className='form-control mt-3' type='tel' datatype='zip' maxLength='5' placeholder='00000' value={zipCode} onChange={this.handleFormChange} required></input>
                   </div>
-                  {/* </div> */}
                 </div>
                 <div className='ml-2'>EMAIL</div>
                 <div className='form-group'>
@@ -117,10 +135,10 @@ class CheckoutForm extends React.Component {
               <div className='d-flex justify-content-between align-items-center'>
                 <div className='mb-5 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
                 <button className='btn btn-primary mb-5' onClick={e => {
-                  if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3) { this.completeOrder(this.props.cartState); }
-                  // else {
-
-                  // }
+                  if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3) {
+                    this.completeOrder(this.props.cartState);
+                    // this.openModal();
+                  }
                 }}> PLACE ORDER</button>
               </div>
             </div>
@@ -128,6 +146,8 @@ class CheckoutForm extends React.Component {
           <div className='mb-4' style={{ 'textAlign': 'center', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site. Please do not enter your personal information.</div>
         </form>
       </div>
+        {/* <ConfirmPlaceOrderModal show={this.state.show} onClose={this.confirmOrder} cancel={this.cancelModal} /> */}
+      </>
     );
   }
 }
