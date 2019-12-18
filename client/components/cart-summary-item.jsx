@@ -12,7 +12,9 @@ class CartSummaryItem extends React.Component {
     // this.incrementItem = this.incrementItem.bind(this);
     // this.decrementItem = this.decrementItem.bind(this);
     this.handleDeletion = this.handleDeletion.bind(this);
-    this.confirmDeletion = this.confirmDeletion.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
+    this.cancelModal = this.cancelModal.bind(this);
   }
   // incrementItem() {
   //   this.setState({
@@ -27,17 +29,23 @@ class CartSummaryItem extends React.Component {
   handleDeletion(e) {
     e.preventDefault();
   }
-  toggleModal() {
+  openModal() {
     this.setState({
       show: true
     });
   }
-  confirmDeletion(e) {
+  confirmDelete(e) {
+    e.preventDefault();
     this.props.delete(this.props.items.cartItemId);
 
-    return (
-      <ConfirmDeleteModal show={this.state.show} onClose={this.toggleModal} />
-    );
+    this.setState({
+      show: false
+    });
+  }
+  cancelModal() {
+    this.setState({
+      show: false
+    });
   }
   // const itemDeleted = e.target.value;
   // const value = e.target.value;
@@ -50,14 +58,14 @@ class CartSummaryItem extends React.Component {
 
     if (this.props.items) {
       let { image, name, price, shortDescription } = this.props.items;
-
       let count = parseInt(this.props.items.count);
-      // console.log(count);
+
       let incrementItem = () => {
         this.setState({
           count: count + 1
         });
       };
+
       let decrementItem = () => {
 
         if (this.state.count <= 0) {
@@ -70,12 +78,8 @@ class CartSummaryItem extends React.Component {
           });
         }
       };
-      // let toggleClicks = () => {
-      //   this.setState({
-      //     show: !this.state.show
-      //   });
-      // };
       return (
+        <>
         <div className='container'>
           <div className='row d-flex justify-content-center'>
             <div className='mt-3' style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
@@ -83,7 +87,7 @@ class CartSummaryItem extends React.Component {
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
                   // this.props.delete(this.props.items.cartItemId);
-                  this.confirmDeletion(e);
+                  this.openModal();
                 }} >
                   <span aria-hidden='true'>&times;</span>
                 </button>
@@ -108,6 +112,8 @@ class CartSummaryItem extends React.Component {
             </div>
           </div>
         </div>
+          <ConfirmDeleteModal show={this.state.show} onClose={this.confirmDelete} cancel={this.cancelModal} />
+        </>
       );
     } else {
       return (

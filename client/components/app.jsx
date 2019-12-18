@@ -6,8 +6,6 @@ import CartSummary from './cart-summary';
 import CheckoutForm from './checkoutform';
 import Confirmation from './confirmationform';
 import AcknowlegeModal from './acknowlegde-modal';
-// import ConfirmAddModal from './confirm-add-modal';
-// import ConfirmDeleteModal from './confirm-delete-modal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -139,7 +137,7 @@ export default class App extends React.Component {
           <div className='container'>
             <ProductList setView={this.setView} view={this.state.view.params} />
           </div>
-          <AcknowlegeModal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
+          <AcknowlegeModal show={this.state.show} onClose={this.toggleModal} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
@@ -149,7 +147,6 @@ export default class App extends React.Component {
           <div className='container'>
             <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} toggleModal={this.toggleModal} />
           </div>
-          {/* <ConfirmAddModal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} /> */}
         </div>
       );
     } else if (this.state.view.name === 'cart') {

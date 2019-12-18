@@ -1,9 +1,9 @@
 import React from 'react';
 
-class ConfirmAddModal extends React.Component {
+class ConfirmPlaceOrderModal extends React.Component {
 
   render() {
-    const confirmAdd = 'Please click add to confirm adding item to cart or click cancel to cancel.';
+    const confirmOrder = 'Please click confirm to confirm placing order or cancel to cancel.';
 
     if (!this.props.show) {
       return null;
@@ -13,8 +13,8 @@ class ConfirmAddModal extends React.Component {
           <div className='modalShadow'>
             <div className='modalBody'>
               <div className='modalContent' style={{ 'color': '#f19e05e8' }}>
-                <h3>{confirmAdd}</h3>
-                <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>add</button>
+                <h3>{confirmOrder}</h3>
+                <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>confirm</button>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
               </div>
             </div>
@@ -24,4 +24,4 @@ class ConfirmAddModal extends React.Component {
     }
   }
 }
-export default ConfirmAddModal;
+export default ConfirmPlaceOrderModal;

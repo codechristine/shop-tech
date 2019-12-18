@@ -8,7 +8,9 @@ class ProductDetails extends React.Component {
       product: null,
       show: false
     };
-    this.toggleModal = this.toggleModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.confirmAdd = this.confirmAdd.bind(this);
+    this.cancelModal = this.cancelModal.bind(this);
   }
   componentDidMount() {
     const id = this.props.clicked;
@@ -20,9 +22,21 @@ class ProductDetails extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
-  toggleModal() {
+  openModal() {
     this.setState({
       show: true
+    });
+  }
+  confirmAdd() {
+    this.props.itemAddedToCart(this.state.product);
+
+    this.setState({
+      show: false
+    });
+  }
+  cancelModal() {
+    this.setState({
+      show: false
     });
   }
   render() {
@@ -34,13 +48,6 @@ class ProductDetails extends React.Component {
       let price = '$' + this.state.product.price;
       let shortDescription = this.state.product.shortDescription;
       let longDescription = this.state.product.longDescription;
-
-      // let modal;
-      // if (this.state.show) {
-      //   modal = <Modal />;
-      // } else {
-      //   modal = null;
-      // }
 
       return (
         <>
@@ -54,8 +61,8 @@ class ProductDetails extends React.Component {
                 <h4 className='mt-2'>{price} USD</h4>
                 <p className='mt-3 text-wrap'>{shortDescription}</p>
                 <button type='button' className='btn btn-primary' onClick={() => {
-                  this.toggleModal();
-                  this.props.itemAddedToCart(this.state.product);
+                  this.openModal();
+                  // this.props.itemAddedToCart(this.state.product);
                 }}>Add To Cart</button>
               </div>
             </div>
@@ -71,8 +78,8 @@ class ProductDetails extends React.Component {
           </div>
           <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
-          <ConfirmAddModal show={this.state.show} toggleModal={this.toggleModal} onClose={this.state.show} />
-        </>
+          <ConfirmAddModal show={this.state.show} onClose={this.confirmAdd} cancel={this.cancelModal} />
+          </>
       );
     } else {
       return (
