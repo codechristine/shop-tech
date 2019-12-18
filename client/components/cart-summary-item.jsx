@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './modal';
+import ConfirmDeleteModal from './confirm-delete-modal';
 
 class CartSummaryItem extends React.Component {
   constructor(props) {
@@ -7,12 +7,14 @@ class CartSummaryItem extends React.Component {
     this.state = {
       cart: null,
       count: null,
-      show: true
+      show: false
     };
     // this.incrementItem = this.incrementItem.bind(this);
     // this.decrementItem = this.decrementItem.bind(this);
     this.handleDeletion = this.handleDeletion.bind(this);
-    this.confirmDeletion = this.confirmDeletion.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
+    this.cancelModal = this.cancelModal.bind(this);
   }
   // incrementItem() {
   //   this.setState({
@@ -27,36 +29,43 @@ class CartSummaryItem extends React.Component {
   handleDeletion(e) {
     e.preventDefault();
   }
-  confirmDeletion(e) {
+  openModal() {
+    this.setState({
+      show: true
+    });
+  }
+  confirmDelete(e) {
+    e.preventDefault();
     this.props.delete(this.props.items.cartItemId);
 
-    if (!this.props.show) {
-      return null;
-    } else {
-      return (
-        <Modal />
-      );
-    }
-    // const itemDeleted = e.target.value;
-    // const value = e.target.value;
-    // Item removal from cart should require confirmation of deleted from user.
-    // Confirmation prompt should identify which item the user is deleting.
-    // this.setState({
-    //   [itemDeleted]: value
-    // });
+    this.setState({
+      show: false
+    });
   }
+  cancelModal() {
+    this.setState({
+      show: false
+    });
+  }
+  // const itemDeleted = e.target.value;
+  // const value = e.target.value;
+  // Item removal from cart should require confirmation of deleted from user.
+  // Confirmation prompt should identify which item the user is deleting.
+  // this.setState({
+  //   [itemDeleted]: value
+  // });
   render() {
 
     if (this.props.items) {
       let { image, name, price, shortDescription } = this.props.items;
-
       let count = parseInt(this.props.items.count);
-      // console.log(count);
+
       let incrementItem = () => {
         this.setState({
           count: count + 1
         });
       };
+
       let decrementItem = () => {
 
         if (this.state.count <= 0) {
@@ -69,12 +78,8 @@ class CartSummaryItem extends React.Component {
           });
         }
       };
-      // let toggleClicks = () => {
-      //   this.setState({
-      //     show: !this.state.show
-      //   });
-      // };
       return (
+        <>
         <div className='container'>
           <div className='row d-flex justify-content-center'>
             <div className='mt-3' style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
@@ -82,7 +87,7 @@ class CartSummaryItem extends React.Component {
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
                   // this.props.delete(this.props.items.cartItemId);
-                  this.confirmDeletion();
+                  this.openModal();
                 }} >
                   <span aria-hidden='true'>&times;</span>
                 </button>
@@ -107,6 +112,8 @@ class CartSummaryItem extends React.Component {
             </div>
           </div>
         </div>
+          <ConfirmDeleteModal show={this.state.show} onClose={this.confirmDelete} cancel={this.cancelModal} />
+        </>
       );
     } else {
       return (
