@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './modal';
+import ConfirmDeleteModal from './confirm-delete-modal';
 
 class CartSummaryItem extends React.Component {
   constructor(props) {
@@ -7,7 +7,7 @@ class CartSummaryItem extends React.Component {
     this.state = {
       cart: null,
       count: null,
-      show: true
+      show: false
     };
     // this.incrementItem = this.incrementItem.bind(this);
     // this.decrementItem = this.decrementItem.bind(this);
@@ -27,24 +27,25 @@ class CartSummaryItem extends React.Component {
   handleDeletion(e) {
     e.preventDefault();
   }
+  toggleModal() {
+    this.setState({
+      show: true
+    });
+  }
   confirmDeletion(e) {
     this.props.delete(this.props.items.cartItemId);
 
-    if (!this.props.show) {
-      return null;
-    } else {
-      return (
-        <Modal />
-      );
-    }
-    // const itemDeleted = e.target.value;
-    // const value = e.target.value;
-    // Item removal from cart should require confirmation of deleted from user.
-    // Confirmation prompt should identify which item the user is deleting.
-    // this.setState({
-    //   [itemDeleted]: value
-    // });
+    return (
+      <ConfirmDeleteModal show={this.state.show} onClose={this.toggleModal} />
+    );
   }
+  // const itemDeleted = e.target.value;
+  // const value = e.target.value;
+  // Item removal from cart should require confirmation of deleted from user.
+  // Confirmation prompt should identify which item the user is deleting.
+  // this.setState({
+  //   [itemDeleted]: value
+  // });
   render() {
 
     if (this.props.items) {
@@ -82,7 +83,7 @@ class CartSummaryItem extends React.Component {
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
                   // this.props.delete(this.props.items.cartItemId);
-                  this.confirmDeletion();
+                  this.confirmDeletion(e);
                 }} >
                   <span aria-hidden='true'>&times;</span>
                 </button>

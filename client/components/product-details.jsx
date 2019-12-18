@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './modal';
+import ConfirmAddModal from './confirm-add-modal';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class ProductDetails extends React.Component {
       product: null,
       show: false
     };
-    this.modalPopup = this.modalPopup.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
   componentDidMount() {
     const id = this.props.clicked;
@@ -20,7 +20,7 @@ class ProductDetails extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
-  modalPopup() {
+  toggleModal() {
     this.setState({
       show: true
     });
@@ -46,7 +46,7 @@ class ProductDetails extends React.Component {
         <>
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '100vw', 'borderRadius': 'calc(.25rem - 1px)' }}>
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
-          <div className='d-flex justify-content-around align-items-center'>
+          <div className='d-flex justify-content-around align-items-center' style={{ 'marginLeft': '10%' }}>
             <div className='media' style={{ 'height': '30vh' }}>
               <img className='mt-4' style={{ 'height': '24vh' }} src={firstImage} />
               <div className='col-md-6'>
@@ -54,14 +54,14 @@ class ProductDetails extends React.Component {
                 <h4 className='mt-2'>{price} USD</h4>
                 <p className='mt-3 text-wrap'>{shortDescription}</p>
                 <button type='button' className='btn btn-primary' onClick={() => {
-                  this.modalPopup();
+                  this.toggleModal();
                   this.props.itemAddedToCart(this.state.product);
                 }}>Add To Cart</button>
               </div>
             </div>
           </div>
           <div className='row'>
-            <div className='d-flex justify-content-left mb-4'>
+            <div className='d-flex justify-content-left mb-4' style={{ 'marginLeft': '10%' }}>
               <img className='detailsImages' style={{ 'height': '5rem', 'backgroundColor': 'grey' }} src={secondImage} />
               <img className='detailsImages' style={{ 'height': '5rem' }} src={thirdImage} />
             </div>
@@ -71,7 +71,7 @@ class ProductDetails extends React.Component {
           </div>
           <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
-        <Modal show={this.state.show} />
+          <ConfirmAddModal show={this.state.show} toggleModal={this.toggleModal} onClose={this.state.show} />
         </>
       );
     } else {

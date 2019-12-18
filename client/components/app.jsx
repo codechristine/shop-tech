@@ -5,7 +5,9 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkoutform';
 import Confirmation from './confirmationform';
-import Modal from './modal';
+import AcknowlegeModal from './acknowlegde-modal';
+// import ConfirmAddModal from './confirm-add-modal';
+// import ConfirmDeleteModal from './confirm-delete-modal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -137,7 +139,7 @@ export default class App extends React.Component {
           <div className='container'>
             <ProductList setView={this.setView} view={this.state.view.params} />
           </div>
-          <Modal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
+          <AcknowlegeModal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
         </div>
       );
     } else if (this.state.view.name === 'details') {
@@ -147,6 +149,7 @@ export default class App extends React.Component {
           <div className='container'>
             <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} toggleModal={this.toggleModal} />
           </div>
+          {/* <ConfirmAddModal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} /> */}
         </div>
       );
     } else if (this.state.view.name === 'cart') {
@@ -156,6 +159,7 @@ export default class App extends React.Component {
           <div className='container'>
             <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
           </div>
+          {/* <ConfirmDeleteModal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} /> */}
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
