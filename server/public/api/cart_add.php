@@ -79,4 +79,12 @@ if (mysqli_affected_rows($conn) > 0) {
   mysqli_query($conn, 'ROLLBACK');
 }
 
+if(isset($bodyData['quantity'])){
+  $quantityID = $bodyData['id'];
+  $quantity = $bodyData['quantity'];
+
+  $query = " UPDATE cartItems SET `count` = $quantity
+            WHERE `productID` = $quantityID ";
+}
+
 ?>

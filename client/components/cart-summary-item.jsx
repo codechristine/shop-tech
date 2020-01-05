@@ -5,27 +5,17 @@ class CartSummaryItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: null,
+      // cart: null,
       count: null,
-      show: false
+      show: false,
+      quantity: true
     };
-    // this.incrementItem = this.incrementItem.bind(this);
-    // this.decrementItem = this.decrementItem.bind(this);
     this.handleDeletion = this.handleDeletion.bind(this);
     this.openModal = this.openModal.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
     this.cancelModal = this.cancelModal.bind(this);
   }
-  // incrementItem() {
-  //   this.setState({
-  //     clicks: this.state.clicks + 1
-  //   });
-  // }
-  // decrementItem() {
-  //   this.setState({
-  //     clicks: this.state.clicks - 1
-  //   });
-  // }
+
   handleDeletion(e) {
     e.preventDefault();
   }
@@ -47,9 +37,7 @@ class CartSummaryItem extends React.Component {
       show: false
     });
   }
-  // const itemDeleted = e.target.value;
-  // const value = e.target.value;
-  // Item removal from cart should require confirmation of deleted from user.
+
   // Confirmation prompt should identify which item the user is deleting.
   // this.setState({
   //   [itemDeleted]: value
@@ -60,24 +48,6 @@ class CartSummaryItem extends React.Component {
       let { image, name, price, shortDescription } = this.props.items;
       let count = parseInt(this.props.items.count);
 
-      let incrementItem = () => {
-        this.setState({
-          count: count + 1
-        });
-      };
-
-      let decrementItem = () => {
-
-        if (this.state.count <= 0) {
-          this.setState({
-            count: 0
-          });
-        } else {
-          this.setState({
-            count: this.state.count - 1
-          });
-        }
-      };
       return (
         <>
         <div className='container'>
@@ -96,13 +66,13 @@ class CartSummaryItem extends React.Component {
                   <h4 className='mt-4'>{name}</h4>
                   <h5 className='mt-2'>{'$' + price} USD</h5>
                   <div className='d-flex'>
-                    <div className='mr-2 cursor-pointer' onClick={decrementItem}>
+                    <div className='mr-2 cursor-pointer' onClick={() => { this.props.decrement(this.props.items.id); }}>
                       <i className='fas fa-minus-circle' style={{ 'color': '#017BFD' }}></i>
                     </div>
-                    {this.state.show ? <h6>{this.state.count}</h6> : '' }
-                    <h6 className='mt-1'>Quantity: {count}</h6>
-                    {/* {this.state.show ? <h6 className='mt-1'>Quantity: {count}</h6> : '' } */}
-                    <div className='ml-2 cursor-pointer' onClick={incrementItem}>
+                    {/* {this.state.show ? <h6>{this.state.count}</h6> : '' } */}
+                    {/* <h6 className='mt-1'>Quantity: {count}/</h6> */}
+                    {this.state.quantity ? <h6 className='mt-1'>Quantity: {count}</h6> : '' }
+                    <div className='ml-2 cursor-pointer' onClick={() => { this.props.increment(this.props.items.id); }}>
                       <i className='fas fa-plus-circle' style={{ 'color': '#017BFD' }}></i>
                     </div>
                   </div>
