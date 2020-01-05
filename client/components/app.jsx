@@ -24,6 +24,8 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.deleteFromCart = this.deleteFromCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.incrementItem = this.incrementItem.bind(this);
+    this.decrementItem = this.decrementItem.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
   getCartItems() {
@@ -101,6 +103,67 @@ export default class App extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
+  incrementItem(cartItemId) {
+    const cart = this.state.cart.slice();
+
+    const increment = cart.findIndex(item => cartItemId === item.id);
+
+    if (increment !== -1) {
+      cart[increment].count = parseInt(cart[increment].count) + 1;
+
+      fetch('/api/cart.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: cartItemId, quantity: cart[increment].count })
+      })
+        .then(response => response.json())
+        .then(increment => {
+          let updateCart = parseInt(this.state.count) + 1;
+          this.setState({
+            count: updateCart,
+            cart
+          });
+        })
+        .catch(error => console.error('fetch error:', error));
+    }
+  }
+  decrementItem(cartItemId) {
+    const cart = this.state.cart.slice();
+
+    const decrement = cart.findIndex(item => cartItemId === item.id);
+
+    if (decrement !== -1) {
+      cart[decrement].count = parseInt(cart[decrement].count) - 1;
+
+      fetch('/api/cart.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: cartItemId, quantity: cart[decrement].count })
+      })
+        .then(response => response.json())
+        .then(decrement => {
+          let updateCart = parseInt(this.state.count) - 1;
+          // console.log(cart);
+          if (cart.count <= 1) {
+            // this.deleteFromCart(cart.cartItemId);
+            // this.setState({
+            //   count: this.state.count,
+            //   cart
+            // })
+          } else {
+            this.setState({
+              count: updateCart,
+              cart
+            });
+          }
+        })
+        .catch(error => console.error('fetch error:', error));
+    }
+  }
   placeOrder(order) {
     order.cart = this.state.cart;
 
@@ -154,9 +217,8 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
           <div className='container'>
-            <CartSummary itemAddedToCart={this.addToCart} itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
+            <CartSummary itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} increment={this.incrementItem} decrement={this.decrementItem} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
           </div>
-          {/* <ConfirmDeleteModal setView={this.setView} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} /> */}
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
