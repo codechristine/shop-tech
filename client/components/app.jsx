@@ -120,9 +120,9 @@ export default class App extends React.Component {
       })
         .then(response => response.json())
         .then(increment => {
-          let updateCart = parseInt(this.state.count) + 1;
+          let incrementCart = parseInt(this.state.count) + 1;
           this.setState({
-            count: updateCart,
+            count: incrementCart,
             cart
           });
         })
@@ -137,6 +137,9 @@ export default class App extends React.Component {
     if (decrement !== -1) {
       cart[decrement].count = parseInt(cart[decrement].count) - 1;
 
+      if (cart[decrement].count === 0) {
+        this.deleteFromCart(cart[decrement].cartItemId);
+      }
       fetch('/api/cart.php', {
         method: 'POST',
         headers: {
@@ -146,20 +149,13 @@ export default class App extends React.Component {
       })
         .then(response => response.json())
         .then(decrement => {
-          let updateCart = parseInt(this.state.count) - 1;
+          let decrementCart = parseInt(this.state.count) - 1;
+          // console.log(decrementCart);
           // console.log(cart);
-          if (cart.count <= 1) {
-            // this.deleteFromCart(cart.cartItemId);
-            // this.setState({
-            //   count: this.state.count,
-            //   cart
-            // })
-          } else {
-            this.setState({
-              count: updateCart,
-              cart
-            });
-          }
+          this.setState({
+            count: decrementCart,
+            cart
+          });
         })
         .catch(error => console.error('fetch error:', error));
     }
