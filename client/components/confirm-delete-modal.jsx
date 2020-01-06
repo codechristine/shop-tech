@@ -3,7 +3,8 @@ import React from 'react';
 class ConfirmDeleteModal extends React.Component {
 
   render() {
-    const confirmDelete = 'Please click delete to confirm deleting item from cart or click cancel to cancel.';
+    const itemName = this.props.item.name;
+    const confirmDelete = 'Please click delete to confirm deleting ' + `${itemName}` + ' from cart or click cancel to cancel.';
 
     if (!this.props.show) {
       return null;

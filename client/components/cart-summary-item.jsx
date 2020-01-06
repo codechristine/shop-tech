@@ -37,11 +37,6 @@ class CartSummaryItem extends React.Component {
       show: false
     });
   }
-
-  // Confirmation prompt should identify which item the user is deleting.
-  // this.setState({
-  //   [itemDeleted]: value
-  // });
   render() {
 
     if (this.props.items) {
@@ -69,8 +64,6 @@ class CartSummaryItem extends React.Component {
                     <div className='mr-2 cursor-pointer' onClick={() => { this.props.decrement(this.props.items.id); }}>
                       <i className='fas fa-minus-circle' style={{ 'color': '#017BFD' }}></i>
                     </div>
-                    {/* {this.state.show ? <h6>{this.state.count}</h6> : '' } */}
-                    {/* <h6 className='mt-1'>Quantity: {count}/</h6> */}
                     {this.state.quantity ? <h6 className='mt-1'>Quantity: {count}</h6> : '' }
                     <div className='ml-2 cursor-pointer' onClick={() => { this.props.increment(this.props.items.id); }}>
                       <i className='fas fa-plus-circle' style={{ 'color': '#017BFD' }}></i>
@@ -82,7 +75,7 @@ class CartSummaryItem extends React.Component {
             </div>
           </div>
         </div>
-          <ConfirmDeleteModal show={this.state.show} onClose={this.confirmDelete} cancel={this.cancelModal} />
+          <ConfirmDeleteModal show={this.state.show} onClose={this.confirmDelete} cancel={this.cancelModal} item={this.props.items} />
         </>
       );
     } else {

@@ -3,7 +3,8 @@ import React from 'react';
 class ConfirmAddModal extends React.Component {
 
   render() {
-    const confirmAdd = 'Please click add to confirm adding item to cart or click cancel to cancel.';
+    const productName = this.props.product.name;
+    const confirmAdd = 'Please click add to confirm adding ' + `${productName}` + ' to cart or click cancel to cancel.';
 
     if (!this.props.show) {
       return null;

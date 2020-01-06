@@ -78,7 +78,7 @@ class ProductDetails extends React.Component {
           </div>
           <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
-          <ConfirmAddModal show={this.state.show} onClose={this.confirmAdd} cancel={this.cancelModal} />
+          <ConfirmAddModal show={this.state.show} onClose={this.confirmAdd} cancel={this.cancelModal} product={this.state.product} />
           </>
       );
     } else {
