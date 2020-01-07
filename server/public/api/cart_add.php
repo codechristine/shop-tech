@@ -85,6 +85,11 @@ if(isset($bodyData['quantity'])){
 
   $query = " UPDATE cartItems SET `count` = $quantity
             WHERE `productID` = $quantityID ";
+  $result = mysqli_query($conn, $query);
+
+  if (!$result) {
+    throw new Exception('error in updating in quantity ' . mysqli_error($conn));
+  }
 }
 
 ?>
