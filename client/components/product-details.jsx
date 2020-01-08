@@ -53,24 +53,32 @@ class ProductDetails extends React.Component {
         <>
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '100vw', 'borderRadius': 'calc(.25rem - 1px)' }}>
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
-          <div className='d-flex justify-content-around align-items-center' style={{ 'marginLeft': '10%' }}>
-            <div className='media' style={{ 'height': '30vh' }}>
-              <img className='mt-4' style={{ 'height': '24vh' }} src={firstImage} />
-              <div className='col-md-6'>
-                <h2 className='mt-5'>{name}</h2>
-                <h4 className='mt-2'>{price} USD</h4>
-                <p className='mt-3 text-wrap'>{shortDescription}</p>
-                <button type='button' className='btn btn-primary' onClick={() => {
-                  this.openModal();
+          <div className='container'>
+            <div className='d-flex justify-content-around align-items-center' >
+              {/* <div className='row'>
+              <div className='d-flex col-sm-2' >
+                <img style={{ 'width': '12vw' }} src={secondImage} />
+                <img style={{ 'width': '12vw' }} src={thirdImage} />
+              </div>
+            </div> */}
+              <div className='media justify-content-around align-items-center' style={{ 'height': '30vh', 'marginTop': '8vh' }}>
+                <img className='mt-4' style={{ 'width': '23vw' }} src={firstImage} />
+                <div className='col-md-6'>
+                  <h2 className='productName'>{name}</h2>
+                  <h6 className='mt-4 productPrice'>{price} USD</h6>
+                  <p className='mt-3 text-wrap'>{shortDescription}</p>
+                  <button type='button' className='btn btn-primary' onClick={() => {
+                    this.openModal();
                   // this.props.itemAddedToCart(this.state.product);
-                }}>Add To Cart</button>
+                  }}>Add To Cart</button>
+                </div>
               </div>
             </div>
           </div>
           <div className='row'>
-            <div className='d-flex justify-content-left mb-4' style={{ 'marginLeft': '10%' }}>
-              <img className='detailsImages' style={{ 'height': '5rem', 'backgroundColor': 'grey' }} src={secondImage} />
-              <img className='detailsImages' style={{ 'height': '5rem' }} src={thirdImage} />
+            <div className='d-flex justify-content-left mb-4' style={{ 'marginLeft': '5vw', 'marginTop': '10vh' }}>
+              <img className='detailsImages' style={{ 'width': '12vw' }} src={secondImage} />
+              <img className='detailsImages' style={{ 'width': '12vw' }} src={thirdImage} />
             </div>
           </div>
           <div className='d-flex justify-content-center'>
