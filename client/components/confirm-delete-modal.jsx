@@ -14,7 +14,7 @@ class ConfirmDeleteModal extends React.Component {
           <div className='modalShadow'>
             <div className='modalBody'>
               <div className='modalContent' style={{ 'color': '#f19e05e8' }}>
-                <h3>{confirmDelete}</h3>
+                <h6>{confirmDelete}</h6>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>delete</button>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
               </div>
