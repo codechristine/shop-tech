@@ -261,7 +261,7 @@ class CheckoutForm extends React.Component {
                 </div>
               </div>
               <div className='d-flex justify-content-between align-items-center'>
-                <div className='mb-5 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
+                <div className='mb-5 cursor-pointer' onClick={() => { this.props.setView('catalog', {}); }}>{'< Continue Shopping'}</div>
                 <button type='submit' className='btn btn-primary mb-5'
                 // onClick={e => {
                 //   if (name !== null && ) {
