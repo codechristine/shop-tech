@@ -53,32 +53,31 @@ class ProductDetails extends React.Component {
         <>
         <div className='container' style={{ 'backgroundColor': 'white', 'width': '100vw', 'borderRadius': 'calc(.25rem - 1px)' }}>
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
-          <div className='container'>
-            <div className='d-flex justify-content-around align-items-center' >
-              {/* <div className='row'>
-              <div className='d-flex col-sm-2' >
-                <img style={{ 'width': '12vw' }} src={secondImage} />
-                <img style={{ 'width': '12vw' }} src={thirdImage} />
+          <div className='row mt-4'>
+            <div className='d-flex justify-content-center align-items-center' >
+              <div className='col-md-4' >
+                <img className='img-fluid mr-3' src={firstImage} />
               </div>
-            </div> */}
-              <div className='media justify-content-around align-items-center' style={{ 'height': '30vh', 'marginTop': '8vh' }}>
-                <img className='mt-4' style={{ 'width': '23vw' }} src={firstImage} />
-                <div className='col-md-6'>
-                  <h2 className='productName'>{name}</h2>
-                  <h6 className='mt-4 productPrice'>{price} USD</h6>
-                  <p className='mt-3 text-wrap'>{shortDescription}</p>
-                  <button type='button' className='btn btn-primary' onClick={() => {
-                    this.openModal();
-                  // this.props.itemAddedToCart(this.state.product);
-                  }}>Add To Cart</button>
-                </div>
+              <div className='col-md-6'>
+                <h2>{name}</h2>
+                <h6 className='mt-4'>{price} USD</h6>
+                <p className='mt-3 text-wrap'>{shortDescription}</p>
+                <button type='button' className='btn btn-primary' onClick={() => {
+                  this.openModal();
+                // this.props.itemAddedToCart(this.state.product);
+                }}>Add To Cart</button>
               </div>
             </div>
+            {/* </div> */}
           </div>
           <div className='row'>
-            <div className='d-flex justify-content-left mb-4' style={{ 'marginLeft': '5vw', 'marginTop': '10vh' }}>
-              <img className='detailsImages' style={{ 'width': '12vw' }} src={secondImage} />
-              <img className='detailsImages' style={{ 'width': '12vw' }} src={thirdImage} />
+            <div className='d-flex justify-content-left align-items-center mt-4 mb-4 offset-1' >
+              <div className='col-md-2'>
+                <img className='img-fluid' src={secondImage} />
+              </div>
+              <div className='col-md-2'>
+                <img className='img-fluid' src={thirdImage} />
+              </div>
             </div>
           </div>
           <div className='d-flex justify-content-center'>

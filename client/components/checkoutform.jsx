@@ -35,10 +35,9 @@ class CheckoutForm extends React.Component {
 
     if (name === 'name') {
       // const pattern = /^[a-zA-Z]+([a-zA-Z]\s*)*$/;
-      // const pattern = /^[a-z]*\s?([a-z\\-]+\s)+[a-z\\-]+$/;
+      const pattern = /^[a-z]*\s?([a-z\\-]+\s)+[a-z\\-]+$/;
       // const pattern = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\s?([a-zA-Z]{1,})?)/;
-      const pattern = /^[a-z,.'-]+$/;
-
+      // const pattern = /^[a-z ,.'-]+$/;
       if (pattern.test(value)) {
         this.setState({
           nameValidate: true,
@@ -51,17 +50,33 @@ class CheckoutForm extends React.Component {
         });
       }
     }
+    if (name === 'address') {
+      this.setState({
+        [name]: value
+      });
+    }
+    if (name === 'city') {
+      this.setState({
+        [name]: value
+      });
+    }
+    if (name === 'state') {
+      this.setState({
+        [name]: value
+      });
+    }
     if (name === 'creditCard') {
       // const pattern = /^((4\d{3})|(5[1-5]\d{2})|(6011))-?\d{4}-?\d{4}-?\d{4}|3[4,7]\d{13}$/;
-      const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-]?(\d{4})[-]?(\d{4})[-]?(\d{4}|3[4,7]\d{13})$/;
+      // const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-]?(\d{4})[-]?(\d{4})[-]?(\d{4}|3[4,7]\d{13})$/;
+      const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-\s]?(\d{4})[-\s]?(\d{4})[-\s]?(\d{4}|3[4,7]\d{13})$/;
       if (pattern.test(value)) {
         this.setState({
-          nameValidate: true,
+          creditCardValidate: true,
           [name]: value
         });
       } else {
         this.setState({
-          nameValidate: false,
+          creditCardValidate: false,
           [name]: value
         });
       }
@@ -71,12 +86,12 @@ class CheckoutForm extends React.Component {
 
       if (pattern.test(value)) {
         this.setState({
-          nameValidate: true,
+          zipCodeValidate: true,
           [name]: value
         });
       } else {
         this.setState({
-          nameValidate: false,
+          zipCodeValidate: false,
           [name]: value
         });
       }
@@ -87,12 +102,12 @@ class CheckoutForm extends React.Component {
 
       if (pattern.test(value)) {
         this.setState({
-          nameValidate: true,
+          emailValidate: true,
           [name]: value
         });
       } else {
         this.setState({
-          nameValidate: false,
+          emailValidate: false,
           [name]: value
         });
       }
@@ -102,12 +117,12 @@ class CheckoutForm extends React.Component {
 
       if (pattern.test(value)) {
         this.setState({
-          nameValidate: true,
+          creditCardExpValidate: true,
           [name]: value
         });
       } else {
         this.setState({
-          nameValidate: false,
+          creditCardExpValidate: false,
           [name]: value
         });
       }
@@ -117,12 +132,12 @@ class CheckoutForm extends React.Component {
 
       if (pattern.test(value)) {
         this.setState({
-          nameValidate: true,
+          creditCardCVCValidate: true,
           [name]: value
         });
       } else {
         this.setState({
-          nameValidate: false,
+          creditCardCVCValidate: false,
           [name]: value
         });
       }
@@ -188,15 +203,15 @@ class CheckoutForm extends React.Component {
                   </div>
                 </div>
                 <div className='mt-2'>
-                  <div className='mt-5 mb-1 ml-2'>CARD HOLDER</div>
+                  <div className='mt-5 ml-2'>CARD HOLDER</div>
                   <div className='form-group'>
                     {(nameValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid name</span>}
-                    <input name='name' className='form-control mt-2' type='text' datatype='name' maxLength='65' placeholder='Name On Card' value={name} onChange={this.handleFormChange} required></input>
+                    <input name='name' className='form-control' type='text' datatype='name' maxLength='65' placeholder='Name On Card' value={name} onChange={this.handleFormChange} required></input>
                   </div>
-                  <div className='mt-3 mb-1 ml-2'>CARD NUMBER</div>
+                  <div className='mt-3 ml-2'>CARD NUMBER</div>
+                  {(creditCardValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid credit card number</span>}
                   <div className='form-group d-flex justify-content-between'>
-                    {(creditCardValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid credit card number</span>}
-                    <input name='creditCard' className='form-control mt-2' type='tel' datatype='card' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
+                    <input name='creditCard' className='form-control' type='tel' datatype='card' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
                     <span className='input-group-text'><i className='fa fa-credit-card'/></span>
                   </div>
                   <div>
@@ -209,39 +224,40 @@ class CheckoutForm extends React.Component {
                       <input name='creditCardCVC' className='form-control mt-3' type='number' datatype='cardCVC' maxLength='3' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
                     </div>
                   </div>
-                  <div className='mt-3 mb-1 ml-2'>SHIPPING ADDRESS</div>
+                  <div className='mt-3 ml-2'>SHIPPING ADDRESS</div>
                   <div className='input-group-prepend'>
-                    <textarea name='address' className='form-control mt-2' rows='4' type='tel' datatype='address' maxLength='42' placeholder='Address' value={address} onChange={this.handleFormChange} required></textarea>
+                    <textarea name='address' className='form-control' rows='4' type='tel' datatype='address' maxLength='42' placeholder='address' value={address} onChange={this.handleFormChange} required></textarea>
                   </div>
                 </div>
                 <div className='d-flex justify-content-around align-items-center mt-3'>
-                  <div className='mr-3 ml-3'>CITY</div>
+                  {/* <div className='mr-3 ml-2'>CITY</div> */}
                   <div className='form-group'>
-                    <input name='city' className='form-control mt-3' type='text' datatype='city' maxLength='50' placeholder='city' value={city} onChange={this.handleFormChange} required></input>
+                    <div className='ml-2'>CITY</div>
+                    <input name='city' className='form-control' type='text' datatype='city' maxLength='50' placeholder='city' value={city} onChange={this.handleFormChange} required></input>
                   </div>
-                  <div className='mr-3 ml-3'>STATE</div>
                   <div className='form-group'>
-                    <input name='state' className='form-control mt-3' type='text' datatype='state' maxLength='2' placeholder='CA' value={state} onChange={this.handleFormChange} required></input>
+                    <div className='ml-2'>STATE</div>
+                    <input name='state' className='form-control' type='text' datatype='state' maxLength='2' placeholder='state' value={state} onChange={this.handleFormChange} required></input>
                   </div>
-                  <div className='ml-3'>ZIP CODE</div>
                   <div className='form-group'>
+                    <div className='ml-2'>ZIP CODE</div>
                     {(zipCodeValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid zip code</span>}
-                    <input name='zipCode' className='form-control mt-3' type='number' datatype='zip' maxLength='5' placeholder='00000' value={zipCode} onChange={this.handleFormChange} required></input>
+                    <input name='zipCode' className='form-control' type='number' datatype='zip' maxLength='5' placeholder='00000' value={zipCode} onChange={this.handleFormChange} required></input>
                   </div>
                 </div>
-                <div className='ml-2'>EMAIL</div>
+                <div className='mt-3 ml-2'>EMAIL</div>
                 <div className='form-group'>
                   {(emailValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid email</span>}
-                  <input name='email' className='form-control mt-3' type='text' datatype='email' maxLength='254' placeholder='email' value={email} onChange={this.handleFormChange} required></input>
+                  <input name='email' className='form-control' type='text' datatype='email' maxLength='320' placeholder='email' value={email} onChange={this.handleFormChange} required></input>
                 </div>
               </div>
               <div className='d-flex justify-content-between align-items-center'>
                 <div className='mb-5 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
                 <button className='btn btn-primary mb-5' onClick={e => {
-                  if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3) {
-                    this.completeOrder(this.props.cartState);
-                    // this.openModal();
-                  }
+                  // if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3) {
+                  this.completeOrder(this.props.cartState);
+                  // this.openModal();
+                  // }
                 }}> PLACE ORDER</button>
               </div>
             </div>
