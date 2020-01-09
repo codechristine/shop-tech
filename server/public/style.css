@@ -28,8 +28,8 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.87);
-    height: 50vh;
-    width: 50vw;
+    height: 18rem;
+    width: 18rem;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

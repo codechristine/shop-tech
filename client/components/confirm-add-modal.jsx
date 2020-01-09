@@ -14,7 +14,7 @@ class ConfirmAddModal extends React.Component {
           <div className='modalShadow'>
             <div className='modalBody'>
               <div className='modalContent' style={{ 'color': '#f19e05e8' }}>
-                <h3>{confirmAdd}</h3>
+                <h6>{confirmAdd}</h6>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>add</button>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
               </div>

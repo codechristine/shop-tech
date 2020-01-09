@@ -13,7 +13,7 @@ class ConfirmPlaceOrderModal extends React.Component {
           <div className='modalShadow'>
             <div className='modalBody'>
               <div className='modalContent' style={{ 'color': '#f19e05e8' }}>
-                <h3>{confirmOrder}</h3>
+                <h6>{confirmOrder}</h6>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>confirm</button>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
               </div>
