@@ -19,7 +19,7 @@ class CartSummary extends React.Component {
     if (this.props.cartState.length !== 0) {
       return (
         <div className='container'>
-          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
+          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
           <h3 className='mt-2 ml-4 mb-2' style={{ 'color': '#f19e05e8' }}>My Cart</h3>
           {this.props.cartState.map((product, index) => {
             return <CartSummaryItem key={index} items={product} cartState={this.props.cartState} delete={this.props.itemDeletedFromCart} increment={this.props.increment} decrement={this.props.decrement} toggleModal={this.props.toggleModal} show={this.props.show} onClose={this.props.toggleModal} />;
@@ -34,7 +34,7 @@ class CartSummary extends React.Component {
     } else {
       return (
         <div className='container'>
-          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
+          <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
           <h3 className='mt-4 ml-5 mb-2' style={{ 'color': '#f19e05e8' }}>MY CART</h3>
           <div className='d-flex align-items-left mb-5 ml-5'>
             <h4>ITEM TOTAL: $0 USD</h4>
