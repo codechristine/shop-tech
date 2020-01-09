@@ -22,7 +22,7 @@ class CartSummary extends React.Component {
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'display': 'inline-block' }} onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Back To Catalog'}</div>
           <h3 className='mt-2 ml-4 mb-2' style={{ 'color': '#f19e05e8' }}>My Cart</h3>
           {this.props.cartState.map((product, index) => {
-            return <CartSummaryItem key={index} items={product} delete={this.props.itemDeletedFromCart} toggleModal={this.props.toggleModal} show={this.props.show} onClose={this.props.toggleModal} />;
+            return <CartSummaryItem key={index} items={product} cartState={this.props.cartState} delete={this.props.itemDeletedFromCart} increment={this.props.increment} decrement={this.props.decrement} toggleModal={this.props.toggleModal} show={this.props.show} onClose={this.props.toggleModal} />;
           })}
           <div className='d-flex justify-content-around  align-items-center mt-3 mb-5'>
             <h4 className='total'>ITEM TOTAL: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
