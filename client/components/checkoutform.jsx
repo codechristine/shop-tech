@@ -35,7 +35,7 @@ class CheckoutForm extends React.Component {
 
     if (name === 'name') {
       // const pattern = /^[a-zA-Z]+([a-zA-Z]\s*)*$/;
-      const pattern = /^[a-z]*\s?([a-z\\-]+\s)+[a-z\\-]+$/;
+      const pattern = /^[a-zA-Z]*\s?([a-zA-Z\\-]+\s)+[a-zA-Z\\-]+$/;
       // const pattern = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\s?([a-zA-Z]{1,})?)/;
       // const pattern = /^[a-z ,.'-]+$/;
       if (pattern.test(value)) {
@@ -145,6 +145,16 @@ class CheckoutForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+
+    const { nameValidate, creditCardValidate, zipCodeValidate, emailValidate, creditCardExpValidate, creditCardCVCValidate } = this.state;
+    const validateArray = [nameValidate, creditCardValidate, zipCodeValidate, emailValidate, creditCardExpValidate, creditCardCVCValidate];
+
+    for (let i = 0; i < validateArray.length; i++) {
+      if (!validateArray[i]) {
+        return;
+      }
+    }
+    this.completeOrder(this.props.cartState);
   }
   completeOrder(order) {
     this.setState({
@@ -205,11 +215,11 @@ class CheckoutForm extends React.Component {
                 <div className='mt-2'>
                   <div className='mt-5 ml-2'>CARD HOLDER</div>
                   <div className='form-group'>
-                    {(nameValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid name</span>}
+                    {(nameValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid name</span>}
                     <input name='name' className='form-control' type='text' datatype='name' maxLength='65' placeholder='Name On Card' value={name} onChange={this.handleFormChange} required></input>
                   </div>
                   <div className='mt-3 ml-2'>CARD NUMBER</div>
-                  {(creditCardValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid credit card number</span>}
+                  {(creditCardValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid credit card number</span>}
                   <div className='form-group d-flex justify-content-between'>
                     <input name='creditCard' className='form-control' type='tel' datatype='card' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
                     <span className='input-group-text'><i className='fa fa-credit-card'/></span>
@@ -217,10 +227,10 @@ class CheckoutForm extends React.Component {
                   <div>
                     <div className='form-goup d-flex justify-content-between align-items-center'>
                       <div className='mr-3 ml-2'>EXP DATE</div>
-                      {(creditCardExpValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid expiration date</span>}
+                      {(creditCardExpValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid expiration date</span>}
                       <input name='creditCardExp' className='form-control mt-3' type='tel' datatype='ccexpiry' placeholder='MM / YY' value={creditCardExp} onChange={this.handleFormChange} required></input>
                       <div className='m-3'>CVV CODE</div>
-                      {(creditCardCVCValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid cvc number</span>}
+                      {(creditCardCVCValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid cvc number</span>}
                       <input name='creditCardCVC' className='form-control mt-3' type='number' datatype='cardCVC' maxLength='3' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
                     </div>
                   </div>
@@ -230,7 +240,6 @@ class CheckoutForm extends React.Component {
                   </div>
                 </div>
                 <div className='d-flex justify-content-around align-items-center mt-3'>
-                  {/* <div className='mr-3 ml-2'>CITY</div> */}
                   <div className='form-group'>
                     <div className='ml-2'>CITY</div>
                     <input name='city' className='form-control' type='text' datatype='city' maxLength='50' placeholder='city' value={city} onChange={this.handleFormChange} required></input>
@@ -241,24 +250,26 @@ class CheckoutForm extends React.Component {
                   </div>
                   <div className='form-group'>
                     <div className='ml-2'>ZIP CODE</div>
-                    {(zipCodeValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid zip code</span>}
+                    {(zipCodeValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid zip code</span>}
                     <input name='zipCode' className='form-control' type='number' datatype='zip' maxLength='5' placeholder='00000' value={zipCode} onChange={this.handleFormChange} required></input>
                   </div>
                 </div>
                 <div className='mt-3 ml-2'>EMAIL</div>
                 <div className='form-group'>
-                  {(emailValidate) ? null : <span style={{ 'color': 'red' }}>Please enter a valid email</span>}
+                  {(emailValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid email</span>}
                   <input name='email' className='form-control' type='text' datatype='email' maxLength='320' placeholder='email' value={email} onChange={this.handleFormChange} required></input>
                 </div>
               </div>
               <div className='d-flex justify-content-between align-items-center'>
                 <div className='mb-5 cursor-pointer' onClick={() => { this.props.setView('catalog', '{}'); }}>{'< Continue Shopping'}</div>
-                <button className='btn btn-primary mb-5' onClick={e => {
-                  // if (this.state.creditCard.length === 19 && this.state.creditCardCVC.length === 3) {
-                  this.completeOrder(this.props.cartState);
-                  // this.openModal();
-                  // }
-                }}> PLACE ORDER</button>
+                <button type='submit' className='btn btn-primary mb-5'
+                // onClick={e => {
+                //   if (name !== null && ) {
+                //   this.completeOrder(this.props.cartState);
+                //   this.openModal();
+                //   }
+                // }}
+                > PLACE ORDER</button>
               </div>
             </div>
           </div>
