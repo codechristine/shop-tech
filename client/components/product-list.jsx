@@ -22,15 +22,19 @@ class ProductList extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div className='row d-flex justify-content-center'>
-          {this.state.products.map(item => {
-            return (
-              <ProductListItem setView={this.props.setView} id={item.id} key={item.id} item={item} />
-            );
-          })}
+      <div className='row'>
+        <div className='col-md-12'>
+          <div className='d-flex justify-content-center'>
+            <div className='col-md-12'>
+              {this.state.products.map(item => {
+                return (
+                  <ProductListItem setView={this.props.setView} id={item.id} key={item.id} item={item} />
+                );
+              })}
+            </div>
+          </div>
+          <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
-        <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
       </div>
     );
   }

@@ -69,6 +69,7 @@ class CheckoutForm extends React.Component {
       // const pattern = /^((4\d{3})|(5[1-5]\d{2})|(6011))-?\d{4}-?\d{4}-?\d{4}|3[4,7]\d{13}$/;
       // const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-]?(\d{4})[-]?(\d{4})[-]?(\d{4}|3[4,7]\d{13})$/;
       const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-\s]?(\d{4})[-\s]?(\d{4})[-\s]?(\d{4}|3[4,7]\d{13})$/;
+      // display value of input with slice
       if (pattern.test(value)) {
         this.setState({
           creditCardValidate: true,
@@ -114,7 +115,8 @@ class CheckoutForm extends React.Component {
     }
     if (name === 'creditCardExp') {
       const pattern = /^((0[1-9])|(1[0-2]))\/(\d{2})$/;
-
+      // maxlength on input
+      // console.log(value);
       if (pattern.test(value)) {
         this.setState({
           creditCardExpValidate: true,
@@ -221,7 +223,7 @@ class CheckoutForm extends React.Component {
                   <div className='mt-3 ml-2'>CARD NUMBER</div>
                   {(creditCardValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid credit card number</span>}
                   <div className='form-group d-flex justify-content-between'>
-                    <input name='creditCard' className='form-control' type='tel' datatype='card' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
+                    <input name='creditCard' className='form-control' type='number' datatype='card' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
                     <span className='input-group-text'><i className='fa fa-credit-card'/></span>
                   </div>
                   <div>

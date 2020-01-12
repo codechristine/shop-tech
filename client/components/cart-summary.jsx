@@ -15,7 +15,6 @@ class CartSummary extends React.Component {
         });
       }
     });
-
     if (this.props.cartState.length !== 0) {
       return (
         <div className='container'>

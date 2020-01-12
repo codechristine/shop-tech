@@ -51,7 +51,7 @@ class ProductDetails extends React.Component {
 
       return (
         <>
-        <div className='container' style={{ 'backgroundColor': 'white', 'width': '100vw', 'borderRadius': 'calc(.25rem - 1px)' }}>
+        <div className='container-fluid' style={{ 'backgroundColor': 'white' }}>
           <div className='mt-3 ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
           <div className='row mt-4'>
             <div className='d-flex justify-content-center align-items-center' >
@@ -68,7 +68,6 @@ class ProductDetails extends React.Component {
                 }}>Add To Cart</button>
               </div>
             </div>
-            {/* </div> */}
           </div>
           <div className='row'>
             <div className='d-flex justify-content-left align-items-center mt-4 mb-4 offset-1' >
@@ -85,7 +84,7 @@ class ProductDetails extends React.Component {
           </div>
           <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
         </div>
-          <ConfirmAddModal show={this.state.show} onClose={this.confirmAdd} cancel={this.cancelModal} product={this.state.product} />
+          <ConfirmAddModal show={this.state.show} onClose={this.confirmAdd} cancel={this.cancelModal} product={this.state.product} setView={this.props.setView} />
           </>
       );
     } else {

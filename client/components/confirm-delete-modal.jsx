@@ -13,7 +13,7 @@ class ConfirmDeleteModal extends React.Component {
         <div className='d-flex align-items-center' show='true'>
           <div className='modalShadow'>
             <div className='modalBody'>
-              <div className='modalContent' style={{ 'color': '#f19e05e8' }}>
+              <div className='modalContent'>
                 <h6>{confirmDelete}</h6>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>delete</button>
                 <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
