@@ -43,7 +43,7 @@ class CartSummaryItem extends React.Component {
       let count = parseInt(this.props.items.count);
       return (
         <>
-        <div className='container mt-5' style={{ 'backgroundColor': 'white' }}>
+        <div className='container mt-2' style={{ 'backgroundColor': 'white', 'borderRadius': '0.25rem', 'borderBottom': '2px solid lightGrey' }}>
           <div className='row d-flex justify-content-center' >
             <div className='col-md-1'>
               <div className='mt-3' style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
@@ -52,12 +52,12 @@ class CartSummaryItem extends React.Component {
                   // this.props.delete(this.props.items.cartItemId);
                   this.openModal();
                 }} >
-                  <span aria-hidden='true'>&times;</span>
+                  <span data-toggle='tooltip' data-placement='bottom' title='remove' aria-hidden='true'>&times;</span>
                 </button>
               </div>
             </div>
-            <div className='col-md-3'>
-              <img className='mt-4 w-100' src={image} />
+            <div className='col-md-4'>
+              <img className='w-100' src={image} />
             </div>
             <div className='col-md-7'>
               <h4 className='mt-4'>{name}</h4>
@@ -91,9 +91,9 @@ class CartSummaryItem extends React.Component {
       );
     } else {
       return (
-        <div className='container'>
-          <div className='row d-flex justify-content-center'>
-            <h2 className='m-2' style={{ 'color': '#f19e05e8' }}>no items in cart</h2>
+        <div className='container' style={{ 'backgroundColor': 'white' }}>
+          <div className='row align-items-center justify-content-center mt-5'>
+            <div className='lds-ring'><div></div><div></div><div></div><div></div></div>
           </div>
         </div>
       );

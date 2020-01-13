@@ -196,7 +196,7 @@ export default class App extends React.Component {
       return (
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <div className='container'>
+          <div className='container-fluid'>
             <ProductList setView={this.setView} view={this.state.view.params} />
           </div>
           <AcknowlegeModal show={this.state.show} onClose={this.toggleModal} />
@@ -215,27 +215,21 @@ export default class App extends React.Component {
       return (
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <div className='container'>
-            <CartSummary itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} increment={this.incrementItem} decrement={this.decrementItem} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
-          </div>
+          <CartSummary itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} increment={this.incrementItem} decrement={this.decrementItem} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.checkout} />
-          <div className='container'>
-            <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
-          </div>
+          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
         </div>
       );
     } else if (this.state.view.name === 'confirmation') {
       return (
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.confirmation} />
-          <div className='container'>
-            <Confirmation setView={this.setView} />
-          </div>
+          <Confirmation setView={this.setView} cartState={this.state.cart} />
         </div>
       );
     }
