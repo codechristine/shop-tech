@@ -7,6 +7,8 @@ A full stack LAMP & React shopping cart app to find the latest tech deals.
 - React.js
 - Webpack 4
 - Bootstrap 4
+- Material UI/core
+- Material UI/icons
 - PHP
 - mySQL
 - HTML5

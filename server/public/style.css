@@ -2,6 +2,7 @@ body {
   background-color: rgba(238, 234, 234, 0.993);
   background-size: cover;
   color: rgb(54, 53, 51);
+  font-family: 'Mina', sans-serif;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -34,7 +35,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    border: 2px solid black;
+    border: 2px solid #f19e05e8;
 }
 .modalContent {
     position: absolute;
@@ -48,7 +49,7 @@ body {
 }
 
 /**************************************
-               MODAL
+              LOADER
 **************************************/
 
 .lds-ring {
