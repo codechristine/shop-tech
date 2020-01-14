@@ -1,6 +1,5 @@
 import React from 'react';
 import CheckoutCart from './checkout-cart';
-// import ConfirmPlaceOrderModal from './place-order-modal';
 
 class CheckoutForm extends React.Component {
   constructor(props) {
@@ -27,9 +26,6 @@ class CheckoutForm extends React.Component {
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.completeOrder = this.completeOrder.bind(this);
-    // this.openModal = this.openModal.bind(this);
-    // this.confirmOrder = this.confirmOrder.bind(this);
-    // this.cancelModal = this.cancelModal.bind(this);
   }
   handleFormChange(e) {
     const name = e.target.name;
@@ -109,11 +105,13 @@ class CheckoutForm extends React.Component {
           zipCodeValidate: true,
           [name]: value
         });
-      } else {
+      } else if (/^[\d]{0,5}$/g.test(value)) {
         this.setState({
           zipCodeValidate: false,
           [name]: value
         });
+      } else {
+        return;
       }
     }
     if (name === 'email') {
@@ -163,11 +161,13 @@ class CheckoutForm extends React.Component {
           creditCardCVCValidate: true,
           [name]: value
         });
-      } else {
+      } else if (/^[\d\s]{0,3}$/g.test(value)) {
         this.setState({
           creditCardCVCValidate: false,
           [name]: value
         });
+      } else {
+        return;
       }
     }
     this.setState({
@@ -210,24 +210,6 @@ class CheckoutForm extends React.Component {
     });
     this.props.placeOrder(order);
   }
-  // openModal() {
-  //   this.setState({
-  //     show: true
-  //   });
-  // }
-  // confirmOrder(order) {
-  //   this.props.placeOrder(order);
-  //   this.completeOrder(this.props.cartState);
-
-  //   this.setState({
-  //     show: false
-  //   });
-  // }
-  // cancelModal() {
-  //   this.setState({
-  //     show: false
-  //   });
-  // }
   render() {
 
     let totalCost = 0;
@@ -249,9 +231,7 @@ class CheckoutForm extends React.Component {
       <div className='container'>
         <div className='row'>
           <div className='col-md-7'>
-            {/* <div className='ml-4 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('cart', '{}'); }}>{'< Back To Cart'}</div> */}
             <form className='form' >
-              {/* <h4 className='ml-3'>Order Total: ${totalCost} USD</h4> */}
               <div className='payment-info'>
                 <h3 className='mt-5 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Checkout</h3>
                 <div style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
@@ -280,7 +260,7 @@ class CheckoutForm extends React.Component {
                         <input name='creditCardExp' className='form-control mt-3' type='tel' datatype='ccexpiry' placeholder='MM/YY' value={creditCardExp} onChange={this.handleFormChange} required></input>
                         <div className='m-3'>CVV CODE</div>
                         {(creditCardCVCValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid cvc number</span>}
-                        <input name='creditCardCVC' className='form-control mt-3' type='number' datatype='cardCVC' maxLength='3' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
+                        <input name='creditCardCVC' className='form-control mt-3' type='text' datatype='cardCVC' maxLength='3' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
                       </div>
                     </div>
                     <div className='mt-3 ml-2'>SHIPPING ADDRESS</div>
@@ -300,7 +280,7 @@ class CheckoutForm extends React.Component {
                     <div className='form-group'>
                       <div className='ml-2'>ZIP CODE</div>
                       {(zipCodeValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid zip code</span>}
-                      <input name='zipCode' className='form-control' type='number' datatype='zip' maxLength='5' placeholder='00000' value={zipCode} onChange={this.handleFormChange} required></input>
+                      <input name='zipCode' className='form-control' type='text' datatype='zip' maxLength='5' placeholder='00000' value={zipCode} onChange={this.handleFormChange} required></input>
                     </div>
                   </div>
                   <div className='mt-3 ml-2'>EMAIL</div>
@@ -310,21 +290,18 @@ class CheckoutForm extends React.Component {
                   </div>
                 </div>
                 <div className='mt-3 mb-5'>
-                  {/* <h4>Order Total: ${totalCost} USD</h4> */}
                   <div className='d-flex justify-content-end'>
                     <button className='btn btn-primary checkoutBtn mr-2' onClick={() => { this.props.setView('catalog', {}); }}>CONTINUE SHOPPING</button>
-                    {/* <button type='submit' className='btn btn-primary'
-                      //   this.completeOrder(this.props.cartState);
-                      //   this.openModal();
-                    > PLACE ORDER</button> */}
                   </div>
                 </div>
               </div>
             </form>
-            <div className='mb-4' style={{ 'textAlign': 'center', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site. Please do not enter your personal information.</div>
           </div>
           <div className='col-md-5'>
-            <h3 className='mt-5 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Cart</h3>
+            <div className='d-flex justify-content-between align items-center mt-5'>
+              <h3 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Cart</h3>
+              <h5 style={{ 'color': 'white', 'backgroundColor': '#f19e05e8', 'borderRadius': '50%', 'height': '1.7rem', 'width': '1.7rem', 'border': 'none', 'textAlign': 'center' }}>{itemCount}</h5>
+            </div>
             <div style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
               {this.props.cartState.map(item => {
                 return (
@@ -333,7 +310,6 @@ class CheckoutForm extends React.Component {
               })}
             </div>
             <div className='d-flex justify-content-between align-items-center mt-3'>
-              {/* <h4>Total: ${totalCost} USD</h4> */}
               <h4>Total: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
               <button type='submit' className='btn btn-primary' onClick={this.handleSubmit }
                 // this.completeOrder(this.props.cartState);
@@ -341,11 +317,12 @@ class CheckoutForm extends React.Component {
               > PLACE ORDER</button>
             </div>
             {(this.state.inputFields) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please fill out form</span>}
-            {/* </form> */}
           </div>
         </div>
       </div>
-        {/* <ConfirmPlaceOrderModal show={this.state.show} onClose={this.confirmOrder} cancel={this.cancelModal} /> */}
+        <div className='d-flex justify-content-center align-items-center'>
+          <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
+        </div>
       </>
     );
   }

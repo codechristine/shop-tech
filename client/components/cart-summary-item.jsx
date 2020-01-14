@@ -91,7 +91,7 @@ class CartSummaryItem extends React.Component {
       );
     } else {
       return (
-        <div className='container' style={{ 'backgroundColor': 'white' }}>
+        <div className='container'>
           <div className='row align-items-center justify-content-center mt-5'>
             <div className='lds-ring'><div></div><div></div><div></div><div></div></div>
           </div>

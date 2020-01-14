@@ -23,9 +23,10 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.deleteFromCart = this.deleteFromCart.bind(this);
-    this.placeOrder = this.placeOrder.bind(this);
     this.incrementItem = this.incrementItem.bind(this);
     this.decrementItem = this.decrementItem.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
+    this.emptyCart = this.emptyCart.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
   getCartItems() {
@@ -143,7 +144,7 @@ export default class App extends React.Component {
       // if (cart[decrement].count === 1) {
       // console.log(this.state.cart);
       // console.log(cart[decrement].count);
-      // this.deleteFromCart(cart[decrement].cartItemId);
+      this.deleteFromCart(cart[decrement].cartItemId);
       // }
       fetch('/api/cart.php', {
         method: 'POST',
@@ -176,7 +177,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(ordered => {
         this.setState({
-          cart: [],
+          cart: ordered,
           count: 0,
           view: {
             name: 'confirmation',
@@ -185,6 +186,20 @@ export default class App extends React.Component {
         });
       })
       .catch(error => console.error('fetch error:', error));
+  }
+  emptyCart(items) {
+    let emptyCart = [];
+    this.state.cart.map(items => {
+      emptyCart = this.deleteFromCart(items.cartItemId);
+    });
+    this.setState({
+      cart: emptyCart,
+      count: 0,
+      view: {
+        name: 'catalog',
+        params: {}
+      }
+    });
   }
   toggleModal() {
     this.setState({
@@ -229,7 +244,7 @@ export default class App extends React.Component {
       return (
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.confirmation} />
-          <Confirmation setView={this.setView} cartState={this.state.cart} />
+          <Confirmation setView={this.setView} cartState={this.state.cart} emptyCart={this.emptyCart} />
         </div>
       );
     }
