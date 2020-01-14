@@ -5,7 +5,6 @@ class CartSummaryItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // cart: null,
       count: null,
       show: false,
       quantity: true
@@ -42,10 +41,9 @@ class CartSummaryItem extends React.Component {
     if (this.props.items) {
       let { image, name, price, shortDescription } = this.props.items;
       let count = parseInt(this.props.items.count);
-
       return (
         <>
-        <div className='container mt-5' style={{ 'backgroundColor': 'white' }}>
+        <div className='container mt-2' style={{ 'backgroundColor': 'white', 'borderRadius': '0.25rem', 'borderBottom': '2px solid lightGrey' }}>
           <div className='row d-flex justify-content-center' >
             <div className='col-md-1'>
               <div className='mt-3' style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
@@ -54,18 +52,29 @@ class CartSummaryItem extends React.Component {
                   // this.props.delete(this.props.items.cartItemId);
                   this.openModal();
                 }} >
-                  <span aria-hidden='true'>&times;</span>
+                  <span data-toggle='tooltip' data-placement='bottom' title='remove' aria-hidden='true'>&times;</span>
                 </button>
               </div>
             </div>
-            <div className='col-md-3'>
-              <img className='mt-4 w-100' src={image} />
+            <div className='col-md-4'>
+              <img className='w-100' src={image} />
             </div>
             <div className='col-md-7'>
               <h4 className='mt-4'>{name}</h4>
               <h5 className='mt-2'>{'$' + price} USD</h5>
               <div className='d-flex'>
-                <div className='mr-2 cursor-pointer' onClick={() => { this.props.decrement(this.props.items.id); }}>
+                <div className='mr-2 cursor-pointer' onClick={() => {
+                  // console.log(this.props.items);
+                  // console.log(this.props.items.count);
+                  if (this.props.items.count === 0) {
+                    // console.log(this.props.items);
+                    this.openModal();
+                  }
+                  if (this.props.items.count === 1) {
+                    this.openModal();
+                  }
+                  this.props.decrement(this.props.items.id);
+                }}>
                   <i className='fas fa-minus-circle' style={{ 'color': '#017BFD' }}></i>
                 </div>
                 {this.state.quantity ? <h6 className='mt-1'>Quantity: {count}</h6> : '' }
@@ -83,8 +92,8 @@ class CartSummaryItem extends React.Component {
     } else {
       return (
         <div className='container'>
-          <div className='row d-flex justify-content-center'>
-            <h2 className='m-2' style={{ 'color': '#f19e05e8' }}>no items in cart</h2>
+          <div className='row align-items-center justify-content-center mt-5'>
+            <div className='lds-ring'><div></div><div></div><div></div><div></div></div>
           </div>
         </div>
       );

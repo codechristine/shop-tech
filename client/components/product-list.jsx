@@ -21,18 +21,35 @@ class ProductList extends React.Component {
     this.getProducts();
   }
   render() {
-    return (
-      <div>
-        <div className='row d-flex justify-content-center'>
-          {this.state.products.map(item => {
-            return (
-              <ProductListItem setView={this.props.setView} id={item.id} key={item.id} item={item} />
-            );
-          })}
-        </div>
-        <div className='mb-4' style={{ 'float': 'right', 'color': '#f19e05e8', 'fontWeight': 'bold' }}>*disclaimer - this is a demo site.</div>
-      </div>
-    );
+
+    if (this.state.products.length > 0) {
+      return (
+        <>
+          <div className='d-flex jusitfy-content-center'>
+            <div className='row'>
+              {this.state.products.map(item => {
+                return (
+                  <ProductListItem setView={this.props.setView} id={item.id} key={item.id} item={item} />
+                );
+              })}
+            </div>
+          </div>
+          <div className='d-flex justify-content-center align-items-center'>
+            <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className='container'>
+            <div className='row align-items-center justify-content-center mt-5'>
+              <div className='lds-ring'><div></div><div></div><div></div><div></div></div>
+            </div>
+          </div>
+        </>
+      );
+    }
   }
 }
 export default ProductList;

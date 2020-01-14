@@ -12,7 +12,7 @@ class AcknowledgeModal extends React.Component {
         <div className='d-flex align-items-center' show='true'>
           <div className='modalShadow'>
             <div className='modalBody'>
-              <div className='modalContent' style={{ 'color': '#f19e05e8' }}>
+              <div className='modalContent'>
                 <h6>{acknowledge}</h6>
                 <button className='btn btn-primary confirm cursor-pointer' onClick={this.props.onClose}>confirm</button>
               </div>

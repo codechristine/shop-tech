@@ -23,9 +23,10 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.deleteFromCart = this.deleteFromCart.bind(this);
-    this.placeOrder = this.placeOrder.bind(this);
     this.incrementItem = this.incrementItem.bind(this);
     this.decrementItem = this.decrementItem.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
+    this.emptyCart = this.emptyCart.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
   getCartItems() {
@@ -136,10 +137,15 @@ export default class App extends React.Component {
 
     if (decrement !== -1) {
       cart[decrement].count = parseInt(cart[decrement].count) - 1;
-
-      if (cart[decrement].count === 0) {
-        this.deleteFromCart(cart[decrement].cartItemId);
-      }
+      // if (cart[decrement].count === 0) {
+      // console.log(this.state.cart);
+      // console.log(cart[decrement].count);
+      // }
+      // if (cart[decrement].count === 1) {
+      // console.log(this.state.cart);
+      // console.log(cart[decrement].count);
+      this.deleteFromCart(cart[decrement].cartItemId);
+      // }
       fetch('/api/cart.php', {
         method: 'POST',
         headers: {
@@ -150,8 +156,6 @@ export default class App extends React.Component {
         .then(response => response.json())
         .then(decrement => {
           let decrementCart = parseInt(this.state.count) - 1;
-          // console.log(decrementCart);
-          // console.log(cart);
           this.setState({
             count: decrementCart,
             cart
@@ -173,7 +177,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(ordered => {
         this.setState({
-          cart: [],
+          cart: ordered,
           count: 0,
           view: {
             name: 'confirmation',
@@ -183,6 +187,20 @@ export default class App extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
+  emptyCart(items) {
+    let emptyCart = [];
+    this.state.cart.map(items => {
+      emptyCart = this.deleteFromCart(items.cartItemId);
+    });
+    this.setState({
+      cart: emptyCart,
+      count: 0,
+      view: {
+        name: 'catalog',
+        params: {}
+      }
+    });
+  }
   toggleModal() {
     this.setState({
       show: false
@@ -191,9 +209,9 @@ export default class App extends React.Component {
   render() {
     if (this.state.view.name === 'catalog') {
       return (
-        <div>
+        <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <div className='container'>
+          <div className='container-fluid'>
             <ProductList setView={this.setView} view={this.state.view.params} />
           </div>
           <AcknowlegeModal show={this.state.show} onClose={this.toggleModal} />
@@ -201,38 +219,32 @@ export default class App extends React.Component {
       );
     } else if (this.state.view.name === 'details') {
       return (
-        <div>
+        <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <div className='container'>
+          <div className='row'>
             <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} toggleModal={this.toggleModal} />
           </div>
         </div>
       );
     } else if (this.state.view.name === 'cart') {
       return (
-        <div>
+        <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <div className='container'>
-            <CartSummary itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} increment={this.incrementItem} decrement={this.decrementItem} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
-          </div>
+          <CartSummary itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} increment={this.incrementItem} decrement={this.decrementItem} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
-        <div>
+        <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.checkout} />
-          <div className='container'>
-            <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
-          </div>
+          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} cartState={this.state.cart} />
         </div>
       );
     } else if (this.state.view.name === 'confirmation') {
       return (
-        <div>
+        <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.confirmation} />
-          <div className='container'>
-            <Confirmation setView={this.setView} />
-          </div>
+          <Confirmation setView={this.setView} cartState={this.state.cart} emptyCart={this.emptyCart} />
         </div>
       );
     }
