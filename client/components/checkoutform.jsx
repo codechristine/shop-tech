@@ -21,6 +21,7 @@ class CheckoutForm extends React.Component {
       emailValidate: true,
       creditCardExpValidate: true,
       creditCardCVCValidate: true,
+      inputFields: true,
       show: false
     };
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -32,7 +33,7 @@ class CheckoutForm extends React.Component {
   }
   handleFormChange(e) {
     const name = e.target.name;
-    const value = e.target.value;
+    let value = e.target.value;
 
     if (name === 'name') {
       // const pattern = /^[a-zA-Z]+([a-zA-Z]\s*)*$/;
@@ -44,11 +45,13 @@ class CheckoutForm extends React.Component {
           nameValidate: true,
           [name]: value
         });
-      } else {
+      } else if (/^[\\a-zA-Z\s]{0,65}$/g.test(value)) {
         this.setState({
           nameValidate: false,
           [name]: value
         });
+      } else {
+        return;
       }
     }
     if (name === 'address') {
@@ -67,23 +70,38 @@ class CheckoutForm extends React.Component {
       });
     }
     if (name === 'creditCard') {
+      if (value.length === 20) {
+        return false;
+      }
       // const pattern = /^((4\d{3})|(5[1-5]\d{2})|(6011))-?\d{4}-?\d{4}-?\d{4}|3[4,7]\d{13}$/;
       // const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-]?(\d{4})[-]?(\d{4})[-]?(\d{4}|3[4,7]\d{13})$/;
       const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-\s]?(\d{4})[-\s]?(\d{4})[-\s]?(\d{4}|3[4,7]\d{13})$/;
-      // display value of input with slice
+
       if (pattern.test(value)) {
         this.setState({
           creditCardValidate: true,
           [name]: value
         });
-      } else {
+      } else if (/^[\d\s]{0,20}$/g.test(value)) {
+        let newValue = value.split('').join('');
+        if (value.length === 4 || value.length === 9 || value.length === 14) {
+          newValue += ' ';
+        }
+        if (value[value.length - 1] === ' ') {
+          newValue = value.slice(0, -2);
+        }
         this.setState({
           creditCardValidate: false,
-          [name]: value
+          [name]: newValue
         });
+      } else {
+        return;
       }
     }
     if (name === 'zipCode') {
+      if (value.length === 6) {
+        return false;
+      }
       const pattern = /^\d{5}$/;
 
       if (pattern.test(value)) {
@@ -115,22 +133,29 @@ class CheckoutForm extends React.Component {
       }
     }
     if (name === 'creditCardExp') {
+      if (value.length === 6) {
+        return false;
+      }
       const pattern = /^((0[1-9])|(1[0-2]))\/(\d{2})$/;
-      // maxlength on input
-      // console.log(value);
+
       if (pattern.test(value)) {
         this.setState({
           creditCardExpValidate: true,
           [name]: value
         });
-      } else {
+      } else if (/^[\d/]{0,7}$/g.test(value)) {
         this.setState({
           creditCardExpValidate: false,
           [name]: value
         });
+      } else {
+        return;
       }
     }
     if (name === 'creditCardCVC') {
+      if (value.length === 5) {
+        return false;
+      }
       const pattern = /^\d{3,4}$/;
 
       if (pattern.test(value)) {
@@ -145,19 +170,31 @@ class CheckoutForm extends React.Component {
         });
       }
     }
+    this.setState({
+      inputFields: true
+    });
   }
   handleSubmit(e) {
     e.preventDefault();
 
-    const { nameValidate, creditCardValidate, zipCodeValidate, emailValidate, creditCardExpValidate, creditCardCVCValidate } = this.state;
+    const { name, creditCard, creditCardExp, creditCardCVC, address, city, state, zipCode, email, nameValidate, creditCardValidate, zipCodeValidate, emailValidate, creditCardExpValidate, creditCardCVCValidate } = this.state;
+    const validateInput = [name, creditCard, creditCardExp, creditCardCVC, address, city, state, zipCode, email];
     const validateArray = [nameValidate, creditCardValidate, zipCodeValidate, emailValidate, creditCardExpValidate, creditCardCVCValidate];
 
     for (let i = 0; i < validateArray.length; i++) {
+      if (validateInput[i] === '' || validateInput[i] === '') {
+        this.setState({
+          inputFields: false
+        });
+        return;
+      }
       if (!validateArray[i]) {
         return;
       }
     }
-    this.completeOrder(this.props.cartState);
+    if (this.state.inputFields) {
+      this.completeOrder(this.props.cartState);
+    }
   }
   completeOrder(order) {
     this.setState({
@@ -194,8 +231,15 @@ class CheckoutForm extends React.Component {
   render() {
 
     let totalCost = 0;
+    let itemCount = 0;
     this.props.cartState.forEach(product => {
       totalCost += parseFloat(product.price);
+      itemCount += parseFloat(product.count);
+      if (itemCount > 1) {
+        this.props.cartState.forEach(item => {
+          totalCost *= parseFloat(item.count);
+        });
+      }
     });
 
     const { name, creditCard, creditCardExp, creditCardCVC, address, city, state, zipCode, email, nameValidate, creditCardValidate, zipCodeValidate, emailValidate, creditCardExpValidate, creditCardCVCValidate } = this.state;
@@ -206,7 +250,7 @@ class CheckoutForm extends React.Component {
         <div className='row'>
           <div className='col-md-7'>
             {/* <div className='ml-4 pt-4 cursor-pointer' style={{ 'color': '#017BFD' }} onClick={() => { this.props.setView('cart', '{}'); }}>{'< Back To Cart'}</div> */}
-            <form className='form' onSubmit={this.handleSubmit} >
+            <form className='form' >
               {/* <h4 className='ml-3'>Order Total: ${totalCost} USD</h4> */}
               <div className='payment-info'>
                 <h3 className='mt-5 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Checkout</h3>
@@ -226,7 +270,7 @@ class CheckoutForm extends React.Component {
                     <div className='mt-3 ml-2'>CARD NUMBER</div>
                     {(creditCardValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid credit card number</span>}
                     <div className='form-group d-flex justify-content-between'>
-                      <input name='creditCard' className='form-control' type='number' datatype='card' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
+                      <input name='creditCard' className='form-control' type='text' datatype='card' maxLength='19' placeholder='0000 0000 0000 0000' value={creditCard} onChange={this.handleFormChange} required></input>
                       <span className='input-group-text'><i className='fa fa-credit-card'/></span>
                     </div>
                     <div>
@@ -282,22 +326,22 @@ class CheckoutForm extends React.Component {
           <div className='col-md-5'>
             <h3 className='mt-5 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Cart</h3>
             <div style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
-              {/* <div className=''> */}
               {this.props.cartState.map(item => {
                 return (
                   <CheckoutCart setView={this.props.setView} id={item.id} key={item.id} item={item} />
                 );
               })}
             </div>
-            <div className='d-flex justify-content-around align-items-center mt-3'>
-              <h4>Total: ${totalCost} USD</h4>
+            <div className='d-flex justify-content-between align-items-center mt-3'>
+              {/* <h4>Total: ${totalCost} USD</h4> */}
+              <h4>Total: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
               <button type='submit' className='btn btn-primary' onClick={this.handleSubmit }
                 // this.completeOrder(this.props.cartState);
                 // this.openModal();
               > PLACE ORDER</button>
             </div>
-            {/* </div>
-            </form> */}
+            {(this.state.inputFields) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please fill out form</span>}
+            {/* </form> */}
           </div>
         </div>
       </div>

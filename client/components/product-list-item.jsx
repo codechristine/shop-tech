@@ -6,7 +6,7 @@ class ProductListItem extends React.Component {
     const productDetails = () => this.props.setView('details', this.props.item);
     if (this.props.item) {
       return (
-        <div className='product-details'>
+        <div className=''>
           <div className='card' style={{ 'width': '22.5rem' }}>
             <img className='card-img-top cursor-pointer' style={{ 'height': '18rem' }} src={this.props.item.image[0]} onClick={productDetails} />
             <div className='card-body'>

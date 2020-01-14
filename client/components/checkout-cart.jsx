@@ -8,12 +8,14 @@ class CheckoutCart extends React.Component {
     if (this.props.item) {
       return (
         <div className='p-2' style={{ 'borderBottom': '1px solid lightGrey', 'borderRadius': 'calc(.25rem - 1px)' }}>
-          <div className='d-flex justify-content-around align-items-center'>
-            <h5>{name}</h5>
+          <div className='d-flex justify-content-between align-items-center'>
+            <h5 className='pl-2'>{name}</h5>
             <h5>${price}</h5>
           </div>
-          <div className='pl-5'>
-            <h6>Quantity:{count}</h6>
+          <div className='d-flex justify-content-start'>
+            <div className='pl-2'>
+              <h6>Quantity: {count}</h6>
+            </div>
           </div>
         </div>
       );
