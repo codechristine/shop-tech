@@ -62,17 +62,6 @@ class ProductDetails extends React.Component {
       open: true,
       message: 'item added to cart'
     });
-
-    // const [status, setStatusBase] = React.useState('');
-
-    // const setStatus = msg => setStatusBase({ msg, date: new Date() });
-    // return (
-    //   <div className='snackbarPopup'>
-    //     <h1>Hello SnackBar</h1>
-    //     <button type='submit' className='primary' color='primary' onClick={() => { setStatus('success'); }} >OPEN</button>
-    //     {status ? <Snackbar key={status.date} status={status.msg} /> : null}
-    //   </div>
-    // );
   }
   render() {
     if (this.state.product) {
@@ -87,22 +76,21 @@ class ProductDetails extends React.Component {
       return (
         <>
           <div className='container-fluid' style={{ 'backgroundColor': 'white' }}>
-            <div className='ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'fontWeight': 'bold' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
-            <div className='row mt-4'>
-              <div className='d-flex justify-content-center align-items-center'>
-                <div className='col-md-2'>
-                  <div className=''>
+            <div className='ml-3 pt-4 cursor-pointer' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
+            <div className='d-flex justify-content-center align-items-center mt-4'>
+              <div className='row'>
+                <div className='col-md-2 col-12 offset-1'>
+                  <div className='align-items-center'>
                     <img className='img-fluid' src={secondImage} />
                   </div>
                   <div className=''>
                     <img className='img-fluid' src={thirdImage} />
                   </div>
                 </div>
-                <div className='col-md-4'>
+                <div className='col-md-4 col-12'>
                   <img className='img-fluid mr-3' src={firstImage} />
                 </div>
-                {/* </div> */}
-                <div className='col-md-3'>
+                <div className='col-md-3 col-12'>
                   <h2 style={{ 'fontWeight': 'bold' }}>{name}</h2>
                   <h6 className='mt-4'>{price} USD</h6>
                   <p className='mt-3 text-wrap'>{shortDescription}</p>
@@ -114,27 +102,25 @@ class ProductDetails extends React.Component {
                 </div>
               </div>
             </div>
-            {/* </div> */}
-            {/* <div className='row'>
-              <div className='d-flex justify-content-center align-items-center mt-4 mb-4' >
-                <div className='col-md-2'>
-                  <img className='img-fluid' src={secondImage} />
-                </div>
-                <div className='col-md-2'>
-                  <img className='img-fluid' src={thirdImage} />
-                </div>
-              </div>
-            </div> */}
             <div className='d-flex justify-content-center'>
               <div className='media-body col-md-10 mt-5 mb-5'>{longDescription}</div>
             </div>
           </div>
-          {/* </div> */}
           <div className='d-flex justify-content-center align-items-center'>
             <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
           </div>
           <ConfirmAddModal show={this.state.show} onClose={this.confirmAdd} cancel={this.cancelModal} product={this.state.product} setView={this.props.setView} />
           <Snackbar
+            // root= {{
+            //   // zIndex: theme.zIndex.snackbar,
+            //   position: 'fixed',
+            //   display: 'flex',
+            //   height: 20,
+            //   left: 8,
+            //   right: 8,
+            //   justifyContent: 'center',
+            //   alignItems: 'center'
+            // }}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'left'
@@ -145,11 +131,11 @@ class ProductDetails extends React.Component {
             autoHideDuration={2000}
             action={
               <>
-                <Button variant='contained' color='default' size='small' onClick={() => { this.props.setView('cart', {}); }}>
-                  View Cart
-                </Button>
-                <Button variant='contained' color='primary' size='small' onClick={() => { this.props.setView('catalog', {}); }}>
+                <Button variant='contained' color='default' size='small' onClick={() => { this.props.setView('catalog', {}); }}>
                   Continue Shopping
+                </Button>
+                <Button variant='contained' color='primary' size='small' onClick={() => { this.props.setView('cart', {}); }}>
+                  View Cart
                 </Button>
                 <IconButton key='close' size='small' aria-label='close' color='inherit' onClick={this.closeSnackbar}>
                   <CloseIcon fontSize='small' />

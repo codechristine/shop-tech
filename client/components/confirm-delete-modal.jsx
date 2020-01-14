@@ -15,8 +15,8 @@ class ConfirmDeleteModal extends React.Component {
             <div className='modalBody'>
               <div className='modalContent'>
                 <h6>{confirmDelete}</h6>
-                <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>delete</button>
-                <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
+                <button className='btn btn-primary confirm cursor-pointer m-3' onClick={e => this.props.onClose(e, this.props.item.cartItemId)}>delete</button>
+                <button className='btn btn-secondary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
               </div>
             </div>
           </div>

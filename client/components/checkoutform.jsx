@@ -291,7 +291,7 @@ class CheckoutForm extends React.Component {
                 </div>
                 <div className='mt-3 mb-5'>
                   <div className='d-flex justify-content-end'>
-                    <button className='btn btn-primary checkoutBtn mr-2' onClick={() => { this.props.setView('catalog', {}); }}>CONTINUE SHOPPING</button>
+                    <button className='btn btn-secondary checkoutBtn mr-2' onClick={() => { this.props.setView('catalog', {}); }}>CONTINUE SHOPPING</button>
                   </div>
                 </div>
               </div>

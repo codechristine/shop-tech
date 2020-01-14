@@ -9,7 +9,6 @@ class ProductListItem extends React.Component {
       return (
         <div className='col-md-3'>
           <div className='card' >
-            {/* style={{ 'width': '22.5rem' }} */}
             <img className='card-img-top cursor-pointer' style={{ 'height': '20rem' }} src={this.props.item.image[0]} onClick={productDetails} />
             <div className='card-body'>
               <h5 className='card-title cursor-pointer' style={{ 'fontWeight': 'bold' }} onClick={productDetails}>{this.props.item.name}</h5>

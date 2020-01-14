@@ -64,16 +64,11 @@ class CartSummaryItem extends React.Component {
               <h5 className='mt-2'>{'$' + price} USD</h5>
               <div className='d-flex'>
                 <div className='mr-2 cursor-pointer' onClick={() => {
-                  // console.log(this.props.items);
-                  // console.log(this.props.items.count);
-                  if (this.props.items.count === 0) {
-                    // console.log(this.props.items);
-                    this.openModal();
-                  }
-                  if (this.props.items.count === 1) {
-                    this.openModal();
-                  }
                   this.props.decrement(this.props.items.id);
+
+                  if (this.props.items.count === 0) {
+                    this.openModal();
+                  }
                 }}>
                   <i className='fas fa-minus-circle' style={{ 'color': '#017BFD' }}></i>
                 </div>

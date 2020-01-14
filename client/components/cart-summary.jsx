@@ -26,7 +26,7 @@ class CartSummary extends React.Component {
             <div className='d-flex justify-content-between align-items-center mt-3 mb-5'>
               <h4 className='total'>Cart Total ({itemCount} Items): ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
               <div className='d-flex justify-content-between align-items-center'>
-                <button className='btn btn-primary checkoutBtn mr-2' onClick={() => { this.props.setView('catalog', {}); }}>CONTINUE SHOPPING</button>
+                <button className='btn btn-secondary checkoutBtn mr-2' onClick={() => { this.props.setView('catalog', {}); }}>CONTINUE SHOPPING</button>
                 <button className='btn btn-primary checkoutBtn' onClick={() => { this.props.setView('checkout', '{}'); }}>CHECKOUT</button>
               </div>
             </div>
@@ -47,7 +47,7 @@ class CartSummary extends React.Component {
               </div>
             </div>
             <div className='d-flex justify-content-end mt-3 mb-5'>
-              <button className='btn btn-primary checkoutBtn mr-2' onClick={() => { this.props.setView('catalog', {}); }}>CONTINUE SHOPPING</button>
+              <button className='btn btn-secondary checkoutBtn mr-2' onClick={() => { this.props.setView('catalog', {}); }}>CONTINUE SHOPPING</button>
               <button className='btn btn-secondary' style={{ 'border': '0.25px solid lightGrey', 'backgroundColor': '#eeee', 'color': 'lightGrey' }}>CHECKOUT</button>
             </div>
           </div>
