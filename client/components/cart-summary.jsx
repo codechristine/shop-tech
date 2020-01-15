@@ -19,9 +19,9 @@ class CartSummary extends React.Component {
       return (
         <>
           <div className='container'>
-            <h3 className='mt-5 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Shopping Cart</h3>
+            <h3 className='mt-4 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Shopping Cart</h3>
             {this.props.cartState.map((product, index) => {
-              return <CartSummaryItem key={index} items={product} cartState={this.props.cartState} delete={this.props.itemDeletedFromCart} increment={this.props.increment} decrement={this.props.decrement} toggleModal={this.props.toggleModal} show={this.props.show} onClose={this.props.toggleModal} />;
+              return <CartSummaryItem key={index} items={product} cartState={this.props.cartState} setView={this.props.setView} updateCart={this.props.updateCart} delete={this.props.itemDeletedFromCart} increment={this.props.increment} decrement={this.props.decrement} toggleModal={this.props.toggleModal} show={this.props.show} onClose={this.props.toggleModal} />;
             })}
             <div className='d-flex justify-content-between align-items-center mt-3 mb-5'>
               <h4 className='total'>Cart Total ({itemCount} Items): ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
@@ -32,7 +32,9 @@ class CartSummary extends React.Component {
             </div>
           </div>
           <div className='d-flex justify-content-center align-items-center'>
-            <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '20vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
+            <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '20vh', 'padding': '1rem', 'textAlign': 'center' }}>
+              *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
+            </h6>
           </div>
         </>
       );
@@ -52,7 +54,9 @@ class CartSummary extends React.Component {
             </div>
           </div>
           <div className='d-flex justify-content-center align-items-center'>
-            <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '50vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
+            <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '50vh', 'padding': '1rem', 'textAlign': 'center' }}>
+              *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
+            </h6>
           </div>
         </>
       );

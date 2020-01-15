@@ -62,7 +62,7 @@ class CheckoutForm extends React.Component {
     }
     if (name === 'state') {
       this.setState({
-        [name]: value
+        [name]: value.toUpperCase()
       });
     }
     if (name === 'creditCard') {
@@ -211,7 +211,6 @@ class CheckoutForm extends React.Component {
     this.props.placeOrder(order);
   }
   render() {
-
     let totalCost = 0;
     let itemCount = 0;
     this.props.cartState.forEach(product => {
@@ -233,12 +232,12 @@ class CheckoutForm extends React.Component {
           <div className='col-md-7'>
             <form className='form' >
               <div className='payment-info'>
-                <h3 className='mt-5 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Checkout</h3>
+                <h3 className='mt-4 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Checkout</h3>
                 <div style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
                   <div className='d-flex justify-content-between' style={{ 'height': '4rem', 'backgroundColor': 'gainsboro', 'borderRadius': 'calc(.25rem - 1px)' }}>
                     <h6 className='p-2 ml-1'>Payment Details</h6>
                     <div className='display-td'>
-                      <img className='img-responsive pull-right p-2' src='http://i76.imgup.net/accepted_c22e0.png' style={{ 'width': '100%' }}/>
+                      <img className='img-responsive pull-right p-2' src='http://i76.imgup.net/accepted_c22e0.png' style={{ 'width': '100%' }} alt='CC-payment-type-image'/>
                     </div>
                   </div>
                   <div className='mt-2'>
@@ -298,7 +297,7 @@ class CheckoutForm extends React.Component {
             </form>
           </div>
           <div className='col-md-5'>
-            <div className='d-flex justify-content-between align items-center mt-5'>
+            <div className='d-flex justify-content-between align items-center mt-4'>
               <h3 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Cart</h3>
               <h5 style={{ 'color': 'white', 'backgroundColor': '#f19e05e8', 'borderRadius': '50%', 'height': '1.7rem', 'width': '1.7rem', 'border': 'none', 'textAlign': 'center' }}>{itemCount}</h5>
             </div>
@@ -311,17 +310,17 @@ class CheckoutForm extends React.Component {
             </div>
             <div className='d-flex justify-content-between align-items-center mt-3'>
               <h4>Total: ${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })} USD</h4>
-              <button type='submit' className='btn btn-primary' onClick={this.handleSubmit }
-                // this.completeOrder(this.props.cartState);
-                // this.openModal();
-              > PLACE ORDER</button>
+              <button type='submit' className='btn btn-primary' onClick={ this.handleSubmit }> PLACE ORDER</button>
             </div>
             {(this.state.inputFields) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please fill out form</span>}
           </div>
         </div>
       </div>
         <div className='d-flex justify-content-center align-items-center'>
-          <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
+          <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
+            *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
+          </h6>
+          <p>Please do not input any personal or sensitive information.</p>
         </div>
       </>
     );

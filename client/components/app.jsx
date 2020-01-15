@@ -81,25 +81,11 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(deletedItem => {
         const updateCart = this.state.cart.filter(item => {
-          // let itemCount = parseFloat(item.count);
           return item.cartItemId !== cartItemId;
         });
-        this.setState({ cart: updateCart });
-        // for (var i = 0; i < updateCart.length; i++) {
-        //   itemCount = updateCart[i].count;
-        //   updatedTotalCount += parseFloat(itemCount);
-        // }
-        // if (this.state.cart.length === 1) {
-        //   this.setState({
-        //     cart: [],
-        //     count: 0
-        //   });
-        // } else {
-        //   this.setState({
-        //     cart: updateCart,
-        //     count: updatedTotalCount
-        //   });
-        // }
+        this.setState({
+          cart: updateCart
+        });
       })
       .catch(error => console.error('fetch error:', error));
   }
@@ -109,7 +95,7 @@ export default class App extends React.Component {
     const increment = cart.findIndex(item => cartItemId === item.id);
 
     if (increment !== -1) {
-      cart[increment].count = parseInt(cart[increment].count) + 1;
+      cart[increment].count = parseFloat(cart[increment].count) + 1;
 
       fetch('/api/cart.php', {
         method: 'POST',
@@ -120,7 +106,7 @@ export default class App extends React.Component {
       })
         .then(response => response.json())
         .then(increment => {
-          let incrementCart = parseInt(this.state.count) + 1;
+          let incrementCart = parseFloat(this.state.count) + 1;
           this.setState({
             count: incrementCart,
             cart
@@ -135,16 +121,8 @@ export default class App extends React.Component {
     const decrement = cart.findIndex(item => cartItemId === item.id);
 
     if (decrement !== -1) {
-      cart[decrement].count = parseInt(cart[decrement].count) - 1;
-      // if (cart[decrement].count === 0) {
-      //   console.log(this.state.cart);
-      //   console.log(cart[decrement].count);
-      // }
-      if (cart[decrement].count === 0) {
-      //   console.log(this.state.cart);
-      //   console.log(cart[decrement].count);
-        // this.deleteFromCart(cart[decrement].cartItemId);
-      }
+      cart[decrement].count = parseFloat(cart[decrement].count) - 1;
+
       fetch('/api/cart.php', {
         method: 'POST',
         headers: {
@@ -154,8 +132,10 @@ export default class App extends React.Component {
       })
         .then(response => response.json())
         .then(decrement => {
-          let decrementCart = parseInt(this.state.count) - 1;
-          // console.log(decrement);
+          let decrementCart = parseFloat(this.state.count) - 1;
+          if (decrementCart < 0) {
+            return;
+          }
           this.setState({
             count: decrementCart,
             cart
@@ -209,28 +189,32 @@ export default class App extends React.Component {
   render() {
     if (this.state.view.name === 'catalog') {
       return (
+        <>
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
+        </div>
           <div className='container-fluid'>
             <ProductList setView={this.setView} view={this.state.view.params} />
           </div>
           <AcknowlegeModal show={this.state.show} onClose={this.toggleModal} />
-        </div>
+        </>
       );
     } else if (this.state.view.name === 'details') {
       return (
+        <>
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <div className='row'>
+        </div>
+          <div className='container-fluid'>
             <ProductDetails setView={this.setView} clicked={this.state.view.params.id} itemAddedToCart={this.addToCart} toggleModal={this.toggleModal} />
           </div>
-        </div>
+        </>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.cart} />
-          <CartSummary itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} increment={this.incrementItem} decrement={this.decrementItem} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
+          <CartSummary itemDeletedFromCart={this.deleteFromCart} setView={this.setView} cartState={this.state.cart} updateCart={this.getCartItems} increment={this.incrementItem} decrement={this.decrementItem} toggleModal={this.toggleModal} show={this.state.show} onClose={this.toggleModal} />
         </div>
       );
     } else if (this.state.view.name === 'checkout') {

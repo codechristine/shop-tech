@@ -16,7 +16,7 @@ class ConfirmAddModal extends React.Component {
             <div className='modalBody'>
               <div className='modalContent'>
                 <h6>{confirmAdd}</h6>
-                <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.onClose}>add</button>
+                <button className='btn btn-primary confirm cursor-pointer m-3' onClick={this.props.confirmAdd}>add</button>
                 <button className='btn btn-secondary confirm cursor-pointer m-3' onClick={this.props.cancel}>cancel</button>
               </div>
             </div>
