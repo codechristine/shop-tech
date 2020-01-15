@@ -241,9 +241,9 @@ class CheckoutForm extends React.Component {
                     </div>
                   </div>
                   <div className='mt-2'>
-                    <div className='mt-5 ml-2'>CARD HOLDER</div>
+                    <div className='mt-5 ml-2'>NAME AS DISPLAYED ON CARD</div>
                     <div className='form-group'>
-                      {(nameValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid name</span>}
+                      {(nameValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter your first and last name</span>}
                       <input name='name' className='form-control' type='text' datatype='name' maxLength='65' placeholder='Name On Card' value={name} onChange={this.handleFormChange} required></input>
                     </div>
                     <div className='mt-3 ml-2'>CARD NUMBER</div>
