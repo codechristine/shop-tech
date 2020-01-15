@@ -120,10 +120,10 @@ class ProductDetails extends React.Component {
             autoHideDuration={2000}
             action={
               <>
-                <Button variant='contained' className='btn btn-primary' size='small' onClick={() => { this.props.setView('catalog', {}); }}>
+                <Button variant='contained' color='default' className='btn btn-primary' size='small' onClick={() => { this.props.setView('catalog', {}); }}>
                   Continue Shopping
                 </Button>
-                <Button variant='contained' size='small' onClick={() => { this.props.setView('cart', {}); }}>
+                <Button variant='contained' color='primary' size='small' onClick={() => { this.props.setView('cart', {}); }}>
                   View Cart
                 </Button>
                 <IconButton key='close' size='small' aria-label='close' color='inherit' onClick={this.closeSnackbar}>
