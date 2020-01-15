@@ -161,7 +161,7 @@ class CheckoutForm extends React.Component {
           creditCardCVCValidate: true,
           [name]: value
         });
-      } else if (/^[\d\s]{0,3}$/g.test(value)) {
+      } else if (/^[\d\s]{0,4}$/g.test(value)) {
         this.setState({
           creditCardCVCValidate: false,
           [name]: value
@@ -259,7 +259,7 @@ class CheckoutForm extends React.Component {
                         <input name='creditCardExp' className='form-control mt-3' type='tel' datatype='ccexpiry' placeholder='MM/YY' value={creditCardExp} onChange={this.handleFormChange} required></input>
                         <div className='m-3'>CVV CODE</div>
                         {(creditCardCVCValidate) ? null : <span className='ml-2' style={{ 'color': 'red' }}>Please enter a valid cvc number</span>}
-                        <input name='creditCardCVC' className='form-control mt-3' type='text' datatype='cardCVC' maxLength='3' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
+                        <input name='creditCardCVC' className='form-control mt-3' type='text' datatype='cardCVC' maxLength='4' placeholder='CVC' value={creditCardCVC} onChange={this.handleFormChange} required></input>
                       </div>
                     </div>
                     <div className='mt-3 ml-2'>SHIPPING ADDRESS</div>
