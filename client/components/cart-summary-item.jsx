@@ -50,7 +50,7 @@ class CartSummaryItem extends React.Component {
                   // this.props.delete(this.props.items.cartItemId);
                   this.openModal();
                 }} >
-                  <span data-toggle='tooltip' data-placement='bottom' title='remove' aria-hidden='true'>&times;</span>
+                  <span className='close' aria-label='Close' aria-hidden='true' style={{ 'fontSize': '2.5rem' }} data-toggle='tooltip' data-placement='bottom' title='remove' >&times;</span>
                 </button>
               </div>
             </div>
