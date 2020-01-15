@@ -3,7 +3,7 @@ import React from 'react';
 class AcknowledgeModal extends React.Component {
 
   render() {
-    const acknowledge = 'Please click confirm to acknowledge that this site is only a demo site and no real purchases can be made.';
+    const acknowledge = 'Please click confirm to acknowledge that this site (Shop Tech) is only a demo site & no real purchases can be made.';
 
     if (!this.props.show) {
       return null;

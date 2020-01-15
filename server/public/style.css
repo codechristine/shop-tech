@@ -12,6 +12,18 @@ body {
                MODAL
 **************************************/
 
+/* .MuiButtonBase.root-selected {
+  background-color: #007bff,
+}
+
+.MuiButtonBase-root.selected {
+  background-color: #007bff;
+} */
+
+/**************************************
+               MODAL
+**************************************/
+
 .hidden {
     display: none;
 }
@@ -63,8 +75,8 @@ body {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 51px;
-  height: 51px;
+  width: 70px;
+  height: 70px;
   margin: 6px;
   border: 6px solid rgb(209, 120, 19);
   border-radius: 50%;

@@ -9,14 +9,9 @@ class CartSummaryItem extends React.Component {
       show: false,
       quantity: true
     };
-    this.handleDeletion = this.handleDeletion.bind(this);
     this.openModal = this.openModal.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
     this.cancelModal = this.cancelModal.bind(this);
-  }
-
-  handleDeletion(e) {
-    e.preventDefault();
   }
   openModal() {
     this.setState({
@@ -31,12 +26,15 @@ class CartSummaryItem extends React.Component {
       show: false
     });
   }
-  cancelModal() {
+  cancelModal(e) {
+    e.preventDefault();
+
     this.setState({
       show: false
     });
   }
   render() {
+    const productDetails = () => this.props.setView('details', this.props.items);
 
     if (this.props.items) {
       let { image, name, price, shortDescription } = this.props.items;
@@ -56,24 +54,18 @@ class CartSummaryItem extends React.Component {
                 </button>
               </div>
             </div>
-            <div className='col-md-4'>
-              <img className='w-100' src={image} />
+            <div className='col-md-4 cursor-pointer'>
+              <img className='w-100' src={image} onClick={productDetails} alt='product-image' />
             </div>
             <div className='col-md-7'>
-              <h4 className='mt-4'>{name}</h4>
+              <h4 className='mt-4 cursor-pointer' onClick={productDetails}>{name}</h4>
               <h5 className='mt-2'>{'$' + price} USD</h5>
               <div className='d-flex'>
                 <div className='mr-2 cursor-pointer' onClick={() => {
-                  // console.log(this.props.items);
-                  // console.log(this.props.items.count);
-                  if (this.props.items.count === 0) {
-                    // console.log(this.props.items);
-                    this.openModal();
-                  }
-                  if (this.props.items.count === 1) {
-                    this.openModal();
-                  }
                   this.props.decrement(this.props.items.id);
+                  if (this.props.items.count === 0) {
+                    this.openModal();
+                  }
                 }}>
                   <i className='fas fa-minus-circle' style={{ 'color': '#017BFD' }}></i>
                 </div>
@@ -86,7 +78,7 @@ class CartSummaryItem extends React.Component {
             </div>
           </div>
         </div>
-          <ConfirmDeleteModal show={this.state.show} onClose={this.confirmDelete} cancel={this.cancelModal} item={this.props.items} />
+          <ConfirmDeleteModal show={this.state.show} cartState={this.props.cartState} updateCart={this.props.updateCart} confirmDelete={this.confirmDelete} cancel={this.cancelModal} item={this.props.items} />
         </>
       );
     } else {

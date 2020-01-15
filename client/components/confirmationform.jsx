@@ -4,13 +4,16 @@ import CheckoutCart from './checkout-cart';
 class Confirmation extends React.Component {
 
   render() {
-
     let totalCount = 0;
     let totalCost = 0;
-
     this.props.cartState.forEach(product => {
       totalCount += parseFloat(product.count);
       totalCost += parseFloat(product.price);
+      if (totalCount > 1) {
+        this.props.cartState.forEach(item => {
+          totalCost *= parseFloat(item.count);
+        });
+      }
     });
 
     if (this.props.cartState) {
@@ -43,15 +46,6 @@ class Confirmation extends React.Component {
                       <CheckoutCart setView={this.props.setView} id={item.id} key={item.id} item={item} />
                     );
                   })}
-                  {/* <div className='d-flex justify-content-between align-items-center mt-1'>
-                    <h5 className='pl-2'>{name}</h5>
-                    <h5 className='pl-2'>${price}</h5>
-                  </div>
-                  <div className='d-flex justify-content-start'>
-                    <div className='pl-2'>
-                      <h6 className='pl-2'>Quantity: {count}</h6>
-                    </div>
-                  </div> */}
                 </div>
                 <div className='d-flex justify-content-end mt-2'>
                   <button className='btn btn-primary checkoutBtn' onClick={this.props.emptyCart}>CONTINUE SHOPPING</button>
@@ -60,7 +54,9 @@ class Confirmation extends React.Component {
             </div>
           </div>
           <div className='d-flex justify-content-center align-items-center'>
-            <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '30vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
+            <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '30vh', 'padding': '1rem', 'textAlign': 'center' }}>
+              *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
+            </h6>
           </div>
         </>
       );

@@ -21,11 +21,10 @@ class ProductList extends React.Component {
     this.getProducts();
   }
   render() {
-
     if (this.state.products.length > 0) {
       return (
         <>
-          <div className='d-flex jusitfy-content-center'>
+          <div className='d-flex justify-content-center align-items-center'>
             <div className='row'>
               {this.state.products.map(item => {
                 return (
@@ -35,7 +34,9 @@ class ProductList extends React.Component {
             </div>
           </div>
           <div className='d-flex justify-content-center align-items-center'>
-            <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
+            <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
+              *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
+            </h6>
           </div>
         </>
       );
