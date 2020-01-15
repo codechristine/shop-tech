@@ -26,7 +26,6 @@ export default class App extends React.Component {
     this.incrementItem = this.incrementItem.bind(this);
     this.decrementItem = this.decrementItem.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
-    this.emptyCart = this.emptyCart.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
   getCartItems() {
@@ -167,20 +166,6 @@ export default class App extends React.Component {
       })
       .catch(error => console.error('fetch error:', error));
   }
-  emptyCart(items) {
-    let emptyCart = [];
-    this.state.cart.map(items => {
-      emptyCart = this.deleteFromCart(items.cartItemId);
-    });
-    this.setState({
-      cart: emptyCart,
-      count: 0,
-      view: {
-        name: 'catalog',
-        params: {}
-      }
-    });
-  }
   toggleModal() {
     this.setState({
       show: false
@@ -228,7 +213,7 @@ export default class App extends React.Component {
       return (
         <div className='container-fluid'>
           <Header cartItemCount={this.state.count} setView={this.setView} cartView={this.state.view.name.confirmation} />
-          <Confirmation setView={this.setView} cartState={this.state.cart} emptyCart={this.emptyCart} />
+          <Confirmation setView={this.setView} cartState={this.state.cart} emptyCart={this.deleteFromCart} />
         </div>
       );
     }
