@@ -3,7 +3,6 @@ import React from 'react';
 class CheckoutCart extends React.Component {
 
   render() {
-
     const { name, price, count } = this.props.item;
     if (this.props.item) {
       return (

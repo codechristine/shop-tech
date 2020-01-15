@@ -5,7 +5,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-// import SnackbarPopup from './snackbar';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -62,17 +61,6 @@ class ProductDetails extends React.Component {
       open: true,
       message: 'item added to cart'
     });
-
-    // const [status, setStatusBase] = React.useState('');
-
-    // const setStatus = msg => setStatusBase({ msg, date: new Date() });
-    // return (
-    //   <div className='snackbarPopup'>
-    //     <h1>Hello SnackBar</h1>
-    //     <button type='submit' className='primary' color='primary' onClick={() => { setStatus('success'); }} >OPEN</button>
-    //     {status ? <Snackbar key={status.date} status={status.msg} /> : null}
-    //   </div>
-    // );
   }
   render() {
     if (this.state.product) {
@@ -86,54 +74,41 @@ class ProductDetails extends React.Component {
 
       return (
         <>
-          <div className='container-fluid' style={{ 'backgroundColor': 'white' }}>
-            <div className='ml-3 pt-4 cursor-pointer' style={{ 'color': '#017BFD', 'fontWeight': 'bold' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
-            <div className='row mt-4'>
-              <div className='d-flex justify-content-center align-items-center'>
-                <div className='col-md-2'>
-                  <div className=''>
-                    <img className='img-fluid' src={secondImage} />
-                  </div>
-                  <div className=''>
-                    <img className='img-fluid' src={thirdImage} />
-                  </div>
+          <div className='row' style={{ 'backgroundColor': 'white', 'overflowX': 'hidden' }}>
+            <div className='ml-5 pt-4 cursor-pointer' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
+            <div className='row justify-content-center align-items-center mt-4'>
+              <div className='col-md-2 col-8'>
+                <div className='align-items-center'>
+                  <img className='img-fluid' src={secondImage} alt='product-image-two'/>
                 </div>
-                <div className='col-md-4'>
-                  <img className='img-fluid mr-3' src={firstImage} />
+                <div className=''>
+                  <img className='img-fluid' src={thirdImage} alt='product-image-three'/>
                 </div>
-                {/* </div> */}
-                <div className='col-md-3'>
-                  <h2 style={{ 'fontWeight': 'bold' }}>{name}</h2>
-                  <h6 className='mt-4'>{price} USD</h6>
-                  <p className='mt-3 text-wrap'>{shortDescription}</p>
-                  <button type='button' className='btn btn-primary' onClick={() => {
-                    this.openModal();
-                    // this.props.itemAddedToCart(this.state.product);
-                  }
-                  }>Add To Cart</button>
-                </div>
+              </div>
+              <div className='col-md-4 col-9'>
+                <img className='img-fluid mr-3' src={firstImage} alt='product-image-one'/>
+              </div>
+              <div className='col-md-3 col-8'>
+                <h2 style={{ 'fontWeight': 'bold' }}>{name}</h2>
+                <h6 className='mt-4'>{price} USD</h6>
+                <p className='mt-3 text-wrap'>{shortDescription}</p>
+                <button type='button' className='btn btn-primary' onClick={() => {
+                  this.openModal();
+                  // this.props.itemAddedToCart(this.state.product);
+                }
+                }>Add To Cart</button>
               </div>
             </div>
-            {/* </div> */}
-            {/* <div className='row'>
-              <div className='d-flex justify-content-center align-items-center mt-4 mb-4' >
-                <div className='col-md-2'>
-                  <img className='img-fluid' src={secondImage} />
-                </div>
-                <div className='col-md-2'>
-                  <img className='img-fluid' src={thirdImage} />
-                </div>
-              </div>
-            </div> */}
             <div className='d-flex justify-content-center'>
               <div className='media-body col-md-10 mt-5 mb-5'>{longDescription}</div>
             </div>
+            <div className='d-flex justify-content-center align-items-center'>
+              <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
+                *disclaimer - Shop Tech is a web application built for demonstration purposes only & does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
+              </h6>
+            </div>
           </div>
-          {/* </div> */}
-          <div className='d-flex justify-content-center align-items-center'>
-            <div style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem' }}>*disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged. Please do not input any personal information.</div>
-          </div>
-          <ConfirmAddModal show={this.state.show} onClose={this.confirmAdd} cancel={this.cancelModal} product={this.state.product} setView={this.props.setView} />
+          <ConfirmAddModal show={this.state.show} confirmAdd={this.confirmAdd} cancel={this.cancelModal} product={this.state.product} setView={this.props.setView} />
           <Snackbar
             anchorOrigin={{
               vertical: 'bottom',
@@ -145,11 +120,11 @@ class ProductDetails extends React.Component {
             autoHideDuration={2000}
             action={
               <>
-                <Button variant='contained' color='default' size='small' onClick={() => { this.props.setView('cart', {}); }}>
-                  View Cart
-                </Button>
-                <Button variant='contained' color='primary' size='small' onClick={() => { this.props.setView('catalog', {}); }}>
+                <Button variant='contained' className='btn btn-primary' size='small' onClick={() => { this.props.setView('catalog', {}); }}>
                   Continue Shopping
+                </Button>
+                <Button variant='contained' size='small' onClick={() => { this.props.setView('cart', {}); }}>
+                  View Cart
                 </Button>
                 <IconButton key='close' size='small' aria-label='close' color='inherit' onClick={this.closeSnackbar}>
                   <CloseIcon fontSize='small' />
