@@ -2,7 +2,19 @@ import React from 'react';
 import CheckoutCart from './checkout-cart';
 
 class Confirmation extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      cart: null
+    };
+    this.emptyCart = this.emptyCart.bind(this);
+  }
+  emptyCart(item) {
+    this.props.cartState.map(item => {
+      this.props.emptyCart(item.cartItemId);
+      this.props.setView('catalog', {});
+    });
+  }
   render() {
     let totalCount = 0;
     let totalCost = 0;
@@ -48,7 +60,7 @@ class Confirmation extends React.Component {
                   })}
                 </div>
                 <div className='d-flex justify-content-end mt-2'>
-                  <button className='btn btn-primary checkoutBtn' onClick={this.props.emptyCart}>CONTINUE SHOPPING</button>
+                  <button className='btn btn-primary checkoutBtn' onClick={this.emptyCart}>CONTINUE SHOPPING</button>
                 </div>
               </div>
             </div>
