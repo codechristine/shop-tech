@@ -50,7 +50,7 @@ class ProductDetails extends React.Component {
       show: false
     });
   }
-  closeSnackbar() {
+  closeSnackbar(e) {
     this.setState({
       open: false,
       message: ''
@@ -117,7 +117,7 @@ class ProductDetails extends React.Component {
             message={<> <CheckCircleOutlineIcon /> <span>{this.state.message}</span></>}
             open={this.state.open}
             onClose={e => this.closeSnackbar}
-            autoHideDuration={2000}
+            autoHideDuration={3000}
             action={
               <>
                 <Button variant='contained' color='default' className='btn btn-primary' size='small' onClick={() => { this.props.setView('catalog', {}); }}>
