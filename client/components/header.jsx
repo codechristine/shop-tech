@@ -9,7 +9,7 @@ class Header extends React.Component {
           <div className='d-flex justify-content-between align-items-center'>
             <div className='d-flex justify-content-around align-items-center'>
               <h1 className='mt-2 ml-3 cursor-pointer' style={{ 'color': 'white', 'fontFamily': 'Bungee Outline' }} onClick={() => { this.props.setView('catalog', {}); }}> Shop Tech</h1>
-              <h6 className='mt-4 ml-2' style={{ 'color': '#f19e05e8', 'fontFamily': 'Crushed', 'fontWeight': 'bold' }}>A one stop shop for the latest tech products</h6>
+              <h6 className='mt-4 ml-2' style={{ 'color': '#f19e05e8', 'fontFamily': 'Crushed', 'fontWeight': 'bold', 'letterSpacing': '0.10rem' }}>A one stop shop for the latest tech products</h6>
             </div>
             <div className='d-flex justify-content-around mr-4' style={{ 'color': 'white' }}>
               <i className='fas fa-map-marker-alt fa-1x pt-3 cursor-pointer' data-toggle='tooltip' data-placement='bottom' title='nearby store'></i>

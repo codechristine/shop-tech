@@ -211,18 +211,9 @@ class CheckoutForm extends React.Component {
     this.props.placeOrder(order);
   }
   render() {
-    let totalCost = 0;
-    let itemCount = 0;
-    this.props.cartState.forEach(product => {
-      totalCost += parseFloat(product.price);
-      itemCount += parseFloat(product.count);
-      if (itemCount > 1) {
-        this.props.cartState.forEach(item => {
-          totalCost *= parseFloat(item.count);
-        });
-      }
-    });
-
+    let cart = this.props.cartState;
+    const itemCount = cart.reduce((runningCount, currentItemObject) => runningCount + parseFloat(currentItemObject.count), 0);
+    const totalCost = cart.reduce((runningTotal, currentItemObject) => runningTotal + currentItemObject.price * currentItemObject.count, 0);
     const { name, creditCard, creditCardExp, creditCardCVC, address, city, state, zipCode, email, nameValidate, creditCardValidate, zipCodeValidate, emailValidate, creditCardExpValidate, creditCardCVCValidate } = this.state;
 
     return (
