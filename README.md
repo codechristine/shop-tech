@@ -33,7 +33,7 @@ Try the application live at [https://shop-tech.christinele.dev/](https://shop-te
 
 ## Preview
 
-![Shop-Tech](server/public/demo/live-demo.gif)
+![Shop-Tech](server/public/demo/live-demo.gi)
 
 ## Development
 
