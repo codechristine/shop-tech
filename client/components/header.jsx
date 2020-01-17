@@ -15,7 +15,7 @@ class Header extends React.Component {
               <i className='fas fa-map-marker-alt fa-1x pt-3 cursor-pointer' data-toggle='tooltip' data-placement='bottom' title='nearby store'></i>
               <h6 className='mt-3 ml-2'>Nearby Store: Irvine, CA</h6>
               <i className='fas fa-shopping-cart fa-1x pt-3 ml-3 cursor-pointer' data-toggle='tooltip' data-placement='bottom' title='cart' onClick={() => { this.props.setView('cart', {}); }}></i>
-              <p className='cart-count cursor-pointer' style={{ 'backgroundColor': '#f19e05e8', 'borderRadius': '50%', 'height': '1.4rem', 'width': '1.4rem', 'border': 'none', 'textAlign': 'center' }} onClick={() => { this.props.setView('cart', {}); }}>{this.props.cartItemCount}</p>
+              <p className='cart-count cursor-pointer' style={{ 'backgroundColor': '#07617d', 'borderRadius': '50%', 'height': '1.4rem', 'width': '1.4rem', 'border': 'none', 'textAlign': 'center' }} onClick={() => { this.props.setView('cart', {}); }}>{this.props.cartItemCount}</p>
             </div>
           </div>
         </div>

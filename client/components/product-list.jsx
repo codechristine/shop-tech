@@ -34,7 +34,7 @@ class ProductList extends React.Component {
             </div>
           </div>
           <div className='d-flex justify-content-center align-items-center'>
-            <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
+            <h6 style={{ 'color': '#07617d', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
               *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
             </h6>
           </div>

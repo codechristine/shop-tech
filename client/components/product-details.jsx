@@ -75,7 +75,7 @@ class ProductDetails extends React.Component {
       return (
         <>
           <div className='row' style={{ 'backgroundColor': 'white', 'overflowX': 'hidden' }}>
-            <div className='ml-5 pt-4 cursor-pointer' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
+            <div className='ml-5 pt-4 cursor-pointer' style={{ 'color': '#07617d', 'fontWeight': 'bold' }} onClick={() => { this.props.setView('catalog', {}); }}>{'< Back To Catalog'}</div>
             <div className='row justify-content-center align-items-center mt-4'>
               <div className='col-md-2 col-8'>
                 <div className='align-items-center'>
@@ -103,7 +103,7 @@ class ProductDetails extends React.Component {
               <div className='media-body col-md-10 mt-5 mb-5'>{longDescription}</div>
             </div>
             <div className='d-flex justify-content-center align-items-center'>
-              <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
+              <h6 style={{ 'color': '#07617d', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
                 *disclaimer - Shop Tech is a web application built for demonstration purposes only & does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
               </h6>
             </div>
