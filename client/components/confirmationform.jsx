@@ -36,7 +36,7 @@ class Confirmation extends React.Component {
           <div className='container'>
             <div className='row'>
               <div className='col-md-4'>
-                <h3 className='mt-5 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Order Summary</h3>
+                <h3 className='mt-5 mb-2' style={{ 'color': '#07617d', 'fontWeight': 'bold' }}>Order Summary</h3>
                 <div style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
                   <div className='align-items-center mt-3 p-2'>
                     <h5 style={{ 'fontWeight': 'bold' }}>Payment Summary</h5>
@@ -51,7 +51,7 @@ class Confirmation extends React.Component {
                 <div className='' style={{ 'backgroundColor': 'white', 'borderBottom': '1px solid lightGrey', 'borderRadius': 'calc(.25rem - 1px)', 'marginTop': '6rem' }}>
                   <div className='d-flex justify-content-between align-items-center p-2'>
                     <h5 style={{ 'fontWeight': 'bold' }}>Your Item(s)</h5>
-                    <h5 style={{ 'color': 'white', 'backgroundColor': '#f19e05e8', 'borderRadius': '50%', 'height': '1.7rem', 'width': '1.7rem', 'border': 'none', 'textAlign': 'center' }}>{totalCount}</h5>
+                    <h5 style={{ 'color': 'white', 'backgroundColor': '#07617d', 'borderRadius': '50%', 'height': '1.7rem', 'width': '1.7rem', 'border': 'none', 'textAlign': 'center' }}>{totalCount}</h5>
                   </div>
                   {this.props.cartState.map(item => {
                     return (
@@ -66,7 +66,7 @@ class Confirmation extends React.Component {
             </div>
           </div>
           <div className='d-flex justify-content-center align-items-center'>
-            <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '30vh', 'padding': '1rem', 'textAlign': 'center' }}>
+            <h6 style={{ 'color': '#07617d', 'fontWeight': 'bold', 'marginTop': '30vh', 'padding': '1rem', 'textAlign': 'center' }}>
               *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
             </h6>
           </div>

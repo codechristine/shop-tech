@@ -223,7 +223,7 @@ class CheckoutForm extends React.Component {
           <div className='col-md-7'>
             <form className='form' >
               <div className='payment-info'>
-                <h3 className='mt-4 mb-2' style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Checkout</h3>
+                <h3 className='mt-4 mb-2' style={{ 'color': '#07617d', 'fontWeight': 'bold' }}>Checkout</h3>
                 <div style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
                   <div className='d-flex justify-content-between' style={{ 'height': '4rem', 'backgroundColor': 'gainsboro', 'borderRadius': 'calc(.25rem - 1px)' }}>
                     <h6 className='p-2 ml-1'>Payment Details</h6>
@@ -289,8 +289,8 @@ class CheckoutForm extends React.Component {
           </div>
           <div className='col-md-5'>
             <div className='d-flex justify-content-between align items-center mt-4'>
-              <h3 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold' }}>Cart</h3>
-              <h5 style={{ 'color': 'white', 'backgroundColor': '#f19e05e8', 'borderRadius': '50%', 'height': '1.7rem', 'width': '1.7rem', 'border': 'none', 'textAlign': 'center' }}>{itemCount}</h5>
+              <h3 style={{ 'color': '#07617d', 'fontWeight': 'bold' }}>Cart</h3>
+              <h5 style={{ 'color': 'white', 'backgroundColor': '#07617d', 'borderRadius': '50%', 'height': '1.7rem', 'width': '1.7rem', 'border': 'none', 'textAlign': 'center' }}>{itemCount}</h5>
             </div>
             <div style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }}>
               {this.props.cartState.map(item => {
@@ -308,7 +308,7 @@ class CheckoutForm extends React.Component {
         </div>
       </div>
         <div className='d-flex justify-content-center align-items-center'>
-          <h6 style={{ 'color': '#f19e05e8', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
+          <h6 style={{ 'color': '#07617d', 'fontWeight': 'bold', 'marginTop': '5vh', 'padding': '1rem', 'textAlign': 'center' }}>
             *disclaimer - Shop Tech is a web application built for demonstration purposes only and does not sell, provide, or distribute any products or services. Orders placed on Shop Tech will not be charged.
           </h6>
           <p>Please do not input any personal or sensitive information.</p>
