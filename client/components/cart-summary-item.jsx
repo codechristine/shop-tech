@@ -47,7 +47,6 @@ class CartSummaryItem extends React.Component {
               <div className='mt-3' style={{ 'backgroundColor': 'white', 'borderRadius': 'calc(.25rem - 1px)' }} >
                 <button type='button' className='close ml-3' aria-label='close' onClick={ e => {
                   e.preventDefault();
-                  // this.props.delete(this.props.items.cartItemId);
                   this.openModal();
                 }} >
                   <span className='close' aria-label='Close' aria-hidden='true' style={{ 'fontSize': '2.5rem' }} data-toggle='tooltip' data-placement='bottom' title='remove' >&times;</span>
