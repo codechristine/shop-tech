@@ -19,19 +19,6 @@ class ProductListItem extends React.Component {
           </div>
         </div>
       );
-      // return (
-      //   <div className='col-md-3 m-1' style={{ 'backgroundColor': 'white', 'border': '1px solid lightGrey' }}>
-      //     <div className='d-flex justify-content-center align-items-center'>
-      //       <img className='img-fluid cursor-pointer' style={{ 'height': '18rem' }} src={this.props.item.image[0]} alt='product-card-image' onClick={productDetails} />
-      //     </div>
-      //     <div className='align-items-center'>
-      //       <h5 className='title cursor-pointer' style={{ 'fontWeight': 'bold' }} onClick={productDetails}>{this.props.item.name}</h5>
-      //       <p className='text'>${this.props.item.price} USD</p>
-      //       <p className='text'>{this.props.item.shortDescription}</p>
-      //       <button type='button' className='btn btn-primary mb-3' onClick={productDetails}>View Product Details</button>
-      //     </div>
-      //   </div>
-      // );
     } else {
       return (
         <>
