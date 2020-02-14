@@ -32,10 +32,7 @@ class CheckoutForm extends React.Component {
     let value = e.target.value;
 
     if (name === 'name') {
-      // const pattern = /^[a-zA-Z]+([a-zA-Z]\s*)*$/;
       const pattern = /^[a-zA-Z]*\s?([a-zA-Z\\-]+\s)+[a-zA-Z\\-]+$/;
-      // const pattern = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\s?([a-zA-Z]{1,})?)/;
-      // const pattern = /^[a-z ,.'-]+$/;
       if (pattern.test(value)) {
         this.setState({
           nameValidate: true,
@@ -69,8 +66,6 @@ class CheckoutForm extends React.Component {
       if (value.length === 20) {
         return false;
       }
-      // const pattern = /^((4\d{3})|(5[1-5]\d{2})|(6011))-?\d{4}-?\d{4}-?\d{4}|3[4,7]\d{13}$/;
-      // const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-]?(\d{4})[-]?(\d{4})[-]?(\d{4}|3[4,7]\d{13})$/;
       const pattern = /^((?:4\d{3})|(?:5[1-5]\d{2})|(?:6011)|(?:3[68]\d{2})|(?:30[012345]\d))[-\s]?(\d{4})[-\s]?(\d{4})[-\s]?(\d{4}|3[4,7]\d{13})$/;
 
       if (pattern.test(value)) {
@@ -115,7 +110,6 @@ class CheckoutForm extends React.Component {
       }
     }
     if (name === 'email') {
-      // const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
       const pattern = /^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/;
 
       if (pattern.test(value)) {

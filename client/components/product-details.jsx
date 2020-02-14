@@ -94,7 +94,6 @@ class ProductDetails extends React.Component {
                 <p className='mt-3 text-wrap'>{shortDescription}</p>
                 <button type='button' className='btn btn-primary' onClick={() => {
                   this.openModal();
-                  // this.props.itemAddedToCart(this.state.product);
                 }
                 }>Add To Cart</button>
               </div>
